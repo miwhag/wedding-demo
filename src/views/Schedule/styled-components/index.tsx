@@ -80,7 +80,7 @@ export const ContentContainer = styled.div<{
 		min-height: 600px;
 		&#weekend {
 			min-height: 500px;
-			padding-bottom: 6rem;
+			padding-bottom: 4.5rem;
 		}
 	}
 

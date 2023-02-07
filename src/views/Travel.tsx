@@ -34,21 +34,6 @@ const TravelContainer = styled.div`
 	}
 `;
 
-const PageTitle = styled.div`
-	font-family: 'Circular-Book';
-	font-size: 24px;
-	align-self: center;
-	text-align: center;
-	min-width: 200px;
-	margin: 0;
-	padding: 25px;
-	text-transform: uppercase;
-	@media only screen and (max-width: 900px) {
-		font-size: 18px;
-		text-align: center;
-	}
-`;
-
 const SubTitle = styled.div`
 	font-family: 'Circular-Book';
 	font-size: 30px;
@@ -67,8 +52,11 @@ const SecondarySubTitle = styled.div`
 `;
 
 const LinkContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 	padding: 10px 0px;
 	a {
+		padding-bottom: 7px;
 		color: #6871e4;
 	}
 `;
@@ -105,6 +93,13 @@ export default function Travel() {
 						href='https://deercreekmountaincamp.com/'
 					>
 						View Deer Creek Website Here
+					</a>
+					<a
+						target='_blank'
+						rel='noreferrer'
+						href='https://www.google.com/maps/place/Deer+Creek+Mountain+Camp/@39.446751,-105.4787151,17z/data=!3m1!4b1!4m5!3m4!1s0x876b0d94e94395c5:0xbec5eb8f416b5003!8m2!3d39.446751!4d-105.4765264'
+					>
+						Google Maps Directions
 					</a>
 				</LinkContainer>
 				<p>

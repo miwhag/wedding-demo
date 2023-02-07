@@ -20,12 +20,12 @@ export const Questions = {
 		{
 			question: 'Are cabins co-ed?',
 			answer:
-				'We will have one cabin that is women only. The remaining cabins will all be co-ed.',
+				'Yes all cabins are co-ed. We also have three cabins which are reserved for families.',
 		},
 		{
 			question: 'How do I pay for my reservation?',
 			answer:
-				'You can pay for your reservation either by venmo: miwhag, or you can pay through the registry site. Check the registry tab for more.',
+				'You can pay for your reservation either by venmo: miwhag, or you can pay through our registry site. Check the registry tab for more.',
 		},
 	],
 	rsvp: [
@@ -47,26 +47,26 @@ export const Questions = {
 		{
 			question: 'What is the name and address of the venue?',
 			answer:
-				'The venue is Deer Creek Mountain Camp at 228 S Pine Dr, Bailey, CO 80421. Please type in the address carefully and follow Google Map directions to the venue. There is another Deer Creek Venue close by, and if you pull up to a venue with a white barn, you are not at the right location.',
+				'The venue is Deer Creek Mountain Camp at 228 S Pine Dr, Bailey, CO 80421. Please type in the address carefully and follow Google Map directions to the venue. You can find a direct link for directions on the Travel page.',
 		},
 		{
 			question: 'What airport should I fly into?',
 			answer:
-				'Denver International Airport is the closest major airport. It is roughly 1 hour an 20 minutes from the venue.',
+				'Denver International Airport is the closest major airport. It is roughly 1 hour and 20 minutes from the venue.',
 		},
 		{
 			question: 'What time should I arrive?',
-			answer: `You can arrive at the venue as early as 3:00pm on Friday. There is also plenty to see and do in Bailey if you fly in early. However, we can't have guests at the venue until 3pm. Just know we & the wedding party will likely be busy setting up during the day. Dinner will be around 6pm, and following dinner will be the dodgeball tournament.`,
+			answer: `You can arrive at the venue as early as 3:00pm on Friday. There is also plenty to see and do in Bailey if you fly in early. However, we can't have guests at the venue until 3pm. Just know we & the wedding party will likely be busy setting up during the day before dinner.`,
 		},
 		{
 			question: 'Where should guests park? Is parking free?',
 			answer:
-				'Parking is free, and there is a large lot on the venue property for guests to use. Some cabins additional parking attached, however these are for family memebers or those who are hard of walking. See venue map on Lodging Page for parking location.',
+				'Parking is free, and there is a large lot on the venue property for guests to use. Some cabins additional parking attached, however these are for family members or those who are hard of walking. See venue map on Lodging Page for parking location.',
 		},
 		{
 			question: 'Can I bring my children?',
 			answer:
-				'We understand that leaving the kids at home for a whole weekend might not be possible. While we would love to see them during the weekend, we are choosing not to have young children (under 8 years old and outside of immediate family) present during the ceremony and dinner.',
+				'Yes! With a caveat. We understand that leaving the kids at home for a whole weekend might not be possible, and while we would love to see them during the weekend, we are choosing not to have young children (under 8 years old and outside of immediate family) present during the ceremony and dinner.',
 		},
 		{
 			question: 'What are my options if I would like to bring my child(ren)?',
@@ -99,7 +99,7 @@ export const Questions = {
 			answer: 'Sorry, no cannabis smoking allowed on the property.',
 		},
 		{
-			question: 'I still have questions, what is the best way to contact you?',
+			question: 'What is the best way to contact you?',
 			answer: 'Please email us at mikemiwha@gmail.com ',
 		},
 	],
@@ -112,7 +112,7 @@ export const Questions = {
 		{
 			question: 'Are there other wedding events I can attend?',
 			answer:
-				'We will be hosting a dodgeball tournament on Friday evening, with prizes to win! This will be held in the gym. Those who are not interested in participating in the tournament but would like to watch are more than welcome. The gym has a large area to overlook the court with a pool and foosball table with chairs.',
+				'We will be hosting a dodgeball tournament on Friday evening, with prizes to win! This will be held in the gym. Those who are not interested in participating in the tournament but would like to watch are more than welcome.',
 		},
 		{
 			question: 'How can I join a dodgeball team?',
@@ -130,10 +130,13 @@ export const Questions = {
 			answer:
 				'Within 10 minutes of the venue, there is a beautiful mountain disc golf course, small coffee shops, restaurants, and an amazing winery in town. There are also plenty of hiking trails to enjoy.',
 		},
-
 		{
 			question: 'What meals will be provided over the weekend?',
-			answer: `We will provide dinner on Friday, Saturday dinner, and Sunday breakfast. We are also asking for a $5 donation to cover Sunday breakfast. Since we won't have a formal breakfast or lunch on Saturday, we recommend going into town for food since it's only 10 minutes away. However, we will have plenty of snacks out as well incase people can't get to town.`,
+			answer: `We will provide dinner on Friday and Saturday as well as Sunday Breakfast. We are also asking for a $5 donation to cover Sunday breakfast. Since we won't have a formal breakfast or lunch on Saturday, we recommend going into town for food since it's only 10 minutes away.`,
+		},
+		{
+			question: `What if I can't easily get to town because I don't have a car?`,
+			answer: `We will make sure to have some simple snacks on site so that those who can't get to town easily for Saturday lunch have atleast something to eat. But think PBJ's and things like that.`,
 		},
 	],
 	wedding: [
@@ -163,7 +166,7 @@ export const Questions = {
 	other: [
 		{
 			question: 'Do you have a registry?',
-			answer: `We do! It is under the registry tab on our website, however we won't be openinig it until June most likely.`,
+			answer: `We do! It is under the registry tab on our website, however we won't be opening it until June most likely.`,
 		},
 	],
 };

@@ -55,7 +55,7 @@ export default function Schedule() {
 							We know plenty of people will be traveling in on Friday and
 							Saturday, and perhaps arriving at different times. We want to make
 							sure that the people who arrive Friday can relax and enjoy dinner
-							and so, we will be hositng a BBQ Friday evening with drinks before
+							and so, we will be hosting a BBQ Friday evening with drinks before
 							any evening games.
 						</p>
 					</ScheduleSection>
