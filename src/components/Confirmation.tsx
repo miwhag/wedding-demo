@@ -26,15 +26,16 @@ const ExitButton = styled.div`
 
 const ButtonContainer = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-self: center;
-	max-width: 200px;
+	max-width: 320px;
 	margin: 2rem auto;
 	gap: 20px;
 `;
 
 const ContentGroup = styled.div`
+	padding: 2rem;
 	display: flex;
 	flex-direction: column;
 	@media only screen and (min-width: 900px) {

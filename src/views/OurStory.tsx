@@ -9,7 +9,7 @@ const OurStoryPage = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 12rem 1rem 1rem 1rem;
+	padding: 12rem 1rem 0rem 1rem;
 	@media only screen and (max-width: 900px) {
 		padding-top: 8rem;
 	}
@@ -99,25 +99,14 @@ const AboutSection = styled.div`
 	}
 `;
 
-// const Accent = styled.div`
-// 	height: 0.2rem;
-// 	width: 50px;
-// 	margin: 0rem 1rem 0.5rem 1rem;
-// 	&.miwha {
-// 		background-color: #c9e265;
-// 	}
-// 	&.mike {
-// 		background-color: #ff99ff;
-// 	}
-// `;
 const Story = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: center;
 	h1 {
 		margin: 0;
 		padding: 0rem 1rem 0rem 1rem;
-		font-size: 23px;
+		font-size: 28px;
 		height: 31px;
 		font-family: 'Lazydog';
 	}

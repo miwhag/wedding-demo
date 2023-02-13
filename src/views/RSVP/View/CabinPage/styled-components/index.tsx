@@ -1,6 +1,20 @@
 /** @format */
 import styled from 'styled-components';
 
+export const Offsite = styled.div`
+	height: 70px;
+	width: 100%;
+	max-width: 1150px;
+	background-color: #effaff;
+	color: #6082b6;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	svg {
+		font-size: 25px;
+		margin-right: 10px;
+	}
+`;
 export const ErrorMessage = styled.div`
 	background-color: #ffdddd;
 	color: #ff3333;
@@ -71,8 +85,10 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	align-self: center;
 	margin: 6rem 0rem 5rem 0rem;
 	gap: 30px;
+	max-width: 450px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
 		margin: 3rem 0rem 5rem 0rem;
@@ -83,8 +99,9 @@ export const ToggleContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem 2rem 0rem 0rem;
+	padding-top: 1rem;
 	width: 100%;
+	max-width: 1150px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
 		align-items: flex-start;

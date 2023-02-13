@@ -40,6 +40,11 @@ export default function FAQ() {
 			</ScrollContainer>
 
 			<Category>
+				<SubTitle id='general'>General</SubTitle>
+			</Category>
+			<Accordian FAQ={Questions['general']} />
+
+			<Category>
 				<SubTitle id='lodging'>Lodging</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['lodging']} />
@@ -48,11 +53,6 @@ export default function FAQ() {
 				<SubTitle id='rsvp'>RSVP</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['rsvp']} />
-
-			<Category>
-				<SubTitle id='general'>General</SubTitle>
-			</Category>
-			<Accordian FAQ={Questions['general']} />
 
 			<Category>
 				<SubTitle id='weekend'>Weekend</SubTitle>
