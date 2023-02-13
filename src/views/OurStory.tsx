@@ -99,21 +99,10 @@ const AboutSection = styled.div`
 	}
 `;
 
-// const Accent = styled.div`
-// 	height: 0.2rem;
-// 	width: 50px;
-// 	margin: 0rem 1rem 0.5rem 1rem;
-// 	&.miwha {
-// 		background-color: #c9e265;
-// 	}
-// 	&.mike {
-// 		background-color: #ff99ff;
-// 	}
-// `;
 const Story = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: center;
 	h1 {
 		margin: 0;
 		padding: 0rem 1rem 0rem 1rem;
