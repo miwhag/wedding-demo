@@ -3,7 +3,8 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
 const Primary = styled(Button)<ButtonProps>(({ theme }) => ({
-	minWidth: '200px',
+	width: '100%',
+	maxWidth: '200px',
 	backgroundColor: '#242424',
 	height: '50px',
 	borderRadius: '100px;',

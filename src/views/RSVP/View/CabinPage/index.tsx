@@ -2,7 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { GuestContext } from '../../../../context/GuestContext';
 import { Confirmation, Stepper, Toggle } from '../../../../components/index';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
 
 import {
@@ -21,6 +21,7 @@ import {
 	ArrowContainer,
 	ViewMoreButton,
 	ErrorMessage,
+	Offsite,
 } from './styled-components';
 import {
 	Card,
@@ -45,6 +46,8 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const [activeModal, setActiveModal] = useState(false);
 	const [activeCard, setActiveCard] = useState<any>(null);
 	const [noLodgingNotice, setNoLodgingNotice] = useState(false);
+	const [displayDeclineLodgingModal, setDisplayDeclineLodgingModal] =
+		useState(false);
 	const [hideCabins, setHideCabins] = useState(false);
 	const [capacityError, setCapacityError] = useState(false);
 
@@ -108,6 +111,10 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		setOpen(true);
 	};
 
+	const handleDeclineLodging = () => {
+		updateGuest(guest?.id, { lodging_id: 24 });
+		progressFlow();
+	};
 	//offsite is cabin id 24
 	const handleContinue = () => {
 		if (
@@ -116,7 +123,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		) {
 			setNoLodgingNotice(true);
 		} else if (selectedCabin && !acceptLodging) {
-			updateGuest(guest?.id, { lodging_id: null });
+			updateGuest(guest?.id, { lodging_id: 24 });
 			progressFlow();
 			window.scrollTo(0, 0);
 		} else if (partyUpdated) {
@@ -126,8 +133,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		} else if (selectedCabin && acceptLodging && !partyUpdated) {
 			progressFlow();
 		} else {
-			updateGuest(guest?.id, { lodging_id: 24 });
-			progressFlow();
+			setDisplayDeclineLodgingModal(true);
 		}
 	};
 
@@ -147,7 +153,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 			setCapacityError(false);
 		}
 	};
-
 	return (
 		<>
 			{loaded ? (
@@ -161,10 +166,33 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							}}
 						/>
 					)}
-
+					{displayDeclineLodgingModal && (
+						<Confirmation
+							handleExit={() => setDisplayDeclineLodgingModal(false)}
+							handleContinue={() => handleDeclineLodging()}
+							content={{
+								__html: `<span>You have selected "No" to on-site lodging.<br/> This means you will be finding lodging yourself off-site. <br/>Is this correct?</span>`,
+							}}
+						/>
+					)}
 					<div className='stepper-container'>
 						<Stepper step={2} />
 					</div>
+					{offsiteCabin && (
+						<Offsite>
+							<div
+								style={{
+									display: 'flex',
+									alignItems: 'center',
+									padding: '1rem',
+								}}
+							>
+								<FaExclamationTriangle />
+								You are registered as staying off-site. If you would like to
+								change this, you will need to select a cabin.
+							</div>
+						</Offsite>
+					)}
 					<ToggleContainer>
 						<div className='sub-heading'>
 							Will you be staying on-site in a cabin?
@@ -176,7 +204,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							/>
 						</div>
 					</ToggleContainer>
-					<p className='description line-divider'>
+					<p className={`description ${acceptLodging && 'line-divider'}`}>
 						Staying in a cabin requires bringing your own bedding. While there
 						are enough beds for everyone to stay in at the property, sleeping
 						bags/pillows will need to be brought with you. In addition to the
@@ -184,7 +212,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						for the entire weekend.
 					</p>
 
-					{acceptLodging ? (
+					{acceptLodging && (
 						<div>
 							{selectedCabin && !offsiteCabin && (
 								<SelectedCabinSection>
@@ -233,7 +261,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 								that will fit your entire party, please reach out to us and we
 								can assist.
 							</p>
-							<h3 style={{ margin: '1rem 0rem 0rem 0rem' }}>Cabin List</h3>
 							<CabinListContainer className={`${!hideCabins && 'open'}`}>
 								{cabinList && (
 									<CabinCardsContainer>
@@ -278,16 +305,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 								/>
 							)}
 						</div>
-					) : (
-						<>
-							<div className='sub-heading'>By selecting "No"</div>
-
-							<p className='description'>
-								By selecting no, you have opted out of lodging on-site and will
-								need to find another option. The lodging page on this site
-								offers some suggestions.
-							</p>
-						</>
 					)}
 					<ButtonContainer>
 						<ButtonSecondary onClick={() => regressFlow()} text='Back' />
@@ -300,3 +317,14 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		</>
 	);
 }
+// : (
+// 	<>
+// 		<div className='sub-heading'>By selecting "No"</div>
+
+// 		<p className='description'>
+// 			By selecting no, you have opted out of lodging on-site and will
+// 			need to find another option. The lodging page on this site
+// 			offers some suggestions.
+// 		</p>
+// 	</>
+// )}
