@@ -75,6 +75,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 
 	useEffect(() => {
 		updateCabinList();
+		updateGuestInfo();
 	}, [selectedCabin]);
 
 	function setCurrentState() {
@@ -88,12 +89,17 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 			setAcceptLodging(false);
 			setSelectedCabin(cabin);
 		}
-		checkPartyCapacity();
 	}
 
 	async function updateCabinList() {
 		let lodgingResult = await getLodgings();
 		setCabinList(lodgingResult);
+	}
+
+	async function updateGuestInfo() {
+		let response = await getSelectedGuest(guest.id);
+		setGuest(response);
+		checkPartyCapacity(response);
 	}
 
 	const handleCardClick = (cabin) => {
@@ -125,9 +131,8 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		}
 	};
 
-	const checkPartyCapacity = async () => {
-		let current = await getSelectedGuest(guest.id);
-		const guestIsAssignedLodging = current?.lodging_id;
+	const checkPartyCapacity = (current) => {
+		const guestIsAssignedLodging = current?.lodging_id !== null;
 		const plusOneIsNotAssignedLodging =
 			current?.plus_ones[0]?.lodging_id === null;
 		const kidIsNotAssignedLodging = current?.kids?.some(
