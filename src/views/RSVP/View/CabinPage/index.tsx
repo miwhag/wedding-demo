@@ -317,14 +317,3 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		</>
 	);
 }
-// : (
-// 	<>
-// 		<div className='sub-heading'>By selecting "No"</div>
-
-// 		<p className='description'>
-// 			By selecting no, you have opted out of lodging on-site and will
-// 			need to find another option. The lodging page on this site
-// 			offers some suggestions.
-// 		</p>
-// 	</>
-// )}
