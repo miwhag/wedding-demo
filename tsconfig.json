@@ -16,8 +16,6 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"noImplicitAny": false,
-		"useUnknownInCatchVariables": false
-		  
 	},
 	"include": ["src"]
 }
