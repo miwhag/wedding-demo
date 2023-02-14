@@ -37,6 +37,9 @@ export const Heading = styled.div`
 	p {
 		margin: 20px 0px 20px 0px;
 	}
+	.bold {
+		font-family: 'Circular-Medium';
+	}
 	@media only screen and (max-width: 900px) {
 		max-width: 250px;
 		text-align: center;
@@ -49,9 +52,13 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ErrorMessage = styled.p`
+	font-family: 'Circular-Book';
 	font-size: 14px;
+	background-color: #ffdddd;
 	color: #ff3333;
-	max-width: 340px;
+	padding: 20px;
+	max-width: 300px;
+	border-radius: 2px;
 	text-align: center;
 	@media only screen and (max-width: 600px) {
 		max-width: 270px;
@@ -64,6 +71,7 @@ export const StartPageContainer = styled.div`
 	align-items: center;
 	padding-top: 10rem;
 	height: 75vh;
+	min-width: 320px;
 `;
 
 export const Title = styled.div`
