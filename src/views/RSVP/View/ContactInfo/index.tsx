@@ -106,14 +106,19 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	const handlePlusOne = () => {
 		if (guest.plus_ones) {
 			let plusOneRegistered = guest?.plus_ones?.length === 1;
-			let plusOneOpen = guest?.plus_ones?.length === 0;
+			let plusOneSpotAvailable = guest?.plus_ones?.length === 0;
 			let plusOneId = guest?.plus_ones[0]?.id;
+
+			let plusOneEmpty =
+				guest.plus_ones[0]?.name === null ||
+				guest.plus_ones[0]?.name?.replace(/\s/g, '') === '' ||
+				guest.plus_ones[0]?.name === undefined;
 
 			if (rsvp === null || rsvp === 'no') {
 				setPlusOneToggle(false);
-			} else if (plusOneOpen && plusOneToggle) {
+			} else if (plusOneSpotAvailable && plusOneToggle && !plusOneEmpty) {
 				createPlusOne({ name: plusOneName, guest_id: guest.id });
-			} else if (plusOneRegistered && plusOneToggle) {
+			} else if (plusOneRegistered && plusOneToggle && !plusOneEmpty) {
 				updatePlusOne(plusOneId, { name: plusOneName });
 			} else if (plusOneRegistered && !plusOneToggle) {
 				deletePlusOne(plusOneId);
@@ -144,7 +149,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 		} else {
 			setKids(guest.id, { child_care: childCare, kids: childList });
 		}
-		if (guest.plus_one_count !== 0) {
+		if (guest.plus_one_count !== 0 && plusOneName?.length > 0) {
 			handlePlusOne();
 		}
 	}
@@ -164,6 +169,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 			plusOneName,
 			setPlusOneError,
 		});
+
 		if (!error) {
 			if (rsvp === 'no') {
 				setDisplayConfirmation(true);
