@@ -233,6 +233,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 												<ViewMoreLink
 													onClick={() => {
 														setActiveModal(true);
+														setActiveCard(selectedCabin);
 													}}
 												>
 													View Details <FaArrowRight />
@@ -244,7 +245,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 														setHideCabins(false);
 													}}
 												>
-													Deselect Button
+													Unselect Cabin
 												</DeselectButton>
 											</LinkContainer>
 										</SelectedContent>

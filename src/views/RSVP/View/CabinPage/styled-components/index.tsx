@@ -258,6 +258,7 @@ export const DeselectButton = styled.div`
 	color: #ffdddd;
 	padding-right: 0;
 	margin-top: 15px;
+	cursor: pointer;
 	&:hover {
 		background-color: #ffdddd;
 		color: #ff3333;

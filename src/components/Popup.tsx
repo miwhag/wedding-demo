@@ -254,7 +254,7 @@ export default function Popup({
 								{activeCard?.id === selectedCabin?.id ? (
 									<ButtonError
 										onClick={() => handleSelectCabin()}
-										text='Deselect This Cabin'
+										text='Unselect This Cabin'
 										fullWidth
 									/>
 								) : (
