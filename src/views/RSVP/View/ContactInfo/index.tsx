@@ -116,7 +116,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 
 			if (rsvp === null || rsvp === 'no') {
 				setPlusOneToggle(false);
-			} else if (plusOneSpotAvailable && plusOneToggle && !plusOneEmpty) {
+			} else if (plusOneSpotAvailable && plusOneToggle) {
 				createPlusOne({ name: plusOneName, guest_id: guest.id });
 			} else if (plusOneRegistered && plusOneToggle && !plusOneEmpty) {
 				updatePlusOne(plusOneId, { name: plusOneName });
