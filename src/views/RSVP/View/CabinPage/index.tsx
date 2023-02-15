@@ -178,6 +178,28 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 					<div className='stepper-container'>
 						<Stepper step={2} />
 					</div>
+
+					<ToggleContainer>
+						<div className='sub-heading'>
+							Will you be staying on-site in a cabin?
+						</div>
+						<div>
+							<Toggle
+								toggleActive={acceptLodging}
+								onChange={() => setAcceptLodging(!acceptLodging)}
+							/>
+						</div>
+					</ToggleContainer>
+					<div>
+						<p className='title'>Important Message About Cabins</p>
+						<p className={`description ${acceptLodging && 'line-divider'}`}>
+							Staying in a cabin requires bringing your own bedding. While there
+							are enough beds for everyone to stay in at the property - sleeping
+							bags, pillows, towels and other toiletries will need to be brought
+							with you. Additionally the cost of staying in a cabin on-site will
+							be $30 per person for the entire weekend.
+						</p>
+					</div>
 					{offsiteCabin && (
 						<Offsite>
 							<div
@@ -193,24 +215,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							</div>
 						</Offsite>
 					)}
-					<ToggleContainer>
-						<div className='sub-heading'>
-							Will you be staying on-site in a cabin?
-						</div>
-						<div>
-							<Toggle
-								toggleActive={acceptLodging}
-								onChange={() => setAcceptLodging(!acceptLodging)}
-							/>
-						</div>
-					</ToggleContainer>
-					<p className={`description ${acceptLodging && 'line-divider'}`}>
-						Staying in a cabin requires bringing your own bedding. While there
-						are enough beds for everyone to stay in at the property, sleeping
-						bags/pillows will need to be brought with you. In addition to the
-						bedding, the cost of staying at a cabin on-site is $30 per person
-						for the entire weekend.
-					</p>
 
 					{acceptLodging && (
 						<div>
@@ -233,6 +237,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 												<ViewMoreLink
 													onClick={() => {
 														setActiveModal(true);
+														setActiveCard(selectedCabin);
 													}}
 												>
 													View Details <FaArrowRight />
@@ -244,7 +249,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 														setHideCabins(false);
 													}}
 												>
-													Deselect Button
+													Unselect Cabin
 												</DeselectButton>
 											</LinkContainer>
 										</SelectedContent>

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 export const Offsite = styled.div`
 	height: 70px;
 	width: 100%;
-	max-width: 1150px;
 	background-color: #effaff;
-	color: #6082b6;
+	color: #476aa1;
 	display: flex;
 	align-items: center;
 	font-size: 16px;
+	margin-top: 1rem;
 	svg {
 		font-size: 25px;
 		margin-right: 10px;
@@ -121,6 +121,12 @@ export const CabinInfoSection = styled.div`
 		margin: 5rem 1rem 1rem 1rem;
 	}
 
+	.title {
+		font-family: 'Circular-Medium';
+		padding-top: 1rem;
+		font-size: 16px;
+	}
+
 	.stepper-container {
 		display: flex;
 		justify-content: center;
@@ -134,14 +140,15 @@ export const CabinInfoSection = styled.div`
 		color: #343232;
 		font-weight: 500;
 	}
-
 	p {
 		padding: 0;
 		margin: 0px 0px 10px 0px;
 		font-weight: 300;
 		color: #343232;
 	}
-	p.description {
+	.description {
+		line-height: 20px;
+		font-size: 16px;
 		@media only screen and (min-width: 900px) {
 			padding-right: 8rem;
 		}
@@ -258,6 +265,7 @@ export const DeselectButton = styled.div`
 	color: #ffdddd;
 	padding-right: 0;
 	margin-top: 15px;
+	cursor: pointer;
 	&:hover {
 		background-color: #ffdddd;
 		color: #ff3333;

@@ -96,7 +96,9 @@ export default function ChildSection({
 				)}
 			</FormControl>
 			<KidsContainer>
-				<div className='sub-heading'>Please enter their information below</div>
+				<div className='sub-heading'>
+					Please enter your child's information below
+				</div>
 				{childList?.map((element, index) => (
 					<div key={`${index}-child`}>
 						<div style={{ paddingTop: 20 }}>
@@ -104,7 +106,7 @@ export default function ChildSection({
 								<InputContainer className='no-gap input-gap'>
 									<TextField
 										sx={{ width: '320px' }}
-										label='Full Name'
+										label={`Child's Name`}
 										required={false}
 										type='text'
 										name='name'

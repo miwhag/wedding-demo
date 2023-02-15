@@ -38,7 +38,7 @@ export default function StartPage({ progressFlow }) {
 
 	async function getSelectedGuestInfo() {
 		let foundGuest = guestList?.find((guest) =>
-			searchTerm.includes(guest.name.toLowerCase())
+			searchTerm?.includes(guest?.name?.toLowerCase())
 		);
 		if (!!foundGuest) {
 			let promise = new Promise((resolve) => {
@@ -82,10 +82,13 @@ export default function StartPage({ progressFlow }) {
 						<>
 							<Heading>
 								<h1>RSVP</h1>
-								<p>Enter your full name below to find your invitation</p>
+								<p>
+									Enter your <span className='bold'>full name </span>below to
+									find your invitation
+								</p>
 							</Heading>
 							<TextField
-								label='Search Your Name'
+								label='Search Your Full Name'
 								onChange={(e) => editSearchTerm(e)}
 								type='text'
 								required
@@ -94,8 +97,9 @@ export default function StartPage({ progressFlow }) {
 							/>
 							{displayError && (
 								<ErrorMessage>
-									oh no! we’re having trouble finding your invite. Make sure the
-									spelling is correct and if the problem persists contact m+m at
+									Oh no! We’re having trouble finding your invite. Make sure the
+									spelling is correct and that your search includes your first
+									and last name. If the problem persists contact m+m at
 									mikemiwha@gmail.com
 								</ErrorMessage>
 							)}

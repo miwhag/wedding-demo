@@ -63,7 +63,11 @@ export function checkForErrors({
 	} else {
 		setEmailError(false);
 	}
-	if (plusOneToggle && plusOneName === '') {
+	if (
+		(plusOneToggle && plusOneName?.replace(/\s/g, '') === '') ||
+		(plusOneToggle && plusOneName === null) ||
+		(plusOneToggle && plusOneName === undefined)
+	) {
 		setPlusOneError(true);
 	} else {
 		setPlusOneError(false);
@@ -74,7 +78,9 @@ export function checkForErrors({
 		(children && kidsErrors(childList)) ||
 		rsvp === '' ||
 		rsvp === null ||
-		(plusOneToggle && plusOneName === '') ||
+		(plusOneToggle && plusOneName === null) ||
+		(plusOneToggle && plusOneName?.replace(/\s/g, '') === '') ||
+		(plusOneToggle && plusOneName === undefined) ||
 		!validateEmail(email)
 	) {
 		return true;
