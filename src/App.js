@@ -1,5 +1,4 @@
 /** @format */
-import { useEffect } from 'react';
 import Body from './components/Body';
 import './index.css';
 import { GuestProvider } from './context/GuestContext';

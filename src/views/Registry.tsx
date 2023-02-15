@@ -1,6 +1,5 @@
 /** @format */
 import styled from 'styled-components';
-import map from '../assets/distance-to.svg';
 import { Breadcrumbs } from '../components/index';
 
 const RegistryPage = styled.div`
