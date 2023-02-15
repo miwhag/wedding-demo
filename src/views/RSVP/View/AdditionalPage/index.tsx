@@ -171,11 +171,12 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							</div>
 							<p className='description'>
 								We will provide dinner on Friday evening (think grilling / bbq),
-								dinner Saturday evening (Reception Dinner), and breakfast on
-								Sunday Morning. For Saturday morning/lunch we recommend guests
-								hit the town in Bailey or Conifer for a meal, though we will
-								also have some simple food out for people to enjoy incase they
-								are unable to get to town. <br />
+								coffee & donuts on Saturday morning, dinner Saturday evening
+								(Reception Dinner), and breakfast on Sunday Morning. For
+								Saturday lunch we recommend guests hit the town in Bailey or
+								Conifer for a meal, though we will also have some simple food
+								out for people to enjoy incase they are unable to get to town.
+								Think PBJ's. <br />
 								<br />
 								For Sunday breakfast we are asking for a $5 dollar donation.
 								However if you do not want breakfast you can opt out below as

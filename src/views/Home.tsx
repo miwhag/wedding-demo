@@ -1,4 +1,6 @@
 /** @format */
+
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import deerCreek from '../assets/deer_creek.jpg';
@@ -139,6 +141,7 @@ const HeroSection = styled.div`
 
 export default function Home({ visible }) {
 	const history = useHistory();
+
 	return (
 		<>
 			<HomePage visible={visible}>
