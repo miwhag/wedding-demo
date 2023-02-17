@@ -5,7 +5,7 @@ import styled from 'styled-components';
 //RSVP Main
 export const RsvpContainer = styled.div`
 	padding-top: 5rem;
-	min-height: 800px;
+	min-height: 85vh;
 `;
 
 export const SignUpForm = styled.div`
@@ -30,18 +30,11 @@ export const Heading = styled.div`
 	align-items: center;
 	flex-direction: column;
 	max-width: unset;
-	h1 {
-		margin: 10px 0px 0px 0px;
-		padding: 0;
-	}
-	p {
-		margin: 20px 0px 20px 0px;
-	}
 	.bold {
 		font-family: 'Circular-Medium';
 	}
 	@media only screen and (max-width: 900px) {
-		max-width: 250px;
+		max-width: 280px;
 		text-align: center;
 		padding-bottom: 10px;
 	}
@@ -70,22 +63,25 @@ export const StartPageContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	padding-top: 10rem;
-	height: 75vh;
 	min-width: 320px;
+	@media only screen and (max-width: 600px) {
+		padding-top: 8rem;
+	}
 `;
 
 export const Title = styled.div`
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: start;
-	padding: 4rem 1rem;
-	height: 80vh;
-	h1 {
-		font-size: 25px;
-		color: black;
-		font-weight: 300;
-		text-align: center;
-		font-family: 'Lazydog';
-	}
+	justify-content: center;
+	text-align: center;
+	font-family: 'Circular-Book';
+	font-size: 20px;
+	align-self: center;
+	margin-top: 3rem;
+	padding: 0;
+`;
+
+export const SubTitle = styled.div`
+	padding: 15px;
+	font-family: 'Circular-Light';
+	font-size: 17px;
 `;

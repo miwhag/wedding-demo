@@ -80,8 +80,7 @@ export const LodgingContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem 1rem;
-
+	padding: 1rem;
 	#lodging-description {
 		width: 100%;
 		display: flex;
@@ -93,6 +92,9 @@ export const LodgingContainer = styled.div`
 			max-width: 800px;
 			margin: 1rem;
 		}
+	}
+	@media only screen and (max-width: 900px) {
+		padding: 0rem 1rem;
 	}
 `;
 

@@ -1,10 +1,11 @@
 /** @format */
+import React from 'react';
 import styled from 'styled-components';
 import { FaArrowRight } from 'react-icons/fa';
 
 const CardStyles = styled.div<{ disable: boolean }>`
-	opacity: ${(p) => (p.disable ? '0.4' : '1')};
-	pointer-events: ${(p) => p.disable && 'none'};
+	opacity: 1;
+	pointer-events: cursor;
 	max-width: 320px;
 	padding: 1rem;
 	margin: 1rem 0rem;
@@ -19,7 +20,9 @@ const CardStyles = styled.div<{ disable: boolean }>`
 		cursor: pointer;
 	}
 	@media only screen and (min-width: 900px) {
-		max-width: 260px;
+		max-width: 250px;
+		opacity: ${(p) => (p.disable ? '0.4' : '1')};
+		pointer-events: ${(p) => p.disable && 'none'};
 	}
 `;
 const ImageContainer = styled.div`
@@ -36,12 +39,9 @@ const Image = styled.div<{ image: string }>`
 `;
 
 const Title = styled.div`
-	padding: 1rem 1rem 0rem 1rem;
-	h1 {
-		font-size: 17px;
-	}
+	padding: 10px 10px 0px 10px;
 	p.spots-remaining {
-		font-size: 14px;
+		font-size: 15px;
 	}
 	span.number {
 		font-family: 'Circular-Medium';
@@ -68,7 +68,7 @@ const TypeLabel = styled.div<{ type: string }>`
 const ViewMoreLink = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	padding: 1rem 2rem 1rem 1rem;
+	padding: 1rem 0rem 1rem 1rem;
 	align-items: center;
 	gap: 10px;
 	font-size: 14px;
@@ -79,6 +79,11 @@ const ViewMoreLink = styled.div`
 	}
 `;
 
+const Heading = styled.div`
+	font-size: 20px;
+	padding: 10px 0px 5px 0px;
+	font-family: 'Circular-Book';
+`;
 export default function Card({
 	image,
 	name,
@@ -100,7 +105,7 @@ export default function Card({
 					<Image image={image ? image : dummyImage} />
 				</ImageContainer>
 				<Title>
-					<h1>{name}</h1>
+					<Heading>{name}</Heading>
 					{type === 'rv' ? (
 						rvOccupied ? (
 							<p className='spots-remaining'>This site is occupied.</p>

@@ -1,13 +1,13 @@
 /** @format */
-import { ContactFeild, InputContainer } from './styled-components';
-
+import React from 'react';
+import { ContactFeild, SubHeading, InputContainer } from './styled-components';
 import TextField from '@mui/material/TextField';
 
 export default function MainDetailsSection({ setEmail, emailError, guest }) {
 	return (
 		<div>
-			<div className='sub-heading'>Your Details:</div>
-			<ContactFeild>
+			<SubHeading>Your Details:</SubHeading>
+			<ContactFeild style={{ paddingTop: '10px' }}>
 				<InputContainer className='input-group '>
 					<TextField
 						fullWidth
