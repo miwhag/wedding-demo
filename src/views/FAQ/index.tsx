@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import { Accordian, Breadcrumbs } from '../../components/index';
 import { Questions } from './utils/Questions';
 import {
@@ -9,6 +10,8 @@ import {
 	Category,
 	ScrollToTopContainer,
 	SubTitle,
+	Title,
+	BreadcrumbsContainer,
 } from './styled-components';
 
 export default function FAQ() {
@@ -25,10 +28,12 @@ export default function FAQ() {
 
 	return (
 		<Container>
-			<div style={{ padding: '1rem', alignSelf: 'flex-start' }}>
+			<BreadcrumbsContainer>
 				<Breadcrumbs page='faq' id='faq' />
-			</div>
-
+			</BreadcrumbsContainer>
+			<Title>
+				<img src='https://i.postimg.cc/NF9V5pJp/diy-10.png' alt='title' />
+			</Title>
 			<ScrollContainer id='title'>
 				{Object.keys(Questions).map((key) => (
 					<ButtonContainer key={key}>

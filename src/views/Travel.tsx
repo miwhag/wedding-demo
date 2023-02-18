@@ -32,6 +32,9 @@ const TravelContainer = styled.div`
 	span {
 		font-family: 'Circular-Medium';
 	}
+	@media only screen and (max-width: 900px) {
+		padding: 0rem 1rem;
+	}
 `;
 
 const SubTitle = styled.div`

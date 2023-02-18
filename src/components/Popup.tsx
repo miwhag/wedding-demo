@@ -1,5 +1,5 @@
 /** @format */
-
+import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { TbBrandAirbnb } from 'react-icons/tb';
@@ -11,11 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { GuestContext } from '../context/GuestContext';
-import {
-	getLodgings,
-	getSelectedLodge,
-	updateGuest,
-} from '../views/RSVP/Model';
+import { getSelectedLodge, updateGuest } from '../views/RSVP/Model';
 
 const Image = styled.div<{ image: string }>`
 	background-image: url(${(p) => p.image && p.image});
@@ -32,24 +28,16 @@ const Image = styled.div<{ image: string }>`
 `;
 
 const Title = styled.div`
-	padding: 0rem 1rem 0rem 2rem;
-	max-width: 600px;
-	min-width: 600px;
+	padding: 1rem 2rem 2rem 3rem;
 	@media only screen and (max-width: 1200px) {
-		min-width: unset;
+		padding: 0rem;
 	}
-	h1 {
-		font-size: 40px;
-		padding: 1rem 0rem 1rem 0rem;
-		margin: 0;
-	}
+
 	p.spots-remaining {
 		font-size: 16px;
 		padding: 1rem 0rem;
 	}
-	p.description {
-		padding-right: 3rem;
-	}
+
 	.links {
 		display: flex;
 		align-items: center;
@@ -59,7 +47,7 @@ const Title = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding-bottom: 20px;
+		padding: 10px 0px;
 		gap: 5px;
 		text-decoration: underline;
 		:hover {
@@ -69,23 +57,10 @@ const Title = styled.div`
 	}
 `;
 
-const TypeLabel = styled.div`
-	width: 70px;
-	border-radius: 2px;
-	background-color: gray;
-	color: white;
-	font-size: 13px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 30px;
-	margin: 10px 0px;
-`;
-
 const ExitButton = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	padding: 20px 20px 0px 0px;
+	padding: 3rem 20px 0px 0px;
 	font-size: 25px;
 	svg {
 		z-index: 10001;
@@ -134,7 +109,7 @@ const CabinSpot = styled.div<{ color: string }>`
 const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	margin: 3rem 0rem 4rem -2rem;
+	margin: 4rem 1rem 3rem 1rem;
 `;
 
 const ContentGroup = styled.div`
@@ -142,6 +117,16 @@ const ContentGroup = styled.div`
 	flex-direction: column;
 	@media only screen and (min-width: 900px) {
 		flex-direction: row;
+	}
+`;
+
+const Heading = styled.div`
+	padding-top: 0px;
+	font-size: 40px;
+	font-family: 'Circular-Book';
+	@media only screen and (max-width: 900px) {
+		font-size: 30px;
+		padding-top: 20px;
 	}
 `;
 
@@ -211,7 +196,7 @@ export default function Popup({
 	return (
 		<div key={`cabin-popup-${activeCard.id}`}>
 			<Dialog
-				fullScreen={fullScreen}
+				fullScreen={true}
 				open={open}
 				onClose={handleExit}
 				aria-labelledby='responsive-dialog-title'
@@ -226,7 +211,7 @@ export default function Popup({
 					<ContentGroup>
 						<Image image={content.image_url ? content.image_url : dummyImage} />
 						<Title>
-							<h1>{content.name}</h1>
+							<Heading>{content.name}</Heading>
 							<div className='links' onClick={() => window.open(content.url)}>
 								<div className='airbnb-link'>
 									<TbBrandAirbnb /> View on Airbnb

@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import { useContext } from 'react';
 import {
 	ContactFeild,
@@ -7,6 +8,7 @@ import {
 	ImageContainer,
 	AddChildLink,
 	InputContainer,
+	SubHeading,
 } from './styled-components';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -71,9 +73,9 @@ export default function ChildSection({
 					however.
 				</p>
 			</div>
-			<div className='sub-heading'>
+			<SubHeading className='select-dropdown'>
 				Who will watch the children during the ceremony and dinner?
-			</div>
+			</SubHeading>
 
 			<FormControl
 				sx={{ m: 1, maxWidth: 320, margin: 0 }}
@@ -96,13 +98,11 @@ export default function ChildSection({
 				)}
 			</FormControl>
 			<KidsContainer>
-				<div className='sub-heading'>
-					Please enter your child's information below
-				</div>
+				<SubHeading>Please enter your child's information below</SubHeading>
 				{childList?.map((element, index) => (
 					<div key={`${index}-child`}>
 						<div style={{ paddingTop: 20 }}>
-							<ContactFeild className='child-inputs'>
+							<ContactFeild>
 								<InputContainer className='no-gap input-gap'>
 									<TextField
 										sx={{ width: '320px' }}

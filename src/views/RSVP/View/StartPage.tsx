@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import {
 	Heading,
@@ -6,6 +7,7 @@ import {
 	ErrorMessage,
 	StartPageContainer,
 	Title,
+	SubTitle,
 } from '../styled-components';
 import Button from '../../../components/Button';
 import Loading from '../../../components/Loading';
@@ -70,22 +72,17 @@ export default function StartPage({ progressFlow }) {
 				<StartPageContainer>
 					{hideRsvp ? (
 						<Title>
-							<h1>
-								Hello there!
-								<br />
-								The RSVP page
-								<br /> is coming soon
-								<br />
-							</h1>
+							Hang tight! <br />
+							RSVP is opening up soon
 						</Title>
 					) : (
 						<>
 							<Heading>
-								<h1>RSVP</h1>
-								<p>
+								<Title>RSVP</Title>
+								<SubTitle>
 									Enter your <span className='bold'>full name </span>below to
 									find your invitation
-								</p>
+								</SubTitle>
 							</Heading>
 							<TextField
 								label='Search Your Full Name'
@@ -94,6 +91,7 @@ export default function StartPage({ progressFlow }) {
 								required
 								error={displayError}
 								fullWidth
+								sx={{ maxWidth: '300px' }}
 							/>
 							{displayError && (
 								<ErrorMessage>
@@ -104,7 +102,11 @@ export default function StartPage({ progressFlow }) {
 								</ErrorMessage>
 							)}
 							<ButtonContainer>
-								<Button onClick={() => handleClick()} text='Find My Invite' />
+								<Button
+									type='button'
+									onClick={() => handleClick()}
+									text='Find My Invite'
+								/>
 							</ButtonContainer>
 						</>
 					)}

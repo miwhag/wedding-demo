@@ -142,6 +142,13 @@ const ViewRegistryButton = styled.button`
 	margin-top: 10px;
 	cursor: pointer;
 `;
+
+const Content = styled.div`
+	padding: 1rem;
+	@media only screen and (max-width: 900px) {
+		padding: 0rem 1rem;
+	}
+`;
 export default function Registry() {
 	const registryItems = [
 		{
@@ -177,7 +184,7 @@ export default function Registry() {
 	return (
 		<RegistryPage>
 			<Breadcrumbs page='registry' id='registry' />
-			<div style={{ padding: '1rem' }}>
+			<Content>
 				<SubTitle>Zola.com</SubTitle>
 				<SecondarySubTitle>Our Official Registry</SecondarySubTitle>
 				<p>
@@ -194,7 +201,7 @@ export default function Registry() {
 					these items (if applicable) through our registry site directly or
 					through the other listed platforms below.
 				</p>
-			</div>
+			</Content>
 			<RegistryContainer>
 				<ImageContainer
 					className='zola'

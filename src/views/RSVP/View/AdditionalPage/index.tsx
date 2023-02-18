@@ -1,8 +1,6 @@
 /** @format */
 
 import { useEffect, useState, useContext } from 'react';
-import Stepper from '../../../../components/Stepper';
-import ButtonSecondary from '../../../../components/ButtonSecondary';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,7 +8,12 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
-import Loading from '../../../../components/Loading';
+import {
+	Stepper,
+	ButtonSecondary,
+	Loading,
+	Button,
+} from '../../../../components/index';
 import { getFormValues } from './utils';
 import { GuestContext } from '../../../../context/GuestContext';
 import {
@@ -26,7 +29,6 @@ import {
 	ContentContainer,
 	SectionBreaks,
 	LineBreak,
-	SubmitButton,
 	CheckboxContainer,
 } from './styled-components';
 
@@ -247,13 +249,11 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							<SectionBreaks className='dodgeball-section'>
 								<div className='sub-heading'>Playing Dodgeball?</div>
 								<p>
-									The dodgeball tournament will be held on{' '}
-									<strong>Friday evening</strong>. Due to the nature of the
-									game, we are currently only allowing contestants who are{' '}
-									<strong>8 years old or older to compete</strong>. There is
-									however a section of the gym that overlooks the court and
-									those who are interested in hanging out but not playing can
-									still participate by watching and cheering for a team.
+									The dodgeball tournament will be held on Friday evening and is
+									for anyone 8 years and older. Also there is a section of the
+									gym that overlooks the court and those who are interested in
+									hanging out but not playing can still participate by watching
+									and cheering for a team.
 								</p>
 							</SectionBreaks>
 							<SectionBreaks className='checkmark-section'>
@@ -274,9 +274,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								})}
 							</SectionBreaks>
 							<SectionBreaks>
-								<div className='sub-heading'>
-									Any final questions or comments?
-								</div>
+								<div className='sub-heading'>Any comments or questions?</div>
 								<TextField
 									sx={{ maxWidth: 700, width: '100%' }}
 									id='questions-comments'
@@ -288,7 +286,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							</SectionBreaks>
 							<ButtonContainer>
 								<ButtonSecondary onClick={() => regressFlow()} text='Back' />
-								<SubmitButton type='submit'>Submit My Rsvp</SubmitButton>
+								<Button type='submit' text='Submit My RSVP' />
 							</ButtonContainer>
 						</form>
 					</ContentContainer>

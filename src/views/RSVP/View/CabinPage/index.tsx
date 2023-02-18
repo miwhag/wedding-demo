@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import { useEffect, useState, useContext } from 'react';
 import { GuestContext } from '../../../../context/GuestContext';
 import { Confirmation, Stepper, Toggle } from '../../../../components/index';
@@ -22,6 +23,8 @@ import {
 	ViewMoreButton,
 	ErrorMessage,
 	Offsite,
+	Heading,
+	SubHeading,
 } from './styled-components';
 import {
 	Card,
@@ -178,11 +181,8 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 					<div className='stepper-container'>
 						<Stepper step={2} />
 					</div>
-
 					<ToggleContainer>
-						<div className='sub-heading'>
-							Will you be staying on-site in a cabin?
-						</div>
+						<SubHeading>Will you be staying on-site in a cabin?</SubHeading>
 						<div>
 							<Toggle
 								toggleActive={acceptLodging}
@@ -190,8 +190,17 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							/>
 						</div>
 					</ToggleContainer>
-					<div>
-						<p className='title'>Important Message About Cabins</p>
+					<div
+						style={{
+							padding: '2rem',
+							margin: '1rem 0rem',
+							backgroundColor: 'whitesmoke',
+							maxWidth: '1150px',
+						}}
+					>
+						<SubHeading className='small' style={{ padding: '10px 0px' }}>
+							Important Message About Cabins
+						</SubHeading>
 						<p className={`description ${acceptLodging && 'line-divider'}`}>
 							Staying in a cabin requires bringing your own bedding. While there
 							are enough beds for everyone to stay in at the property - sleeping
@@ -220,7 +229,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						<div>
 							{selectedCabin && !offsiteCabin && (
 								<SelectedCabinSection>
-									<h3>You and your party are assigned to:</h3>
+									<SubHeading>You and your party are assigned to:</SubHeading>
 									{capacityError && (
 										<ErrorMessage>
 											Important! Not everyone in your party can fit into this
@@ -231,8 +240,9 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 									<SelectedCabinContainer>
 										<Image image={selectedCabin?.image_url ?? ''} />
 										<SelectedContent>
-											<h1>{selectedCabin?.name}</h1>
+											<Heading>{selectedCabin?.name}</Heading>
 											<p className='selected-p'>{selectedCabin?.description}</p>
+											<p className='mobile-title'>{selectedCabin?.title}</p>
 											<LinkContainer>
 												<ViewMoreLink
 													onClick={() => {
@@ -256,11 +266,11 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 									</SelectedCabinContainer>
 								</SelectedCabinSection>
 							)}
-							<h3 style={{ paddingBottom: '0px', marginBottom: '5px' }}>
+							<SubHeading style={{ paddingBottom: '0px', marginBottom: '5px' }}>
 								{selectedCabin
 									? 'Browse other options below'
 									: 'Please select a cabin from the list below'}
-							</h3>
+							</SubHeading>
 							<p>
 								If you have any issues selecting a cabin, or cannot find a cabin
 								that will fit your entire party, please reach out to us and we
@@ -313,7 +323,11 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 					)}
 					<ButtonContainer>
 						<ButtonSecondary onClick={() => regressFlow()} text='Back' />
-						<Button onClick={() => handleContinue()} text='Continue' />
+						<Button
+							type='button'
+							onClick={() => handleContinue()}
+							text='Continue'
+						/>
 					</ButtonContainer>
 				</CabinInfoSection>
 			) : (

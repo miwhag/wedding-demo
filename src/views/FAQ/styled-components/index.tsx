@@ -2,6 +2,26 @@
 
 import styled from 'styled-components';
 
+export const BreadcrumbsContainer = styled.div`
+	padding: 1rem;
+	align-self: flex-start;
+	@media only screen and (max-width: 900px) {
+		display: none;
+	}
+`;
+
+export const Title = styled.div`
+	max-width: 110px;
+	padding: 0;
+	margin: 15px 0px 0px;
+	img {
+		width: 100%;
+	}
+	@media only screen and (min-width: 900px) {
+		display: none;
+	}
+`;
+
 export const SubTitle = styled.div`
 	font-family: 'Circular-Book';
 	font-size: 20px;
@@ -11,6 +31,9 @@ export const SubTitle = styled.div`
 	@media only screen and (max-width: 900px) {
 		font-size: 18px;
 		text-align: start;
+		&#general {
+			margin: 0;
+		}
 	}
 `;
 
@@ -40,13 +63,8 @@ export const ScrollContainer = styled.div`
 	justify-content: center;
 	width: 100%;
 	max-width: 1000px;
-
 	@media only screen and (max-width: 900px) {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
+		display: none;
 	}
 `;
 
@@ -78,17 +96,7 @@ export const ScrollButton = styled.div`
 		cursor: pointer;
 	}
 	@media only screen and (max-width: 900px) {
-		height: 90px;
-		width: 90px;
-		border-radius: 10px;
-		font-size: 14px;
-		margin: 0;
-		color: white;
-		border: 3px solid white;
-		&:hover {
-			border: 3px solid #bd83c1;
-			cursor: pointer;
-		}
+		display: none;
 	}
 `;
 

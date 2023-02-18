@@ -22,7 +22,7 @@ export const ToggleContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem 2rem 0rem 0rem;
+	padding: 1rem 2rem 1rem 0rem;
 
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
@@ -30,6 +30,32 @@ export const ToggleContainer = styled.div`
 		padding: 1rem 0rem;
 	}
 `;
+
+export const Heading = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-family: 'Circular-Book';
+	font-size: 20px;
+`;
+
+export const SubHeading = styled.div`
+	display: flex;
+	justify-content: start;
+	text-align: start;
+	font-family: 'Circular-Book';
+	font-size: 18px;
+	padding: 0px 0px 0px 0px;
+	margin: 0;
+	&.select-dropdown {
+		padding-bottom: 1.2rem;
+	}
+	@media only screen and (max-width: 900px) {
+		max-width: 340px;
+	}
+`;
+
 export const ContactInfoSection = styled.div`
 	max-width: 1000px;
 	width: 100%;
@@ -41,20 +67,6 @@ export const ContactInfoSection = styled.div`
 
 	@media only screen and (min-width: 900px) {
 		padding-top: 8rem;
-	}
-
-	.sub-heading {
-		font-size: 18px;
-		font-weight: 500;
-		padding: 1rem 0rem;
-		padding-bottom: 20px;
-		color: #343232;
-	}
-
-	.heading {
-		font-size: 20px;
-		text-align: center;
-		font-weight: 700;
 	}
 
 	p {
@@ -103,11 +115,8 @@ export const ContactFeild = styled.div`
 	&.plus-one-field {
 		display: flex;
 		flex-direction: column;
-		padding: 0;
+		padding: 0px 0px 20px 0px;
 		margin: 0;
-	}
-	&.child-inputs {
-		padding-bottom: 1rem;
 	}
 	&.children-field {
 		display: flex;
@@ -179,22 +188,5 @@ export const LineBreak = styled.div`
 	margin-bottom: 20px;
 	@media only screen and (min-width: 900px) {
 		display: none;
-	}
-`;
-
-export const SubmitButton = styled.button`
-	min-width: 200px;
-	background-color: #242424;
-	height: 50px;
-	border-radius: 100px;
-	text-transform: none;
-	padding: 0px 50px;
-	font-family: 'Circular-Book';
-	font-size: 14px;
-	line-height: 20px;
-	color: #fff;
-	border: none;
-	:hover {
-		background-color: #6d7de9;
 	}
 `;

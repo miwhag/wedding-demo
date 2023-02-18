@@ -10,8 +10,6 @@ import {
 	getSelectedGuest,
 	sendGuestEmail,
 } from '../../Model';
-import Confirmation from '../../../../components/Confirmation';
-import Toggle from '../../../../components/Toggle';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -28,13 +26,18 @@ import {
 	InputContainer,
 	ToggleContainer,
 	RsvpContainer,
-	SubmitButton,
+	Heading,
+	SubHeading,
 } from './styled-components';
-import ButtonSecondary from '../../../../components/ButtonSecondary';
-import Loading from '../../../../components/Loading';
+import {
+	Button,
+	ButtonSecondary,
+	Loading,
+	Toggle,
+	Confirmation,
+} from '../../../../components/index';
 import ChildSection from './ChildSection';
 import MainDetailsSection from './MainDetailsSection';
-import { GrElevator } from 'react-icons/gr';
 
 export default function ContactInfo({ regressFlow, progressFlow }) {
 	const { guest, setGuest, setPartyUpdated } = useContext<any>(GuestContext);
@@ -195,22 +198,28 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 							}}
 						/>
 					)}
-					<div className='heading'>
+					<Heading>
 						Hello {guest?.first_name}
 						{`${
 							guest?.plus_ones[0]?.name ? ` & ${plusOneFirstName}` : ''
 						}`}, <br /> We found your reservation!
-					</div>
+					</Heading>
 					<p className='main-sub-heading'>
 						{' '}
 						Please update the information below
 					</p>
 					<RsvpContainer>
-						<div className='sub-heading'>
+						<SubHeading className='select-dropdown'>
 							Will you be attending the wedding?
-						</div>
+						</SubHeading>
 						<FormControl
-							sx={{ m: 1, maxWidth: 200, margin: 0, width: '100%' }}
+							sx={{
+								m: 1,
+								maxWidth: 200,
+								margin: 0,
+								width: '100%',
+								paddingBottom: '15px',
+							}}
 							error={rsvpError}
 							required
 						>
@@ -246,10 +255,10 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 								{guest.plus_one_count !== 0 && (
 									<ToggleContainer>
 										<div>
-											<div className='sub-heading'>
-												Your rsvp includes a plus one. Will you be bringing
-												somebody?
-											</div>
+											<SubHeading>
+												Your rsvp includes an additional guest. Will they be
+												attending with you?
+											</SubHeading>
 										</div>
 										<Toggle
 											toggleActive={plusOneToggle}
@@ -282,9 +291,9 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 								)}
 
 								<ToggleContainer>
-									<div className='sub-heading'>
+									<SubHeading>
 										Do you have any children in your party?
-									</div>
+									</SubHeading>
 
 									<Toggle
 										toggleActive={children}
@@ -304,7 +313,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 						)}
 						<ButtonContainer>
 							<ButtonSecondary onClick={() => regressFlow()} text='Back' />
-							<SubmitButton type='submit'>Continue</SubmitButton>
+							<Button type='submit' text='Continue' />
 						</ButtonContainer>
 					</Form>
 				</ContactInfoSection>

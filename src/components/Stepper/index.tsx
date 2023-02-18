@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import styled from 'styled-components';
 
 const StepBubble = styled.div<{ completed: boolean; currentStep: boolean }>`
@@ -20,8 +21,7 @@ const StepSection = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-width: 50px;
-	margin-left: -13px;
+	min-width: 55px;
 	h1 {
 		font-size: 12px;
 		font-weight: 300;
@@ -31,16 +31,15 @@ const StepSection = styled.div`
 const BarContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	align-items: start;
-	max-width: 100px;
-	min-width: 100px;
+	align-items: center;
+	min-width: 10px;
 `;
 
 const Bar = styled.div<{ completed: boolean; nextStep: boolean }>`
 	height: 2px;
 	width: 100%;
 	border-radius: 1px;
-	margin: 14px 10px 14px -4px;
+	margin-top: -28px;
 	background: ${(p) => (p.completed || p.nextStep ? '#000000' : 'lightgray')};
 `;
 

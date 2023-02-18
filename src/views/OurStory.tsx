@@ -1,4 +1,5 @@
 /** @format */
+import React from 'react';
 import styled from 'styled-components';
 import mike from '../assets/mike.jpg';
 import miwha from '../assets/miwha.jpg';
@@ -25,6 +26,7 @@ const ImageContainer = styled.div`
 			width: 100%;
 			margin-top: -450px;
 			margin-left: 50px;
+			border-radius: 5px;
 			@media only screen and (max-width: 1000px) {
 				margin-top: -306px;
 				margin-left: 21px;
@@ -38,6 +40,7 @@ const ImageContainer = styled.div`
 			display: block;
 			position: relative;
 			z-index: -1;
+			border-radius: 5px;
 			@media only screen and (max-width: 1000px) {
 				height: 325px;
 				width: 325px;
@@ -50,6 +53,7 @@ const ImageContainer = styled.div`
 			width: 100%;
 			margin-top: -450px;
 			margin-left: -50px;
+			border-radius: 5px;
 			@media only screen and (max-width: 1000px) {
 				margin-top: -306px;
 				margin-left: -21px;
@@ -63,6 +67,7 @@ const ImageContainer = styled.div`
 			display: block;
 			position: relative;
 			z-index: -1;
+			border-radius: 5px;
 			@media only screen and (max-width: 1000px) {
 				height: 325px;
 				width: 325px;
@@ -91,7 +96,7 @@ const AboutSection = styled.div`
 	min-height: 660px;
 	padding-bottom: 3rem;
 	@media only screen and (max-width: 1000px) {
-		margin: 3rem 0rem;
+		margin: 1rem 0rem;
 		flex-direction: column;
 		&.accent {
 			flex-direction: column-reverse;
@@ -102,13 +107,13 @@ const AboutSection = styled.div`
 const Story = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: start;
 	h1 {
 		margin: 0;
 		padding: 0rem 1rem 0rem 1rem;
-		font-size: 28px;
+		font-size: 21px;
 		height: 31px;
-		font-family: 'Lazydog';
+		font-family: 'Circular-Book';
 	}
 	p {
 		max-width: 450px;
@@ -155,7 +160,7 @@ export default function OurStory() {
 						<img src={miwha} alt='' />
 					</ImageContainer>
 					<Story className='content-right'>
-						<h1>miwha's side</h1>
+						<h1>MIWHA'S SIDE</h1>
 						<p>
 							Mike and I met in the summer of 2013, when he did a road trip with
 							friends and stayed at my place along the way. We had many
@@ -184,7 +189,7 @@ export default function OurStory() {
 				<Background>
 					<AboutSection className='accent'>
 						<Story className='content-left'>
-							<h1>michael's side</h1>
+							<h1>MICHAEL'S SIDE</h1>
 							<p>
 								The first time Miwha and I met, I was on a road trip with Aaron
 								and Elliot Smith. We were planning to spend the night at Miwha’s

@@ -66,9 +66,9 @@ export const CabinListContainer = styled.div`
 	transition: height 0.2s ease;
 	&.open {
 		height: 1900px;
-		padding-bottom: 10rem;
+		padding-bottom: 4rem;
 		@media only screen and (max-width: 900px) {
-			height: 550px;
+			height: 500px;
 			padding-bottom: 0rem;
 		}
 	}
@@ -86,12 +86,12 @@ export const ButtonContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	align-self: center;
-	margin: 6rem 0rem 5rem 0rem;
+	margin: 4rem 0rem 5rem 0rem;
 	gap: 30px;
 	max-width: 450px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
-		margin: 3rem 0rem 5rem 0rem;
+		margin: 2rem 0rem 5rem 0rem;
 	}
 `;
 
@@ -110,7 +110,7 @@ export const ToggleContainer = styled.div`
 `;
 
 export const CabinInfoSection = styled.div`
-	max-width: 1200px;
+	max-width: 1150px;
 	min-height: 75vh;
 	display: flex;
 	flex-direction: column;
@@ -118,7 +118,7 @@ export const CabinInfoSection = styled.div`
 	position: relative;
 	margin: 8rem 1rem 1rem 1rem;
 	@media only screen and (max-width: 900px) {
-		margin: 5rem 1rem 1rem 1rem;
+		margin: 5rem 1.2rem 1rem 1.2rem;
 	}
 
 	.title {
@@ -149,13 +149,10 @@ export const CabinInfoSection = styled.div`
 	.description {
 		line-height: 20px;
 		font-size: 16px;
-		@media only screen and (min-width: 900px) {
-			padding-right: 8rem;
-		}
-	}
-	.line-divider {
-		border-bottom: 1px solid whitesmoke;
-		padding-bottom: 1rem;
+		/* padding-right: 8rem;
+		@media only screen and (max-width: 900px) {
+			padding-right: 0;
+		} */
 	}
 `;
 
@@ -185,6 +182,9 @@ export const SelectedCabinContainer = styled.div`
 		.selected-p {
 			display: block;
 		}
+		.mobile-title {
+			display: none;
+		}
 	}
 `;
 
@@ -206,18 +206,15 @@ export const Image = styled.div<{ image: string }>`
 `;
 
 export const ViewMoreLink = styled.div`
-	display: none;
-	@media only screen and (min-width: 900px) {
-		display: flex;
-		justify-content: flex-end;
-		padding: 1rem 2rem 1rem 0rem;
-		align-items: center;
-		gap: 10px;
-		font-size: 14px;
-		:hover {
-			cursor: pointer;
-			color: #3378cf;
-		}
+	display: flex;
+	justify-content: flex-end;
+	padding: 1rem 2rem 1rem 0rem;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+	:hover {
+		cursor: pointer;
+		color: #3378cf;
 	}
 `;
 
@@ -234,7 +231,7 @@ export const SelectedContent = styled.div`
 		margin: 0;
 		font-size: 15px;
 		max-width: 960px;
-		padding-right: 4rem;
+		padding-right: 1rem;
 	}
 `;
 
@@ -265,13 +262,43 @@ export const DeselectButton = styled.div`
 	color: #ffdddd;
 	padding-right: 0;
 	margin-top: 15px;
+	max-width: 200px;
+	border-radius: 100px;
 	cursor: pointer;
 	&:hover {
 		background-color: #ffdddd;
 		color: #ff3333;
 	}
-	@media only screen and (min-width: 900px) {
-		max-width: 200px;
-		border-radius: 100px;
+`;
+
+export const CabinInfoContainer = styled.div`
+	border: 1px solid black;
+	box-shadow: 7px 7px 1px black;
+	padding: 1.5rem;
+	margin: 2rem 1rem;
+`;
+
+export const Heading = styled.div`
+	padding: 1rem 0rem;
+	font-family: 'Circular-Book';
+	font-size: 25px;
+`;
+
+export const SubHeading = styled.div`
+	display: flex;
+	justify-content: start;
+	text-align: start;
+	font-family: 'Circular-Book';
+	font-size: 18px;
+	padding: 0px 0px 0px 0px;
+	margin: 0;
+	&.select-dropdown {
+		padding-bottom: 1.2rem;
+	}
+	&.small {
+		font-size: 16px;
+	}
+	@media only screen and (max-width: 900px) {
+		max-width: 340px;
 	}
 `;

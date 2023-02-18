@@ -7,6 +7,9 @@ export const AdditionalPageContainer = styled.div`
 		font-weight: 500;
 		padding-bottom: 1.2rem;
 	}
+	@media only screen and (max-width: 900px) {
+		margin: 5rem 1.2rem 1rem 1.2rem;
+	}
 `;
 
 export const StepperContainer = styled.div`
@@ -62,23 +65,6 @@ export const SectionBreaks = styled.div`
 	padding: 1rem 0rem;
 	&.checkmark-section {
 		padding: 0rem 0rem 1rem 0rem;
-	}
-`;
-
-export const SubmitButton = styled.button`
-	min-width: 100px;
-	background-color: #3366ff;
-	height: 50px;
-	border-radius: 100px;
-	text-transform: none;
-	padding: 0px 50px;
-	font-family: 'Circular-Book';
-	font-size: 14px;
-	line-height: 20px;
-	color: #fff;
-	border: none;
-	:hover {
-		background-color: #6d7de9;
 	}
 `;
 

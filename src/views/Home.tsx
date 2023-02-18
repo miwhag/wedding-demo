@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import deerCreek from '../assets/deer_creek.jpg';
@@ -150,6 +150,7 @@ export default function Home({ visible }) {
 						<TitleContainer>
 							<Title>we're getting married!</Title>
 							<Button
+								type='button'
 								text='LEARN MORE'
 								onClick={() => history.push('/schedule')}
 							/>
