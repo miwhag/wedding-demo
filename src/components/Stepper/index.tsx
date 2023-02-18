@@ -1,5 +1,4 @@
 /** @format */
-import React from 'react';
 import styled from 'styled-components';
 
 const StepBubble = styled.div<{ completed: boolean; currentStep: boolean }>`

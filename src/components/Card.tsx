@@ -1,5 +1,4 @@
 /** @format */
-import React from 'react';
 import styled from 'styled-components';
 import { FaArrowRight } from 'react-icons/fa';
 
@@ -48,13 +47,12 @@ const Title = styled.div`
 	}
 `;
 
-const TypeLabel = styled.div<{ type: string }>`
-	height: 50px;
-	width: 50px;
-	border-radius: 50%;
-	background-color: ${(p) =>
-		p.type === 'family' ? '#E6EAFE' : p.type === 'rv' ? '#6871E4' : '#3366FF'};
-	color: ${(p) => (p.type === 'family' ? '#3366FF' : 'white')};
+const TypeLabel = styled.div<{ color: string }>`
+	height: 40px;
+	width: 80px;
+	border-radius: 2px;
+	background-color: ${(p) => p.color && p.color};
+	color: #fff;
 	font-size: 14px;
 	display: flex;
 	justify-content: center;
@@ -62,7 +60,7 @@ const TypeLabel = styled.div<{ type: string }>`
 	position: absolute;
 	box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.07);
 	top: 10px;
-	left: 10px;
+	left: 0px;
 `;
 
 const ViewMoreLink = styled.div`
@@ -88,6 +86,7 @@ export default function Card({
 	image,
 	name,
 	type,
+	color,
 	remaining,
 	onClick,
 	disable = false,
@@ -101,7 +100,7 @@ export default function Card({
 		<CardStyles onClick={() => onClick()} disable={disable}>
 			<div>
 				<ImageContainer>
-					<TypeLabel type={type}>{type}</TypeLabel>
+					<TypeLabel color={color}>{type}</TypeLabel>
 					<Image image={image ? image : dummyImage} />
 				</ImageContainer>
 				<Title>

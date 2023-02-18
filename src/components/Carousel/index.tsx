@@ -1,5 +1,4 @@
 /** @format */
-
 import styled from 'styled-components';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';

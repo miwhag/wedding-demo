@@ -1,5 +1,11 @@
 /** @format */
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import TextField from '@mui/material/TextField';
 import { GuestContext } from '../../../../context/GuestContext';
 import {
 	createPlusOne,
@@ -10,12 +16,6 @@ import {
 	getSelectedGuest,
 	sendGuestEmail,
 } from '../../Model';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import TextField from '@mui/material/TextField';
 import { checkForErrors } from './utils';
 
 import {
@@ -66,6 +66,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	const [displayConfirmation, setDisplayConfirmation] = useState(false);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		let controller = new AbortController();
 		(async () => {
 			let current = await getSelectedGuest(guest.id);

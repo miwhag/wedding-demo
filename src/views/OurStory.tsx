@@ -1,5 +1,4 @@
 /** @format */
-import React from 'react';
 import styled from 'styled-components';
 import mike from '../assets/mike.jpg';
 import miwha from '../assets/miwha.jpg';

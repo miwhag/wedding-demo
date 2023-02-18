@@ -1,15 +1,7 @@
 /** @format */
-
-import React from 'react';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import deerCreek from '../assets/deer_creek.jpg';
-import miwha from '../assets/bailey_sign.jpg';
-import hero from '../assets/hero.png';
-import mobile from '../assets/mobile.png';
-import { ContentBlock, Button, Countdown } from '../components/index';
 
-const HomePage = styled.div<{ visible: boolean }>`
+export const HomePage = styled.div<{ visible: boolean }>`
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -30,7 +22,7 @@ const HomePage = styled.div<{ visible: boolean }>`
 	}
 `;
 
-const StoryContainer = styled.div`
+export const StoryContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -38,7 +30,7 @@ const StoryContainer = styled.div`
 	max-width: 1400px;
 `;
 
-const TitleContainer = styled.div`
+export const TitleContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -49,7 +41,7 @@ const TitleContainer = styled.div`
 		padding: 1rem;
 	}
 `;
-const Title = styled.div`
+export const Title = styled.div`
 	text-align: left;
 	font-size: 70px;
 	line-height: 60px;
@@ -64,7 +56,7 @@ const Title = styled.div`
 	}
 `;
 
-const CountdownContainer = styled.div`
+export const CountdownContainer = styled.div`
 	height: 400px;
 	width: 100%;
 	max-width: 1000px;
@@ -75,7 +67,7 @@ const CountdownContainer = styled.div`
 	}
 `;
 
-const HeroSection = styled.div`
+export const HeroSection = styled.div`
 	padding-top: 2rem;
 	width: 100%;
 	max-width: 1500px;
@@ -138,55 +130,3 @@ const HeroSection = styled.div`
 		}
 	}
 `;
-
-export default function Home({ visible }) {
-	const history = useHistory();
-
-	return (
-		<>
-			<HomePage visible={visible}>
-				<HeroSection>
-					<div className='copy-section'>
-						<TitleContainer>
-							<Title>we're getting married!</Title>
-							<Button
-								type='button'
-								text='LEARN MORE'
-								onClick={() => history.push('/schedule')}
-							/>
-						</TitleContainer>
-					</div>
-					<div className='image-section'>
-						<img src={hero} alt='' className='desktop' />
-						<img src={mobile} alt='' className='mobile' />
-					</div>
-				</HeroSection>
-				<StoryContainer>
-					<CountdownContainer>
-						<Countdown />
-					</CountdownContainer>
-					<ContentBlock
-						image={deerCreek}
-						alt='deer creek'
-						copy='july 21-23, 2023'
-						backgroundColor='#E6F4FE'
-						copyColor='#3366FF'
-						imagePosition='right'
-						type='copy'
-						id='miwha'
-					/>
-					<ContentBlock
-						image={miwha}
-						alt='bailey sign'
-						type='copy'
-						copy='bailey,co'
-						backgroundColor='#BD83C1'
-						copyColor='#ffffff'
-						imagePosition='left'
-						id='mike'
-					/>
-				</StoryContainer>
-			</HomePage>
-		</>
-	);
-}

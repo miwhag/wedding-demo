@@ -1,13 +1,15 @@
 /** @format */
 import { Switch, Route } from 'react-router-dom';
-import Home from '../../views/Home';
-import RSVP from '../../views/RSVP/index';
-import Schedule from '../../views/Schedule/index';
-import Registry from '../../views/Registry';
-import Lodging from '../../views/Lodging/index';
-import FAQ from '../../views/FAQ/index';
-import OurStory from '../../views/OurStory';
-import Travel from '../../views/Travel';
+import {
+	Home,
+	RSVP,
+	Schedule,
+	Registry,
+	Lodging,
+	FAQ,
+	OurStory,
+	Travel,
+} from '../../views/index';
 
 export default function Navigation() {
 	return (

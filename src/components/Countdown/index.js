@@ -57,10 +57,8 @@ const CounterContainer = styled.div`
 
 export default function Countdown() {
 	return (
-		<>
-			<CounterContainer>
-				<DaysLeft id='countdown' /> <Text>days till the wedding</Text>
-			</CounterContainer>
-		</>
+		<CounterContainer>
+			<DaysLeft id='countdown' /> <Text>days till the wedding</Text>
+		</CounterContainer>
 	);
 }

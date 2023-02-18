@@ -1,5 +1,4 @@
 /** @format */
-import React from 'react';
 import { Accordian, Breadcrumbs } from '../../components/index';
 import { Questions } from './utils/Questions';
 import {
@@ -43,37 +42,30 @@ export default function FAQ() {
 					</ButtonContainer>
 				))}
 			</ScrollContainer>
-
 			<Category>
 				<SubTitle id='general'>General</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['general']} />
-
 			<Category>
 				<SubTitle id='lodging'>Lodging</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['lodging']} />
-
 			<Category>
 				<SubTitle id='rsvp'>RSVP</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['rsvp']} />
-
 			<Category>
 				<SubTitle id='weekend'>Weekend</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['weekend']} />
-
 			<Category>
 				<SubTitle id='wedding'>Wedding</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['wedding']} />
-
 			<Category>
 				<SubTitle id='other'>Other</SubTitle>
 			</Category>
 			<Accordian FAQ={Questions['other']} />
-
 			<ScrollToTopContainer>
 				<ScrollButton
 					onClick={() => scrollToSection('title')}

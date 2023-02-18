@@ -1,6 +1,7 @@
 /** @format */
-import React from 'react';
 import { useEffect, useState, useContext } from 'react';
+import TextField from '@mui/material/TextField';
+import { GuestContext } from '../../../context/GuestContext';
 import {
 	Heading,
 	ButtonContainer,
@@ -9,11 +10,8 @@ import {
 	Title,
 	SubTitle,
 } from '../styled-components';
-import Button from '../../../components/Button';
-import Loading from '../../../components/Loading';
+import { Button, Loading } from '../../../components/index';
 import { getGuests, getSelectedGuest } from '../Model';
-import TextField from '@mui/material/TextField';
-import { GuestContext } from '../../../context/GuestContext';
 
 export default function StartPage({ progressFlow }) {
 	const [searchTerm, setSearchTerm] = useState('');
