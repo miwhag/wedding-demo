@@ -1,12 +1,11 @@
 /** @format */
-
 import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
-import Button from './Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import Button from './Button';
 
 const Title = styled.div`
 	padding: 0rem 1rem 0rem 2rem;
@@ -66,7 +65,7 @@ export default function Popup({ setState, state, text }) {
 						<Title>
 							<p>{text}</p>
 							<ButtonContainer>
-								<Button onClick={() => handleExit()} text='OK' />
+								<Button onClick={() => handleExit()} text='OK' type='button' />
 							</ButtonContainer>
 						</Title>
 					</ContentGroup>

@@ -1,6 +1,13 @@
 /** @format */
-import React from 'react';
 import { useContext } from 'react';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import { FaTrashAlt, FaPlus } from 'react-icons/fa';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
+import { GuestContext } from '../../../../context/GuestContext';
 import {
 	ContactFeild,
 	KidsContainer,
@@ -10,14 +17,6 @@ import {
 	InputContainer,
 	SubHeading,
 } from './styled-components';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { FaTrashAlt, FaPlus } from 'react-icons/fa';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
-import FormHelperText from '@mui/material/FormHelperText';
-import { GuestContext } from '../../../../context/GuestContext';
 
 export default function ChildSection({
 	childList,

@@ -1,11 +1,8 @@
 /** @format */
-
-import React from 'react';
 import { Carousel, Breadcrumbs } from '../../components/index';
 import airbnbIcon from '../../assets/airbnb-icon.svg';
-import { airBnbLinks, imageArray } from './utils';
 import map from '../../assets/deer-creek.jpg';
-
+import { airBnbLinks, imageArray } from './utils';
 import {
 	Section,
 	LodgingContainer,

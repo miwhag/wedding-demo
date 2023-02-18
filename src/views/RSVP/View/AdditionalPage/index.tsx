@@ -1,11 +1,10 @@
 /** @format */
-
 import { useEffect, useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import {
@@ -14,7 +13,6 @@ import {
 	Loading,
 	Button,
 } from '../../../../components/index';
-import { getFormValues } from './utils';
 import { GuestContext } from '../../../../context/GuestContext';
 import {
 	getSelectedGuest,
@@ -22,6 +20,7 @@ import {
 	updateGuest,
 	sendGuestEmail,
 } from '../../Model';
+import { getFormValues } from './utils';
 import {
 	ButtonContainer,
 	AdditionalPageContainer,
@@ -42,6 +41,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		let controller = new AbortController();
 		(async () => {
 			let current = await getSelectedGuest(guest.id);
@@ -89,11 +89,11 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 		setBreakfast(current.breakfast);
 	};
 
-	const handleArrivalChange = (event: SelectChangeEvent) => {
-		setArrivalDate(event.target.value as string);
+	const handleArrivalChange = (event) => {
+		setArrivalDate(event.target.value);
 	};
 
-	const handleBreakfastChange = (event: SelectChangeEvent) => {
+	const handleBreakfastChange = (event) => {
 		setBreakfast(event.target.value);
 	};
 

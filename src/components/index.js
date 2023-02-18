@@ -15,7 +15,7 @@ export { default as ConfirmationCabin } from './ConfirmationCabin';
 export { default as ContentBlock } from './ContentBlock';
 export { default as Countdown } from './Countdown/index';
 export { default as Loading } from './Loading';
-export { default as Popup } from './Popup';
+export { default as Popup } from './Popup/index';
 export { default as StandardTextField } from './StandardTextField';
 export { default as Stepper } from './Stepper/index';
 export { default as Toggle } from './Toggle/index';

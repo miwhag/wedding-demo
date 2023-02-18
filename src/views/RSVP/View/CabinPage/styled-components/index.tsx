@@ -2,19 +2,31 @@
 import styled from 'styled-components';
 
 export const Offsite = styled.div`
-	height: 70px;
 	width: 100%;
 	background-color: #effaff;
 	color: #476aa1;
 	display: flex;
 	align-items: center;
 	font-size: 16px;
-	margin-top: 1rem;
+	margin: 1rem 0rem;
 	svg {
 		font-size: 25px;
 		margin-right: 10px;
 	}
 `;
+
+export const OffsiteContainer = styled.div`
+	display: flex;
+	align-items: center;
+	padding: 2rem;
+	@media only screen and (max-width: 900px) {
+		flex-direction: column;
+		svg {
+			margin-bottom: 10px;
+		}
+	}
+`;
+
 export const ErrorMessage = styled.div`
 	background-color: #ffdddd;
 	color: #ff3333;
@@ -35,12 +47,12 @@ export const ArrowContainer = styled.div`
 	}
 `;
 
-export const ViewMoreButton = styled.div<{ visible: boolean }>`
+export const ViewMoreButton = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: ${(p) => (!p.visible ? '1%' : '5%')};
+	bottom: 5%;
 	left: 43%;
 	background-color: #242424;
 	color: white;
@@ -53,6 +65,9 @@ export const ViewMoreButton = styled.div<{ visible: boolean }>`
 	:hover {
 		cursor: pointer;
 		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.65);
+	}
+	.visible {
+		bottom: 1%;
 	}
 	@media only screen and (max-width: 900px) {
 		display: none;
@@ -149,10 +164,6 @@ export const CabinInfoSection = styled.div`
 	.description {
 		line-height: 20px;
 		font-size: 16px;
-		/* padding-right: 8rem;
-		@media only screen and (max-width: 900px) {
-			padding-right: 0;
-		} */
 	}
 `;
 
@@ -188,23 +199,19 @@ export const SelectedCabinContainer = styled.div`
 	}
 `;
 
-export const Image = styled.div<{ image: string }>`
-	background-image: url(${(p) => p.image && p.image});
-	height: 150px;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+export const ImageContainer = styled.div`
+	height: 200px;
+	overflow: hidden;
 	border-radius: 5px 5px 0px 0px;
-	width: 100%;
+	img {
+		width: 100%;
+	}
 	@media only screen and (min-width: 900px) {
-		height: 200px;
 		margin: 20px;
 		max-width: 300px;
 		border-radius: 5px;
 	}
 `;
-
 export const ViewMoreLink = styled.div`
 	display: flex;
 	justify-content: flex-end;

@@ -23,7 +23,6 @@ export default function SmallButton({ text, onClick }) {
 		<Small
 			variant='contained'
 			onClick={() => {
-				window.scrollTo(0, 0);
 				onClick();
 			}}
 		>

@@ -1,5 +1,4 @@
 /** @format */
-import React from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
@@ -25,7 +24,6 @@ export default function PrimaryButton({ text, onClick = () => {}, type }) {
 			type={type}
 			variant='contained'
 			onClick={() => {
-				window.scrollTo(0, 0);
 				onClick();
 			}}
 		>

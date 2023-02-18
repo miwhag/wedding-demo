@@ -1,11 +1,16 @@
 /** @format */
-import React from 'react';
 import { useEffect, useState, useContext } from 'react';
-import { GuestContext } from '../../../../context/GuestContext';
-import { Confirmation, Stepper, Toggle } from '../../../../components/index';
 import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
-
+import { GuestContext } from '../../../../context/GuestContext';
+import { Confirmation, Stepper, Toggle } from '../../../../components/index';
+import {
+	Card,
+	ButtonSecondary,
+	Button,
+	Popup,
+	Loading,
+} from '../../../../components/index';
 import {
 	CabinInfoSection,
 	CabinCardsContainer,
@@ -14,7 +19,7 @@ import {
 	CabinListContainer,
 	SelectedCabinContainer,
 	SelectedCabinSection,
-	Image,
+	ImageContainer,
 	LinkContainer,
 	ViewMoreLink,
 	SelectedContent,
@@ -25,14 +30,9 @@ import {
 	Offsite,
 	Heading,
 	SubHeading,
+	OffsiteContainer,
 } from './styled-components';
-import {
-	Card,
-	ButtonSecondary,
-	Button,
-	Popup,
-	Loading,
-} from '../../../../components/index';
+
 import { updateGuest, getLodgings, getSelectedGuest } from '../../Model';
 
 export default function CabinPage({ regressFlow, progressFlow }) {
@@ -47,7 +47,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	} = useContext<any>(GuestContext);
 	const [loaded, setLoaded] = useState(false);
 	const [activeModal, setActiveModal] = useState(false);
-	const [activeCard, setActiveCard] = useState<any>(null);
+	const [activeCard, setActiveCard] = useState(null);
 	const [noLodgingNotice, setNoLodgingNotice] = useState(false);
 	const [displayDeclineLodgingModal, setDisplayDeclineLodgingModal] =
 		useState(false);
@@ -60,6 +60,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		let controller = new AbortController();
 		(async () => {
 			setCurrentState();
@@ -165,7 +166,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							handleExit={() => setNoLodgingNotice(false)}
 							confirm={true}
 							content={{
-								__html: `<span>You have not selected a cabin. <br />Please select a cabin or <br/>select "No" for lodging</span>`,
+								__html: `<span>You have not selected a cabin. <br/>Please select a cabin or select "No" for lodging</span>`,
 							}}
 						/>
 					)}
@@ -174,7 +175,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							handleExit={() => setDisplayDeclineLodgingModal(false)}
 							handleContinue={() => handleDeclineLodging()}
 							content={{
-								__html: `<span>You have selected "No" to on-site lodging.<br/> This means you will be finding lodging yourself off-site. <br/>Is this correct?</span>`,
+								__html: `<span>You have selected "No". <br/>This means you will be finding lodging yourself off-site. <br/>Is this correct?</span>`,
 							}}
 						/>
 					)}
@@ -206,22 +207,17 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							are enough beds for everyone to stay in at the property - sleeping
 							bags, pillows, towels and other toiletries will need to be brought
 							with you. Additionally the cost of staying in a cabin on-site will
-							be $30 per person for the entire weekend.
+							be $30 per person for the entire weekend. You can learn more about
+							payment types on the registry page.
 						</p>
 					</div>
 					{offsiteCabin && (
 						<Offsite>
-							<div
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									padding: '1rem',
-								}}
-							>
+							<OffsiteContainer>
 								<FaExclamationTriangle />
 								You are registered as staying off-site. If you would like to
 								change this, you will need to select a cabin.
-							</div>
+							</OffsiteContainer>
 						</Offsite>
 					)}
 
@@ -238,7 +234,9 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 										</ErrorMessage>
 									)}
 									<SelectedCabinContainer>
-										<Image image={selectedCabin?.image_url ?? ''} />
+										<ImageContainer>
+											<img src={selectedCabin?.image_url ?? ''} />
+										</ImageContainer>
 										<SelectedContent>
 											<Heading>{selectedCabin?.name}</Heading>
 											<p className='selected-p'>{selectedCabin?.description}</p>
@@ -292,6 +290,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 														type={cabin?.lodging_type}
 														remaining={cabin?.spots_remaining}
 														occupants={cabin.occupants}
+														color={cabin.color}
 														onClick={() => handleCardClick(cabin)}
 														key={`card-${index}`}
 													/>
@@ -300,15 +299,14 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 										})}
 									</CabinCardsContainer>
 								)}
-								<ViewMoreButton
-									onClick={() => setHideCabins(!hideCabins)}
-									visible={hideCabins}
-								>
-									{hideCabins ? 'View All' : 'Collapse List'}
-									<ArrowContainer className={`${!hideCabins && 'arrow-up'}`}>
-										<IoIosArrowDown />
-									</ArrowContainer>
-								</ViewMoreButton>
+								<div onClick={() => setHideCabins(!hideCabins)}>
+									<ViewMoreButton className={`${!hideCabins && 'visible'}`}>
+										{hideCabins ? 'View All' : 'Collapse List'}
+										<ArrowContainer className={`${!hideCabins && 'arrow-up'}`}>
+											<IoIosArrowDown />
+										</ArrowContainer>
+									</ViewMoreButton>
+								</div>
 							</CabinListContainer>
 
 							{activeModal && (

@@ -1,13 +1,17 @@
 /** @format */
 import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
-import Button from './Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import Button from './Button';
 
 const Title = styled.div`
-	max-width: 700px;
-	min-width: 300px;
+	max-width: 500px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 `;
 
@@ -30,15 +34,19 @@ const ButtonContainer = styled.div`
 	justify-content: center;
 	align-self: center;
 	max-width: 320px;
-	margin: 2rem auto;
+	padding: 10px 15px;
 	gap: 20px;
+	@media only screen and (max-width: 900px) {
+		margin: 0;
+	}
 `;
 
 const ContentGroup = styled.div`
-	padding: 2rem;
+	margin: 0rem 1rem 2rem 1rem;
 	display: flex;
 	flex-direction: column;
 	@media only screen and (min-width: 900px) {
+		margin: 0rem 3rem 2rem 3rem;
 		flex-direction: row;
 	}
 `;
@@ -50,7 +58,7 @@ export default function Popup({
 	confirm = false,
 }) {
 	return (
-		<div style={{ minWidth: '300px' }}>
+		<div>
 			<Dialog
 				open={true}
 				onClose={handleExit}
@@ -67,12 +75,12 @@ export default function Popup({
 							<p dangerouslySetInnerHTML={content}></p>
 							{confirm ? (
 								<ButtonContainer>
-									<Button onClick={handleExit} text='Ok' />
+									<Button onClick={handleExit} text='Ok' type='button' />
 								</ButtonContainer>
 							) : (
 								<ButtonContainer>
-									<Button onClick={handleContinue} text='Yes' />
-									<Button onClick={handleExit} text='No' />
+									<Button onClick={handleContinue} text='Yes' type='button' />
+									<Button onClick={handleExit} text='No' type='button' />
 								</ButtonContainer>
 							)}
 						</Title>
