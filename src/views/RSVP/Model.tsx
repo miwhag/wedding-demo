@@ -55,7 +55,6 @@ export async function getSelectedGuest(id) {
 			throw new Error(`Error! status: ${response.status}`);
 		}
 		const result = await response.json();
-		console.log('selectedGuest:', result);
 		return result;
 	} catch (err) {
 		console.log(err);

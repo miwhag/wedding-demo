@@ -90,7 +90,6 @@ export default function ChildSection({
 				>
 					<MenuItem value={'guardian'}>A Parent</MenuItem>
 					<MenuItem value={'sitter'}>Sitters Service</MenuItem>
-					<MenuItem value={'na'}>Not applicable</MenuItem>
 				</Select>
 				{childCareError && (
 					<FormHelperText>Please select an option</FormHelperText>

@@ -183,7 +183,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						<Stepper step={2} />
 					</div>
 					<ToggleContainer>
-						<SubHeading>Will you be staying on-site in a cabin?</SubHeading>
+						<SubHeading>Will you be lodging on-site?</SubHeading>
 						<div>
 							<Toggle
 								toggleActive={acceptLodging}
@@ -200,15 +200,14 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						}}
 					>
 						<SubHeading className='small' style={{ padding: '10px 0px' }}>
-							Important Message About Cabins
+							{selectedCabin?.lodging_type === 'apartment'
+								? 'Important Message About Apartments'
+								: 'Important Message About Cabins'}
 						</SubHeading>
 						<p className={`description ${acceptLodging && 'line-divider'}`}>
-							Staying in a cabin requires bringing your own bedding. While there
-							are enough beds for everyone to stay in at the property - sleeping
-							bags, pillows, towels and other toiletries will need to be brought
-							with you. Additionally the cost of staying in a cabin on-site will
-							be $30 per person for the entire weekend. You can learn more about
-							payment types on the registry page.
+							{selectedCabin?.lodging_type === 'apartment'
+								? 'In addition to cabins, there are also apartment style lodging on site, which are reserved for the family of Mike & Mike. That being said, you are currently pre-assigned to an apartment. You will not be able to adjust your lodging - though if for any reason you have comments or concerns about your lodging type, please reach out to us. These apartments do not require you to bring your own bedding.'
+								: 'Staying in a cabin requires bringing your own bedding. While there are enough beds for everyone to stay in at the property - sleeping bags, pillows, towels and other toiletries will need to be brought with you. Additionally the cost of staying in a cabin on-site will be $30 per person for the entire weekend. You can learn more about payment types on the registry page.'}
 						</p>
 					</div>
 					{offsiteCabin && (
@@ -235,7 +234,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 									)}
 									<SelectedCabinContainer>
 										<ImageContainer>
-											<img src={selectedCabin?.image_url ?? ''} />
+											<img src={selectedCabin?.image_url ?? ''} alt='cabin' />
 										</ImageContainer>
 										<SelectedContent>
 											<Heading>{selectedCabin?.name}</Heading>
@@ -250,15 +249,17 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 												>
 													View Details <FaArrowRight />
 												</ViewMoreLink>
-												<DeselectButton
-													onClick={() => {
-														setSelectedCabin(null);
-														updateGuest(guest?.id, { lodging_id: null });
-														setHideCabins(false);
-													}}
-												>
-													Unselect Cabin
-												</DeselectButton>
+												{selectedCabin?.lodging_type !== 'apartment' && (
+													<DeselectButton
+														onClick={() => {
+															setSelectedCabin(null);
+															updateGuest(guest?.id, { lodging_id: null });
+															setHideCabins(false);
+														}}
+													>
+														Unselect Cabin
+													</DeselectButton>
+												)}
 											</LinkContainer>
 										</SelectedContent>
 									</SelectedCabinContainer>
@@ -270,9 +271,9 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 									: 'Please select a cabin from the list below'}
 							</SubHeading>
 							<p>
-								If you have any issues selecting a cabin, or cannot find a cabin
-								that will fit your entire party, please reach out to us and we
-								can assist.
+								{selectedCabin?.lodging_type === 'apartment'
+									? ''
+									: 'If you have any issues selecting a cabin, or cannot find a cabin that will fit your entire party, please reach out to us and we can assist.'}
 							</p>
 							<CabinListContainer className={`${!hideCabins && 'open'}`}>
 								{cabinList && (

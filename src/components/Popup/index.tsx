@@ -110,7 +110,7 @@ export default function Popup({
 								image={content.image_url ? content.image_url : dummyImage}
 							/>
 							<TypeLabel color={content.color}>
-								{capitalizeFirstLetter(content.lodging_type)} Cabin
+								{capitalizeFirstLetter(content.lodging_type)}
 							</TypeLabel>
 						</ImageContainer>
 
@@ -139,27 +139,29 @@ export default function Popup({
 									);
 								})}
 							</CabinSpotContainer>
-							<ButtonContainer>
-								{activeCard?.id === selectedCabin?.id ? (
-									<ButtonError
-										onClick={() => handleSelectCabin()}
-										text='Unselect This Cabin'
-										fullWidth
-									/>
-								) : (
-									<ButtonFullWidth
-										disabled={
-											guest.bed_count > content.spots_remaining ||
-											(content.occupants.some(
-												(guest) => guest !== 'Spot Available'
-											) &&
-												content.lodging_type === 'rv')
-										}
-										onClick={() => handleSelectCabin()}
-										text={determineButtonText()}
-									/>
-								)}
-							</ButtonContainer>
+							{selectedCabin?.lodging_type !== 'apartment' && (
+								<ButtonContainer>
+									{activeCard?.id === selectedCabin?.id ? (
+										<ButtonError
+											onClick={() => handleSelectCabin()}
+											text='Unselect This Cabin'
+											fullWidth
+										/>
+									) : (
+										<ButtonFullWidth
+											disabled={
+												guest.bed_count > content.spots_remaining ||
+												(content.occupants.some(
+													(guest) => guest !== 'Spot Available'
+												) &&
+													content.lodging_type === 'rv')
+											}
+											onClick={() => handleSelectCabin()}
+											text={determineButtonText()}
+										/>
+									)}
+								</ButtonContainer>
+							)}
 						</Title>
 					</ContentGroup>
 				</DialogContent>

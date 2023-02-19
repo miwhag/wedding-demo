@@ -122,7 +122,7 @@ export const Heading = styled.div`
 
 export const TypeLabel = styled.div<{ color: string }>`
 	height: 50px;
-	width: 150px;
+	width: 100px;
 	border-radius: 2px;
 	background-color: ${(p) => p.color && p.color};
 	color: white;
