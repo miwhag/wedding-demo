@@ -55,6 +55,10 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const [capacityError, setCapacityError] = useState(false);
 
 	const offsiteCabin = selectedCabin?.id === 24;
+	const preSelectedCabin =
+		selectedCabin?.lodging_type === 'apartment' ||
+		selectedCabin?.name === 'Sasquach' ||
+		selectedCabin?.name === 'Arapahoe';
 
 	const [acceptLodging, setAcceptLodging] = useState(false);
 	const [open, setOpen] = useState(false);
@@ -206,7 +210,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						</SubHeading>
 						<p className={`description ${acceptLodging && 'line-divider'}`}>
 							{selectedCabin?.lodging_type === 'apartment'
-								? 'In addition to cabins, there are also apartment style lodging on site, which are reserved for the family of Mike & Mike. That being said, you are currently pre-assigned to an apartment. You will not be able to adjust your lodging - though if for any reason you have comments or concerns about your lodging type, please reach out to us. These apartments do not require you to bring your own bedding.'
+								? 'You are currently pre-assigned to an apartment. You will not be able to adjust your lodging - though if for any reason you have comments or concerns about your lodging type, please reach out to us. These apartments do not require you to bring your own bedding. Also similarly to those staying in cabins, we are asking for a $30 dollar donation per person for lodging for Friday-Sunday. More about payment types can be found on the registry page.'
 								: 'Staying in a cabin requires bringing your own bedding. While there are enough beds for everyone to stay in at the property - sleeping bags, pillows, towels and other toiletries will need to be brought with you. Additionally the cost of staying in a cabin on-site will be $30 per person for the entire weekend. You can learn more about payment types on the registry page.'}
 						</p>
 					</div>
@@ -224,7 +228,11 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						<div>
 							{selectedCabin && !offsiteCabin && (
 								<SelectedCabinSection>
-									<SubHeading>You and your party are assigned to:</SubHeading>
+									<SubHeading>
+										{preSelectedCabin
+											? 'You and your party have been pre-assigned lodging:'
+											: 'You and your party are assigned to:'}
+									</SubHeading>
 									{capacityError && (
 										<ErrorMessage>
 											Important! Not everyone in your party can fit into this
@@ -249,7 +257,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 												>
 													View Details <FaArrowRight />
 												</ViewMoreLink>
-												{selectedCabin?.lodging_type !== 'apartment' && (
+												{!preSelectedCabin && (
 													<DeselectButton
 														onClick={() => {
 															setSelectedCabin(null);
@@ -271,9 +279,9 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 									: 'Please select a cabin from the list below'}
 							</SubHeading>
 							<p>
-								{selectedCabin?.lodging_type === 'apartment'
-									? ''
-									: 'If you have any issues selecting a cabin, or cannot find a cabin that will fit your entire party, please reach out to us and we can assist.'}
+								{!preSelectedCabin
+									? 'If you have any issues selecting a cabin, or cannot find a cabin that will fit your entire party, please reach out to us and we can assist.'
+									: `While you can browse other options, you won't be able to change lodging. If you have any questions, comments or concerns please reach out to us.`}
 							</p>
 							<CabinListContainer className={`${!hideCabins && 'open'}`}>
 								{cabinList && (
@@ -312,6 +320,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 
 							{activeModal && (
 								<Popup
+									preSelectedCabin={preSelectedCabin}
 									activeCard={activeCard}
 									setHideCabins={setHideCabins}
 									setActiveModal={setActiveModal}

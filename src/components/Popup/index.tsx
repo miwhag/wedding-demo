@@ -27,6 +27,7 @@ export default function Popup({
 	activeCard,
 	setActiveModal,
 	setHideCabins,
+	preSelectedCabin,
 }) {
 	const dummyImage =
 		'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png';
@@ -139,7 +140,7 @@ export default function Popup({
 									);
 								})}
 							</CabinSpotContainer>
-							{selectedCabin?.lodging_type !== 'apartment' && (
+							{!preSelectedCabin && (
 								<ButtonContainer>
 									{activeCard?.id === selectedCabin?.id ? (
 										<ButtonError
