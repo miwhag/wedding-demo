@@ -271,7 +271,9 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 								)}
 								{plusOneToggle && (
 									<ContactFeild className='plus-one-field'>
-										<p>If yes, please enter their name below</p>
+										<p style={{ paddingBottom: '10px' }}>
+											Please enter their name below
+										</p>
 										<InputContainer className='no-gap'>
 											<TextField
 												sx={{ width: 300 }}

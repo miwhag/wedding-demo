@@ -2,8 +2,6 @@
 import { useHistory } from 'react-router-dom';
 import deerCreek from '../../assets/deer_creek.jpg';
 import miwha from '../../assets/bailey_sign.jpg';
-import hero from '../../assets/hero.png';
-import mobile from '../../assets/mobile.png';
 import { ContentBlock, Button, Countdown } from '../../components/index';
 import {
 	TitleContainer,
@@ -30,8 +28,16 @@ export default function Home({ visible }) {
 					</TitleContainer>
 				</div>
 				<div className='image-section'>
-					<img src={hero} alt='' className='desktop' />
-					<img src={mobile} alt='' className='mobile' />
+					<img
+						src='https://i.postimg.cc/PrJFXt4z/hero.png'
+						alt=''
+						className='desktop'
+					/>
+					<img
+						src='https://i.postimg.cc/zvBpGjnX/mobile.png'
+						alt=''
+						className='mobile'
+					/>
 				</div>
 			</HeroSection>
 			<StoryContainer>
