@@ -53,7 +53,7 @@ export const ViewMoreButton = styled.div`
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: 5%;
+	bottom: 4%;
 	left: 43%;
 	background-color: #242424;
 	color: white;
@@ -67,8 +67,8 @@ export const ViewMoreButton = styled.div`
 		cursor: pointer;
 		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.65);
 	}
-	.visible {
-		bottom: 1%;
+	&.visible {
+		bottom: 2%;
 	}
 	@media only screen and (max-width: 900px) {
 		display: none;
@@ -82,7 +82,11 @@ export const CabinListContainer = styled.div`
 	transition: height 0.2s ease;
 	&.open {
 		height: 1900px;
-		padding-bottom: 4rem;
+		padding-bottom: 2rem;
+		@media only screen and (max-width: 1159px) and (min-width: 901px) {
+			height: 2450px;
+			padding-bottom: 0rem;
+		}
 		@media only screen and (max-width: 900px) {
 			height: 500px;
 			padding-bottom: 0rem;

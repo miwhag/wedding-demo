@@ -70,7 +70,9 @@ export default function Popup({
 	}
 
 	const determineButtonText = () => {
-		if (guest.bed_count > content.spots_remaining)
+		if (content.spots_remaining === 0) {
+			return 'This cabin is full';
+		} else if (guest.bed_count > content.spots_remaining)
 			return 'Not enough beds for your party';
 		else if (
 			content.occupants.some((guest) => guest !== 'Spot Available') &&

@@ -39,11 +39,11 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const {
 		guest,
 		setGuest,
-		cabinList,
 		partyUpdated,
-		setCabinList,
 		selectedCabin,
 		setSelectedCabin,
+		cabinList,
+		setCabinList,
 	} = useContext<any>(GuestContext);
 	const [loaded, setLoaded] = useState(false);
 	const [activeModal, setActiveModal] = useState(false);
@@ -64,12 +64,9 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
 		let controller = new AbortController();
-		(async () => {
-			setCurrentState();
-			setLoaded(true);
-		})();
+		window.scrollTo(0, 0);
+		handleLoad();
 		return () => controller?.abort();
 	}, []);
 
@@ -85,11 +82,20 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	}, [activeModal]);
 
 	useEffect(() => {
+		let controller = new AbortController();
 		updateCabinList();
 		updateGuestInfo();
+		return () => controller?.abort();
 	}, [selectedCabin]);
 
-	function setCurrentState() {
+	async function handleLoad() {
+		let cabins = await getLodgings();
+		setCurrentState(cabins);
+		setLoaded(true);
+	}
+
+	function setCurrentState(cabinList) {
+		setCabinList(cabinList);
 		let cabin = cabinList.find((cabin) => cabin?.id === guest?.lodging_id);
 		if (cabin && cabin.id !== 24) {
 			setHideCabins(true);
