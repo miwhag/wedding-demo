@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export default function MainDetailsSection({ setEmail, emailError, guest }) {
 	return (
-		<div>
+		<div style={{ paddingBottom: '1rem' }}>
 			<SubHeading>Your Details:</SubHeading>
 			<ContactFeild style={{ paddingTop: '10px' }}>
 				<InputContainer className='input-group '>
