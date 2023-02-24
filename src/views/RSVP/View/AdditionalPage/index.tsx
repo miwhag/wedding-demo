@@ -219,7 +219,8 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								<br />
 								For Sunday breakfast we are asking for a $5 dollar donation.
 								However if you do not want breakfast you can opt out below as
-								well.
+								well. As a reminder, information about payments can be found on
+								the registry page.
 							</p>
 						</SectionBreaks>
 						<form noValidate autoComplete='off' onSubmit={handleSubmit}>
@@ -315,7 +316,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							<SectionBreaks>
 								<div className='sub-heading'>Any comments or questions?</div>
 								<TextField
-									sx={{ maxWidth: 700, width: '100%' }}
+									sx={{ maxWidth: 1000, width: '100%' }}
 									id='questions-comments'
 									label='Comments or Questions'
 									multiline

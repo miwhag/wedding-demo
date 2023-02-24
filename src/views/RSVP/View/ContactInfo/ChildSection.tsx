@@ -25,8 +25,6 @@ export default function ChildSection({
 	setChildCare,
 	childCareError,
 }) {
-	const { setPartyUpdated } = useContext<any>(GuestContext);
-
 	let addChildFormField = (e) => {
 		if (childList.length < 4) {
 			setChildList([
@@ -110,7 +108,6 @@ export default function ChildSection({
 										name='name'
 										onChange={(e) => {
 											handleChildInputChange(index, e);
-											setPartyUpdated(true);
 										}}
 										defaultValue={element.name ?? ''}
 										error={element.name === '' && childCareError}

@@ -39,7 +39,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const {
 		guest,
 		setGuest,
-		partyUpdated,
 		selectedCabin,
 		setSelectedCabin,
 		cabinList,
@@ -91,16 +90,19 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	}, [selectedCabin]);
 
 	async function handleLoad() {
+		let guestResponse = await getSelectedGuest(guest.id);
 		let cabins = await getLodgings();
-
-		setCurrentState(cabins);
+		setCurrentState(cabins, guestResponse);
 		setLoaded(true);
 	}
 
-	function setCurrentState(cabinList) {
-		updateGuestInfo();
+	function setCurrentState(cabinList, guestResponse) {
 		setCabinList(cabinList);
-		let cabin = cabinList.find((cabin) => cabin?.id === guest?.lodging_id);
+		setGuest(guestResponse);
+		checkPartyCapacity(guestResponse);
+		let cabin = cabinList.find(
+			(cabin) => cabin?.id === guestResponse?.lodging_id
+		);
 		if (cabin && cabin.id !== 24) {
 			setHideCabins(true);
 			setAcceptLodging(true);
@@ -131,31 +133,28 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 
 	const handleDeclineLodging = () => {
 		updateGuest(guest?.id, { lodging_id: 24 });
+		setSelectedCabin(null);
 		progressFlow();
 	};
 	//offsite is cabin id 24
 	const handleContinue = () => {
+		const validCabin = selectedCabin && selectedCabin.id !== 24;
+
 		if (capacityError) {
 			document?.getElementById('error-anchor')?.scrollIntoView({
 				behavior: 'smooth',
 			});
+		} else if (!acceptLodging) {
+			setDisplayDeclineLodgingModal(true);
 		} else if (
-			(selectedCabin === null && acceptLodging) ||
-			(selectedCabin?.id === 24 && acceptLodging)
+			(selectedCabin?.id === 24 && acceptLodging) ||
+			(selectedCabin === null && acceptLodging)
 		) {
 			setNoLodgingNotice(true);
-		} else if (selectedCabin && !acceptLodging) {
-			updateGuest(guest?.id, { lodging_id: 24 });
-			progressFlow();
-			window.scrollTo(0, 0);
-		} else if (partyUpdated) {
-			updateGuest(guest?.id, { lodging_id: selectedCabin?.id });
-			progressFlow();
-			window.scrollTo(0, 0);
-		} else if (selectedCabin && acceptLodging && !partyUpdated) {
+		} else if (validCabin && acceptLodging) {
 			progressFlow();
 		} else {
-			setDisplayDeclineLodgingModal(true);
+			return;
 		}
 	};
 
@@ -175,6 +174,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 			setCapacityError(false);
 		}
 	};
+
 	return (
 		<>
 			{loaded ? (
@@ -193,7 +193,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 							handleExit={() => setDisplayDeclineLodgingModal(false)}
 							handleContinue={() => handleDeclineLodging()}
 							content={{
-								__html: `<span>You have selected "No". <br/>This means you will be finding lodging yourself off-site. <br/>Is this correct?</span>`,
+								__html: `<span>You have selected "No" to on-site lodging. <br/>This means you will be finding another alternative off-site. <br/>Is this correct?</span>`,
 							}}
 						/>
 					)}

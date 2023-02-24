@@ -3,7 +3,8 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
 const Secondary = styled(Button)<ButtonProps>(({ theme }) => ({
-	minWidth: '200px',
+	width: '100%',
+	maxWidth: '220px',
 	backgroundColor: '#ffffff',
 	height: '50px',
 	borderRadius: '100px;',
