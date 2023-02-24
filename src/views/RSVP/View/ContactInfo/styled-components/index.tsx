@@ -22,7 +22,7 @@ export const ToggleContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem 2rem 1rem 0rem;
+	padding: 2rem 2rem 1rem 0rem;
 
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
@@ -169,7 +169,7 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem 0rem 6rem 0rem;
+	padding: 4rem 0rem 5rem 0rem;
 	gap: 30px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;

@@ -43,45 +43,71 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		let controller = new AbortController();
-		(async () => {
-			let current = await getSelectedGuest(guest.id);
-			setGuest(current);
-			setCurrentState(current);
-			setLoaded(true);
-		})();
+		handleLoad();
 		return () => controller?.abort();
 	}, []);
 
+	async function handleLoad() {
+		let currentGuest = await getSelectedGuest(guest?.id);
+		setCurrentState(currentGuest);
+		setLoaded(true);
+	}
+
 	const setCurrentState = (current) => {
+		setGuest(current);
+
 		let kids = current?.kids.filter((kid) => kid.team_id === 1);
-		let kidsNotPlaying = current?.kids.filter((kid) => kid.team_id === null);
+		let kidsNotPlaying = current?.kids.filter(
+			(kid) => kid.team_id === 0 || kid.team_id === null
+		);
 
-		let kidsPlayingDodgeball = kids.map((kid) => kid.name);
-		let kidsNotPlayingDodgeball = kidsNotPlaying.map((kid) => kid.name);
+		let kidsPlayingDodgeball = kids?.map((child) => {
+			return { name: child?.name, id: child?.id, type: 'kid' };
+		});
 
-		let plusOnePlayingDodgeball =
-			current?.plus_ones[0]?.team_id === 1 ? current?.plus_ones[0]?.name : '';
+		let kidsNotPlayingDodgeball = kidsNotPlaying?.map((child) => {
+			return { name: child?.name, id: child?.id, type: 'kid' };
+		});
+
+		let plusOnePlayingDodgeball = current?.plus_ones[0]?.team_id === 1 && {
+			name: current?.plus_ones[0]?.name,
+			id: current?.plus_ones[0]?.id,
+			type: 'plus_one',
+		};
 
 		let plusOneNotPlayingDodgeball =
-			current?.plus_ones[0]?.team_id === 0 ? current?.plus_ones[0]?.name : '';
+			current?.plus_ones[0]?.team_id === 0 ||
+			(current?.plus_ones[0]?.team_id === null && {
+				name: current?.plus_ones[0]?.name,
+				id: current?.plus_ones[0]?.id,
+				type: 'plus_one',
+			});
 
-		let guestPlayingDodgeball =
-			current?.team_id === 1 ? current?.full_name : '';
+		let guestPlayingDodgeball = current?.team_id === 1 && {
+			name: current?.full_name,
+			id: current?.id,
+			type: 'guest',
+		};
 
 		let guestNotPlayingDodgeball =
-			current?.team_id === 0 ? current?.full_name : '';
+			current?.team_id === 0 ||
+			(current?.team_id === null && {
+				name: current?.full_name,
+				id: current?.id,
+				type: 'guest',
+			});
 
 		let playing = [
 			...kidsPlayingDodgeball,
 			plusOnePlayingDodgeball,
 			guestPlayingDodgeball,
-		].filter((name) => name !== '');
+		].filter((guest) => guest !== false);
 
 		let notPlaying = [
 			...kidsNotPlayingDodgeball,
 			plusOneNotPlayingDodgeball,
 			guestNotPlayingDodgeball,
-		].filter((name) => name !== '');
+		].filter((guest) => guest !== false);
 
 		setPlayingDodgeball(playing);
 		setNotPlayingDodgeball(notPlaying);
@@ -128,16 +154,27 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 		if (guest) {
 			let guestsOverSeventeen;
 
-			let plusOne = guest?.plus_ones[0]?.name;
+			let transformedGuest = guest && {
+				name: guest?.full_name,
+				id: guest?.id,
+				type: 'guest',
+			};
+			let plusOne = guest?.plus_ones[0] && {
+				name: guest?.plus_ones[0]?.name,
+				id: guest?.plus_ones[0]?.id,
+				type: 'plus_one',
+			};
 
 			let children = guest?.kids;
 			let childrenEligible = children?.filter((child) => child?.age >= 8);
-			let childNames = childrenEligible?.map((child) => child?.name);
+			let childNames = childrenEligible?.map((child) => {
+				return { name: child?.name, id: child?.id, type: 'kid' };
+			});
 
 			if (plusOne === undefined || plusOne === '') {
-				guestsOverSeventeen = [...childNames, guest.full_name];
+				guestsOverSeventeen = [...childNames, transformedGuest];
 			} else {
-				guestsOverSeventeen = [plusOne, ...childNames, guest.full_name];
+				guestsOverSeventeen = [plusOne, ...childNames, transformedGuest];
 			}
 			return guestsOverSeventeen;
 		} else {
@@ -145,17 +182,17 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 		}
 	};
 
-	const handleCheckmarks = (e) => {
-		let player = e.target.name;
-
-		if (playingDodgeball.includes(player)) {
-			let result = playingDodgeball.filter((guest) => guest !== player);
+	const handleCheckmarks = (person) => {
+		if (playingDodgeball.find((player) => player.id === person.id)) {
+			let result = playingDodgeball.filter((player) => player.id !== person.id);
 			setPlayingDodgeball(result);
-			setNotPlayingDodgeball([...notPlayingDodgeball, player]);
+			setNotPlayingDodgeball([...notPlayingDodgeball, person]);
 		} else {
-			let result = notPlayingDodgeball.filter((guest) => guest !== player);
+			let result = notPlayingDodgeball.filter(
+				(player) => player.id !== person.id
+			);
+			setPlayingDodgeball([...playingDodgeball, person]);
 			setNotPlayingDodgeball(result);
-			setPlayingDodgeball([...playingDodgeball, player]);
 		}
 	};
 
@@ -260,15 +297,17 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								<div className='sub-heading'>
 									Select those who wish to participate
 								</div>
-								{getPartyList()?.map((guest, index) => {
+								{getPartyList()?.map((person, index) => {
 									return (
 										<CheckboxContainer key={`checkbox-${index}`}>
 											<Checkbox
-												defaultChecked={playingDodgeball.includes(guest)}
-												onChange={handleCheckmarks}
-												inputProps={{ name: guest }}
+												defaultChecked={playingDodgeball.find(
+													(player) => player.id === person.id
+												)}
+												onChange={(e) => handleCheckmarks(person)}
+												inputProps={{ name: person.name }}
 											/>
-											{guest}
+											{person.name}
 										</CheckboxContainer>
 									);
 								})}

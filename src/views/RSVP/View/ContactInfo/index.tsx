@@ -271,7 +271,11 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 								)}
 								{plusOneToggle && (
 									<ContactFeild className='plus-one-field'>
-										<p>If yes, please enter their name below</p>
+										<p style={{ paddingBottom: '10px' }}>
+											{guest?.plus_ones[0]
+												? 'Please verify their name below'
+												: 'Please enter their name below'}
+										</p>
 										<InputContainer className='no-gap'>
 											<TextField
 												sx={{ width: 300 }}
@@ -290,25 +294,27 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 										</InputContainer>
 									</ContactFeild>
 								)}
-
-								<ToggleContainer>
-									<SubHeading>
-										Do you have any children in your party?
-									</SubHeading>
-
-									<Toggle
-										toggleActive={children}
-										onChange={() => setChildren(!children)}
-									/>
-								</ToggleContainer>
-								{children && (
-									<ChildSection
-										childList={childList}
-										setChildList={setChildList}
-										childCare={childCare}
-										setChildCare={setChildCare}
-										childCareError={childCareError}
-									/>
+								{guest?.has_kids === 'yes' && (
+									<>
+										<ToggleContainer>
+											<SubHeading>
+												Do you have any children in your party?
+											</SubHeading>
+											<Toggle
+												toggleActive={children}
+												onChange={() => setChildren(!children)}
+											/>
+										</ToggleContainer>
+										{children && (
+											<ChildSection
+												childList={childList}
+												setChildList={setChildList}
+												childCare={childCare}
+												setChildCare={setChildCare}
+												childCareError={childCareError}
+											/>
+										)}
+									</>
 								)}
 							</div>
 						)}

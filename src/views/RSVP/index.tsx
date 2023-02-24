@@ -1,25 +1,16 @@
 /** @format */
 
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
 import { RsvpContainer, SignUpForm } from './styled-components';
-import { GuestContext } from '../../context/GuestContext';
 import StartPage from './View/StartPage';
 import ContactInfoPage from './View/ContactInfo/index';
 import CabinPage from './View/CabinPage/index';
 import ConfirmPage from './View/ConfirmPage';
 import AdditionalPage from './View/AdditionalPage/index';
-import { getLodgings, steps } from './Model';
+import { steps } from './Model';
 
 export default function RSVP() {
 	const [currentStep, setCurrentStep] = useState(steps.start);
-	const { setCabinList } = useContext<any>(GuestContext);
-
-	useEffect(() => {
-		(async () => {
-			let lodgingResult = await getLodgings();
-			setCabinList(lodgingResult);
-		})();
-	}, []);
 
 	function progressFlow(rsvp) {
 		switch (currentStep) {
