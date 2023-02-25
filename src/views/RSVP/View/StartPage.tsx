@@ -31,6 +31,15 @@ export default function StartPage({ progressFlow }) {
 		return () => controller?.abort();
 	}, []);
 
+	let input = document?.getElementById('name-input');
+
+	input?.addEventListener('keypress', function (event) {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			handleClick();
+		}
+	});
+
 	function editSearchTerm(e) {
 		let term = e.target.value.trim().toLowerCase();
 		let encoded = Buffer.from(term).toString('base64');
@@ -84,6 +93,7 @@ export default function StartPage({ progressFlow }) {
 								</SubTitle>
 							</Heading>
 							<TextField
+								id='name-input'
 								label='Search Your Full Name'
 								onChange={(e) => editSearchTerm(e)}
 								type='text'
@@ -102,6 +112,7 @@ export default function StartPage({ progressFlow }) {
 							)}
 							<ButtonContainer>
 								<Button
+									id='submit-button'
 									type='button'
 									onClick={() => handleClick()}
 									text='Find My Invite'
