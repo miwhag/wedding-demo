@@ -33,12 +33,13 @@ export default function StartPage({ progressFlow }) {
 
 	function editSearchTerm(e) {
 		let term = e.target.value.trim().toLowerCase();
-		setSearchTerm(term);
+		let encoded = Buffer.from(term).toString('base64');
+		setSearchTerm(encoded);
 	}
 
 	async function getSelectedGuestInfo() {
 		let foundGuest = guestList?.find((guest) =>
-			searchTerm?.includes(guest?.name?.toLowerCase())
+			searchTerm?.includes(guest?.name)
 		);
 		if (!!foundGuest) {
 			let promise = new Promise((resolve) => {
