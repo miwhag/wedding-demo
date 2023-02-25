@@ -169,6 +169,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 			sendGuestEmail(guest.id);
 			setSubmitInProgress(false);
 			progressFlow();
+			window.scrollTo(0, 0);
 		}, 3000);
 	};
 
