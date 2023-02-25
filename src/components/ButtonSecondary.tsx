@@ -13,10 +13,10 @@ const Secondary = styled(Button)<ButtonProps>(({ theme }) => ({
 	fontFamily: 'Circular-Book',
 	fontSize: '14px;',
 	lineHeight: '20px',
-	border: '1px solid #3366FF',
-	color: '#3366FF',
+	border: '1px solid #5C6FEA',
+	color: '#5C6FEA',
 	':hover': {
-		backgroundColor: '#6D7DE9',
+		backgroundColor: '#5C6FEA',
 		color: '#fff',
 	},
 }));

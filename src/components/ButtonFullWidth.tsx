@@ -15,7 +15,7 @@ const FullWidth = styled(Button)<ButtonProps>(({ theme }) => ({
 	lineHeight: '20px',
 	color: '#fff',
 	':hover': {
-		backgroundColor: '#000',
+		backgroundColor: '#5C6FEA',
 		color: '#fff',
 	},
 	[theme.breakpoints.down('sm')]: {

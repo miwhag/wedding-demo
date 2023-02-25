@@ -14,7 +14,7 @@ const Primary = styled(Button)<ButtonProps>(({ theme }) => ({
 	fontSize: '14px;',
 	lineHeight: '20px',
 	':hover': {
-		backgroundColor: '#6D7DE9',
+		backgroundColor: '#5C6FEA',
 	},
 }));
 
