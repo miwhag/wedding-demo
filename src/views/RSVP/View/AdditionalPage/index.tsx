@@ -246,10 +246,10 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								<p>If yes, please describe below otherwise leave blank</p>
 								<TextField
 									id='allergy-text-feild'
-									sx={{ maxWidth: 400, width: '100%' }}
+									sx={{ maxWidth: 350, width: '100%' }}
 									label='Any Allergies?'
 									multiline
-									maxRows={4}
+									maxRows={2}
 									defaultValue={guest?.diet ?? ''}
 								/>
 							</SectionBreaks>
@@ -283,7 +283,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 									What day will you be arriving?
 								</div>
 								<FormControl
-									sx={{ m: 1, maxWidth: 260, margin: 0, width: '100%' }}
+									sx={{ m: 1, maxWidth: 200, margin: 0, width: '100%' }}
 									error={arrivalError}
 									required
 								>
@@ -334,11 +334,11 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							<SectionBreaks>
 								<div className='sub-heading'>Any comments or questions?</div>
 								<TextField
-									sx={{ maxWidth: 1000, width: '100%' }}
+									sx={{ maxWidth: 450, width: '100%' }}
 									id='questions-comments'
 									label='Comments or Questions'
 									multiline
-									maxRows={4}
+									rows={3}
 									defaultValue={guest.comments ?? ''}
 								/>
 							</SectionBreaks>
