@@ -35,9 +35,10 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	const { guest, setGuest } = useContext<any>(GuestContext);
 	const [breakfast, setBreakfast] = useState('');
 	const [arrivalDate, setArrivalDate] = useState('');
-	const [arrivalDropdownError, setArrivalDropdownError] = useState(false);
 	const [playingDodgeball, setPlayingDodgeball] = useState<any>([]);
 	const [notPlayingDodgeball, setNotPlayingDodgeball] = useState<any>([]);
+	const [arrivalError, setArrivalError] = useState(false);
+	const [breakfastError, setBreakfastError] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
@@ -124,15 +125,28 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	};
 
 	const checkForErrors = () => {
-		setArrivalDropdownError(false);
-		if (arrivalDate === '') {
-			setArrivalDropdownError(true);
+		setArrivalError(false);
+		if (arrivalDate === '' || arrivalDate === null) {
+			setArrivalError(true);
 		}
-		if (arrivalDate === '') return true;
+		if (breakfast === '' || breakfast === null) {
+			setBreakfastError(true);
+		}
+		if (
+			arrivalDate === '' ||
+			arrivalDate === null ||
+			breakfast === '' ||
+			breakfast === null
+		) {
+			return true;
+		} else {
+			return false;
+		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
 		let error = checkForErrors();
 		if (!error) {
 			let formValues = getFormValues();
@@ -245,6 +259,8 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								</div>
 								<FormControl
 									sx={{ m: 1, maxWidth: 200, margin: 0, width: '100%' }}
+									error={breakfastError}
+									required
 								>
 									<InputLabel id='breakfast-label'>Please select</InputLabel>
 									<Select
@@ -252,11 +268,13 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 										label='Please Select'
 										onChange={handleBreakfastChange}
 										defaultValue={guest?.breakfast ?? ''}
-										required
 									>
 										<MenuItem value={'yes'}>Yes</MenuItem>
 										<MenuItem value={'no'}>No</MenuItem>
 									</Select>
+									{breakfastError && (
+										<FormHelperText>Please select an option</FormHelperText>
+									)}
 								</FormControl>
 							</SectionBreaks>
 							<LineBreak />
@@ -266,7 +284,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 								</div>
 								<FormControl
 									sx={{ m: 1, maxWidth: 260, margin: 0, width: '100%' }}
-									error={arrivalDropdownError}
+									error={arrivalError}
 									required
 								>
 									<InputLabel id='day-label'>Select a day</InputLabel>
@@ -279,7 +297,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 										<MenuItem value={'friday'}>Friday</MenuItem>
 										<MenuItem value={'saturday'}>Saturday</MenuItem>
 									</Select>
-									{arrivalDropdownError && (
+									{arrivalError && (
 										<FormHelperText>Please select an option</FormHelperText>
 									)}
 								</FormControl>

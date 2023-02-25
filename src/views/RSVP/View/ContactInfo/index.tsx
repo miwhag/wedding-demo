@@ -144,10 +144,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	}
 
 	function updateDatabase() {
-		updateGuest(guest.id, {
-			email: email,
-			rsvp: rsvp,
-		});
 		if (!children) {
 			setKids(guest.id, { child_care: null, kids: [] });
 		} else {
@@ -156,6 +152,10 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 		if (guest.plus_one_count !== 0 && plusOneName?.length > 0) {
 			handlePlusOne();
 		}
+		updateGuest(guest.id, {
+			email: email,
+			rsvp: rsvp,
+		});
 	}
 
 	function handleContinue(e) {
