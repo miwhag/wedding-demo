@@ -79,8 +79,6 @@ export async function sendGuestEmail(id) {
 		if (!response.ok) {
 			throw new Error(`Error! status: ${response.status}`);
 		}
-		const result = await response.json();
-		return result;
 	} catch (err) {
 		console.log(err);
 	}
@@ -137,7 +135,7 @@ export async function getSelectedLodge(id) {
 	}
 }
 
-export function updateGuest(id, body) {
+export async function updateGuest(id, body) {
 	fetch(`https://mm-wedding-backend.herokuapp.com/guests/${id}`, {
 		method: 'PATCH',
 		body: JSON.stringify(body),

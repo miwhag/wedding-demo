@@ -107,7 +107,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 		setRsvp(event.target.value);
 	};
 
-	const handlePlusOne = () => {
+	async function handlePlusOne() {
 		if (guest.plus_ones) {
 			let plusOneRegistered = guest?.plus_ones?.length === 1;
 			let plusOneSpotAvailable = guest?.plus_ones?.length === 0;
@@ -119,20 +119,20 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 				guest.plus_ones[0]?.name === undefined;
 
 			if (rsvp === null || rsvp === 'no') {
-				setPlusOneToggle(false);
+				await setPlusOneToggle(false);
 			} else if (plusOneSpotAvailable && plusOneToggle) {
-				createPlusOne({ name: plusOneName, guest_id: guest.id });
+				await createPlusOne({ name: plusOneName, guest_id: guest.id });
 			} else if (plusOneRegistered && plusOneToggle && !plusOneEmpty) {
-				updatePlusOne(plusOneId, { name: plusOneName });
+				await updatePlusOne(plusOneId, { name: plusOneName });
 			} else if (plusOneRegistered && !plusOneToggle) {
-				deletePlusOne(plusOneId);
+				await deletePlusOne(plusOneId);
 			} else {
 				return;
 			}
 		} else {
 			return;
 		}
-	};
+	}
 
 	function handleRsvpNo() {
 		updateGuest(guest.id, {
@@ -143,16 +143,16 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 		progressFlow(rsvp);
 	}
 
-	function updateDatabase() {
+	async function updateDatabase() {
 		if (!children) {
-			setKids(guest.id, { child_care: null, kids: [] });
+			await setKids(guest.id, { child_care: null, kids: [] });
 		} else {
-			setKids(guest.id, { child_care: childCare, kids: childList });
+			await setKids(guest.id, { child_care: childCare, kids: childList });
 		}
 		if (guest.plus_one_count !== 0 && plusOneName?.length > 0) {
-			handlePlusOne();
+			await handlePlusOne();
 		}
-		updateGuest(guest.id, {
+		await updateGuest(guest.id, {
 			email: email,
 			rsvp: rsvp,
 		});
