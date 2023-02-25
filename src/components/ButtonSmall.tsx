@@ -14,7 +14,7 @@ const Small = styled(Button)<ButtonProps>(({ theme }) => ({
 	lineHeight: '20px',
 	marginRight: '10px',
 	':hover': {
-		backgroundColor: '#6D7DE9',
+		backgroundColor: '#5C6FEA',
 	},
 }));
 

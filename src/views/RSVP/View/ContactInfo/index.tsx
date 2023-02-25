@@ -40,7 +40,7 @@ import ChildSection from './ChildSection';
 import MainDetailsSection from './MainDetailsSection';
 
 export default function ContactInfo({ regressFlow, progressFlow }) {
-	const { guest, setGuest, setPartyUpdated } = useContext<any>(GuestContext);
+	const { guest, setGuest } = useContext<any>(GuestContext);
 	const [loaded, setLoaded] = useState(false);
 
 	const [rsvp, setRsvp] = useState('');
@@ -144,10 +144,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	}
 
 	function updateDatabase() {
-		updateGuest(guest.id, {
-			email: email,
-			rsvp: rsvp,
-		});
 		if (!children) {
 			setKids(guest.id, { child_care: null, kids: [] });
 		} else {
@@ -156,6 +152,10 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 		if (guest.plus_one_count !== 0 && plusOneName?.length > 0) {
 			handlePlusOne();
 		}
+		updateGuest(guest.id, {
+			email: email,
+			rsvp: rsvp,
+		});
 	}
 
 	function handleContinue(e) {
@@ -286,7 +286,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 												defaultValue={guest?.plus_ones[0]?.name}
 												onChange={(e) => {
 													setPlusOneName(e.target.value);
-													setPartyUpdated(true);
 												}}
 												error={plusOneError}
 												helperText={plusOneError && 'Name is required'}

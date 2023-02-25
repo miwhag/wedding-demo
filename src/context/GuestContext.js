@@ -25,7 +25,7 @@ export const GuestProvider = (props) => {
 		kids: [],
 		plus_ones: [],
 	};
-	const [partyUpdated, setPartyUpdated] = useState(false);
+
 	const [selectedCabin, setSelectedCabin] = useState(null);
 	const [cabinList, setCabinList] = useState([]);
 	const [guest, setGuest] = useState(emptyGuest);
@@ -48,8 +48,6 @@ export const GuestProvider = (props) => {
 				setCabinList,
 				selectedCabin,
 				setSelectedCabin,
-				partyUpdated,
-				setPartyUpdated,
 			}}
 		>
 			{props.children}

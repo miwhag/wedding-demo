@@ -74,7 +74,7 @@ export const Title = styled.div`
 	justify-content: center;
 	text-align: center;
 	font-family: 'Circular-Book';
-	font-size: 20px;
+	font-size: 30px;
 	align-self: center;
 	margin-top: 3rem;
 	padding: 0;

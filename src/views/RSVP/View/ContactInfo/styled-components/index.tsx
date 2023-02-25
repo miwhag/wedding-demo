@@ -173,6 +173,9 @@ export const ButtonContainer = styled.div`
 	gap: 30px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
+		margin: 0;
+		padding: 3rem 0rem 3rem 0rem;
+		gap: 20px;
 	}
 `;
 

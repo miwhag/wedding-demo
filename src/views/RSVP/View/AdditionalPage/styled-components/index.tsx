@@ -24,12 +24,13 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem 0rem 6rem 0rem;
+	padding: 4rem 0rem 6rem 0rem;
 	gap: 20px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
-		align-items: center;
-		padding: 20px 0px 40px 0px;
+		margin: 0;
+		padding: 2rem 0rem 3rem 0rem;
+		gap: 20px;
 	}
 `;
 

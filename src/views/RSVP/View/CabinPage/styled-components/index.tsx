@@ -106,12 +106,14 @@ export const ButtonContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	align-self: center;
-	margin: 4rem 0rem 5rem 0rem;
+	padding: 5rem 0rem 6rem 0rem;
 	gap: 30px;
 	max-width: 450px;
 	@media only screen and (max-width: 900px) {
 		flex-direction: column;
-		margin: 2rem 0rem 5rem 0rem;
+		margin: 0;
+		padding: 1rem 0rem 3rem 0rem;
+		gap: 20px;
 	}
 `;
 
