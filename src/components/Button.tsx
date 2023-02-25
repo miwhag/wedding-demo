@@ -18,9 +18,15 @@ const Primary = styled(Button)<ButtonProps>(({ theme }) => ({
 	},
 }));
 
-export default function PrimaryButton({ text, onClick = () => {}, type }) {
+export default function PrimaryButton({
+	text,
+	onClick = () => {},
+	type,
+	id = '',
+}) {
 	return (
 		<Primary
+			id={id}
 			type={type}
 			variant='contained'
 			onClick={() => {
