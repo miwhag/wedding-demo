@@ -40,6 +40,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	const [arrivalError, setArrivalError] = useState(false);
 	const [breakfastError, setBreakfastError] = useState(false);
 	const [loaded, setLoaded] = useState(false);
+	const [submitInProgress, setSubmitInProgress] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -149,6 +150,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 
 		let error = checkForErrors();
 		if (!error) {
+			setSubmitInProgress(true);
 			let formValues = getFormValues();
 			updateGuest(guest.id, {
 				...formValues,
@@ -158,10 +160,16 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 			if (playingDodgeball) {
 				updateDodgeball({ yes: playingDodgeball, no: notPlayingDodgeball });
 			}
-			progressFlow();
-			sendGuestEmail(guest.id);
-			window.scrollTo(0, 0);
+			pushToConfirmPage();
 		}
+	};
+
+	const pushToConfirmPage = () => {
+		setTimeout(() => {
+			sendGuestEmail(guest.id);
+			setSubmitInProgress(false);
+			progressFlow();
+		}, 3000);
 	};
 
 	const getPartyList = () => {
@@ -344,7 +352,11 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 							</SectionBreaks>
 							<ButtonContainer>
 								<ButtonSecondary onClick={() => regressFlow()} text='Back' />
-								<Button type='submit' text='Submit My RSVP' />
+								<Button
+									type='submit'
+									text='Submit My RSVP'
+									loading={submitInProgress}
+								/>
 							</ButtonContainer>
 						</form>
 					</ContentContainer>

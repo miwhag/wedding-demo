@@ -1,6 +1,7 @@
 /** @format */
 import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Loading from './Loading';
 
 const Primary = styled(Button)<ButtonProps>(({ theme }) => ({
 	width: '100%',
@@ -23,6 +24,7 @@ export default function PrimaryButton({
 	onClick = () => {},
 	type,
 	id = '',
+	loading = false,
 }) {
 	return (
 		<Primary
@@ -33,7 +35,7 @@ export default function PrimaryButton({
 				onClick();
 			}}
 		>
-			{text}
+			{loading ? <Loading /> : text}
 		</Primary>
 	);
 }
