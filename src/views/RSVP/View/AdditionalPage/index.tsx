@@ -329,7 +329,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 										<CheckboxContainer key={`checkbox-${index}`}>
 											<Checkbox
 												defaultChecked={playingDodgeball.find(
-													(player) => player.id === person.id
+													(player) => player.name === person.name
 												)}
 												onChange={(e) => handleCheckmarks(person)}
 												inputProps={{ name: person.name }}
