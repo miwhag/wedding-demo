@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { GuestContext } from '../../../context/GuestContext';
 import {
@@ -31,27 +31,25 @@ export default function StartPage({ progressFlow }) {
 		return () => controller?.abort();
 	}, []);
 
+	const keyPress = useCallback((e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			let button = document?.getElementById('submit-button');
+			button?.click();
+		}
+	}, []);
+
+	useEffect(() => {
+		let input = document?.getElementById('name-input');
+		input?.addEventListener('keyup', keyPress);
+		return () => document.removeEventListener('keyup', keyPress);
+	}, [keyPress, searchTerm]);
+
 	function editSearchTerm(e) {
 		let term = e.target.value.trim().toLowerCase();
 		let encoded = Buffer.from(term).toString('base64');
 		setSearchTerm(encoded);
 	}
-
-	// const keyPress = useCallback(
-	// 	(e) => {
-	// 		if (e.key === 'Enter') {
-	// 			e.preventDefault();
-	// 			handleClick();
-	// 		}
-	// 	},
-	// 	[handleClick]
-	// );
-
-	// useEffect(() => {
-	// 	let input = document?.getElementById('name-input');
-	// 	input?.addEventListener('keyup', keyPress);
-	// 	return () => document.removeEventListener('keyup', keyPress);
-	// }, [keyPress]);
 
 	async function getSelectedGuestInfo() {
 		let foundGuest = guestList?.find((guest) =>
