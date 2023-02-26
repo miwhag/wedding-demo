@@ -31,20 +31,27 @@ export default function StartPage({ progressFlow }) {
 		return () => controller?.abort();
 	}, []);
 
-	let input = document?.getElementById('name-input');
-
-	input?.addEventListener('keypress', function (event) {
-		if (event.key === 'Enter') {
-			event.preventDefault();
-			handleClick();
-		}
-	});
-
 	function editSearchTerm(e) {
 		let term = e.target.value.trim().toLowerCase();
 		let encoded = Buffer.from(term).toString('base64');
 		setSearchTerm(encoded);
 	}
+
+	// const keyPress = useCallback(
+	// 	(e) => {
+	// 		if (e.key === 'Enter') {
+	// 			e.preventDefault();
+	// 			handleClick();
+	// 		}
+	// 	},
+	// 	[handleClick]
+	// );
+
+	// useEffect(() => {
+	// 	let input = document?.getElementById('name-input');
+	// 	input?.addEventListener('keyup', keyPress);
+	// 	return () => document.removeEventListener('keyup', keyPress);
+	// }, [keyPress]);
 
 	async function getSelectedGuestInfo() {
 		let foundGuest = guestList?.find((guest) =>

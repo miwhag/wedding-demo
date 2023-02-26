@@ -23,6 +23,7 @@ export default function ChildSection({
 	childCare,
 	setChildCare,
 	childCareError,
+	setContactInfoChanged,
 }) {
 	let addChildFormField = (e) => {
 		if (childList.length < 4) {
@@ -36,22 +37,26 @@ export default function ChildSection({
 			]);
 		}
 		e.preventDefault();
+		setContactInfoChanged(true);
 	};
 
 	let removeChildFormField = (i) => {
 		let newChildList = [...childList];
 		newChildList.splice(i, 1);
 		setChildList(newChildList);
+		setContactInfoChanged(true);
 	};
 
 	let handleChildInputChange = (i, e) => {
 		let newChildList = [...childList];
 		newChildList[i][e.target.name] = e.target.value;
 		setChildList(newChildList);
+		setContactInfoChanged(true);
 	};
 
 	let handleChildCareChange = (e) => {
 		setChildCare(e.target.value);
+		setContactInfoChanged(true);
 	};
 
 	return (
@@ -81,7 +86,10 @@ export default function ChildSection({
 				<InputLabel id='child-care-label'>Please select an option</InputLabel>
 				<Select
 					labelId='child-care-label'
-					onChange={handleChildCareChange}
+					onChange={(e) => {
+						handleChildCareChange(e);
+						setContactInfoChanged(true);
+					}}
 					label='Please select an option'
 					value={childCare ?? ''}
 				>

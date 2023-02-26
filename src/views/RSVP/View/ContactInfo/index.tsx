@@ -64,6 +64,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	const [childCareError, setChildCareError] = useState(false);
 
 	const [displayConfirmation, setDisplayConfirmation] = useState(false);
+	const [contactInfoChanged, setContactInfoChanged] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -104,10 +105,11 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	}
 
 	const handleRsvpChange = (event) => {
+		setContactInfoChanged(true);
 		setRsvp(event.target.value);
 	};
 
-	async function handlePlusOne() {
+	function handlePlusOne() {
 		if (guest.plus_ones) {
 			let plusOneRegistered = guest?.plus_ones?.length === 1;
 			let plusOneSpotAvailable = guest?.plus_ones?.length === 0;
@@ -119,13 +121,13 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 				guest.plus_ones[0]?.name === undefined;
 
 			if (rsvp === null || rsvp === 'no') {
-				await setPlusOneToggle(false);
+				setPlusOneToggle(false);
 			} else if (plusOneSpotAvailable && plusOneToggle) {
-				await createPlusOne({ name: plusOneName, guest_id: guest.id });
+				createPlusOne({ name: plusOneName, guest_id: guest.id });
 			} else if (plusOneRegistered && plusOneToggle && !plusOneEmpty) {
-				await updatePlusOne(plusOneId, { name: plusOneName });
+				updatePlusOne(plusOneId, { name: plusOneName });
 			} else if (plusOneRegistered && !plusOneToggle) {
-				await deletePlusOne(plusOneId);
+				deletePlusOne(plusOneId);
 			} else {
 				return;
 			}
@@ -144,18 +146,44 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 	}
 
 	async function updateDatabase() {
+		await handleDatabaseUpdate();
+	}
+
+	async function updateKids() {
 		if (!children) {
-			await setKids(guest.id, { child_care: null, kids: [] });
+			setKids(guest.id, { child_care: null, kids: [] });
 		} else {
-			await setKids(guest.id, { child_care: childCare, kids: childList });
+			setKids(guest.id, { child_care: childCare, kids: childList });
 		}
+	}
+
+	async function handlePlusOneUpdate() {
 		if (guest.plus_one_count !== 0 && plusOneName?.length > 0) {
-			await handlePlusOne();
+			handlePlusOne();
 		}
-		await updateGuest(guest.id, {
+	}
+
+	async function handleUpdateGuest() {
+		updateGuest(guest.id, {
 			email: email,
 			rsvp: rsvp,
 		});
+	}
+
+	async function handleProgressFlow() {
+		let timeout = setTimeout(() => {
+			progressFlow();
+		}, 300);
+		return () => {
+			clearTimeout(timeout);
+		};
+	}
+
+	async function handleDatabaseUpdate() {
+		await updateKids();
+		await handlePlusOneUpdate();
+		await handleUpdateGuest();
+		await handleProgressFlow();
 	}
 
 	function handleContinue(e) {
@@ -178,10 +206,12 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 			if (rsvp === 'no') {
 				setDisplayConfirmation(true);
 			} else {
-				setSubmitRsvpDecline(false);
-				updateDatabase();
-				progressFlow(rsvp);
-				window.scrollTo(0, 0);
+				if (!contactInfoChanged) {
+					progressFlow(rsvp);
+				} else {
+					setSubmitRsvpDecline(false);
+					updateDatabase();
+				}
 			}
 		}
 	}
@@ -249,6 +279,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 							guest={guest}
 							setEmail={setEmail}
 							emailError={emailError}
+							setContactInfoChanged={setContactInfoChanged}
 						/>
 						{(rsvp === 'yes' ||
 							(rsvp === null && guest.plus_ones.length > 0)) && (
@@ -265,6 +296,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 											toggleActive={plusOneToggle}
 											onChange={() => {
 												setPlusOneToggle(!plusOneToggle);
+												setContactInfoChanged(true);
 											}}
 										/>
 									</ToggleContainer>
@@ -286,6 +318,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 												defaultValue={guest?.plus_ones[0]?.name}
 												onChange={(e) => {
 													setPlusOneName(e.target.value);
+													setContactInfoChanged(true);
 												}}
 												error={plusOneError}
 												helperText={plusOneError && 'Name is required'}
@@ -301,7 +334,10 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 											</SubHeading>
 											<Toggle
 												toggleActive={children}
-												onChange={() => setChildren(!children)}
+												onChange={() => {
+													setChildren(!children);
+													setContactInfoChanged(true);
+												}}
 											/>
 										</ToggleContainer>
 										{children && (
@@ -311,6 +347,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 												childCare={childCare}
 												setChildCare={setChildCare}
 												childCareError={childCareError}
+												setContactInfoChanged={setContactInfoChanged}
 											/>
 										)}
 									</>
