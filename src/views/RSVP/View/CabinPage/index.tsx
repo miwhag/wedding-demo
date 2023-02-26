@@ -83,8 +83,8 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	useEffect(() => {
 		let controller = new AbortController();
 		if (loaded) {
-			updateCabinList();
 			updateGuestInfo();
+			updateCabinList();
 		}
 		return () => controller?.abort();
 	}, [selectedCabin]);
@@ -97,8 +97,8 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	}
 
 	function setCurrentState(cabinList, guestResponse) {
-		setCabinList(cabinList);
 		setGuest(guestResponse);
+		setCabinList(cabinList);
 		checkPartyCapacity(guestResponse);
 		let cabin = cabinList.find(
 			(cabin) => cabin?.id === guestResponse?.lodging_id
