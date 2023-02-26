@@ -160,6 +160,9 @@ export default function ChildSection({
 										label='Age'
 										required={false}
 										type='number'
+										InputProps={{
+											inputProps: { min: 0 },
+										}}
 										name='age'
 										onChange={(e) => handleChildInputChange(index, e)}
 										defaultValue={element.age ?? ''}
