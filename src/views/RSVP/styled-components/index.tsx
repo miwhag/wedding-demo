@@ -79,8 +79,12 @@ export const Title = styled.div`
 	margin-top: 3rem;
 	padding: 0;
 	@media only screen and (max-width: 600px) {
-		font-size: 20px;
-		margin-top: 4rem;
+		font-size: 30px;
+		margin-top: 0rem;
+		&.coming-soon {
+			font-size: 20px;
+			margin-top: 4rem;
+		}
 	}
 `;
 
