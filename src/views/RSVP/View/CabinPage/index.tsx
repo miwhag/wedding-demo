@@ -63,9 +63,14 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const [open, setOpen] = useState(false);
 
 	useEffect(() => {
-		let controller = new AbortController();
 		window.scrollTo(0, 0);
-		handleLoad();
+		let controller = new AbortController();
+		(async () => {
+			let cabins = await getLodgings();
+			let guestInfo = await getSelectedGuest(guest.id);
+			setCurrentState(guestInfo, cabins);
+			setLoaded(true);
+		})();
 		return () => controller?.abort();
 	}, []);
 
@@ -80,29 +85,11 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		}
 	}, [activeModal]);
 
-	useEffect(() => {
-		let controller = new AbortController();
-		if (loaded) {
-			updateGuestInfo();
-			updateCabinList();
-		}
-		return () => controller?.abort();
-	}, [selectedCabin]);
-
-	async function handleLoad() {
-		let guestResponse = await getSelectedGuest(guest.id);
-		let cabins = await getLodgings();
-		setCurrentState(cabins, guestResponse);
-		setLoaded(true);
-	}
-
-	function setCurrentState(cabinList, guestResponse) {
-		setGuest(guestResponse);
-		setCabinList(cabinList);
-		checkPartyCapacity(guestResponse);
-		let cabin = cabinList.find(
-			(cabin) => cabin?.id === guestResponse?.lodging_id
-		);
+	function setCurrentState(guestInfo, cabins) {
+		setGuest(guestInfo);
+		setCabinList(cabins);
+		checkPartyCapacity(guestInfo);
+		let cabin = cabins.find((cabin) => cabin?.id === guestInfo?.lodging_id);
 		if (cabin && cabin.id !== 24) {
 			setHideCabins(true);
 			setAcceptLodging(true);
@@ -112,17 +99,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 			setAcceptLodging(false);
 			setSelectedCabin(cabin);
 		}
-	}
-
-	async function updateCabinList() {
-		let lodgingResult = await getLodgings();
-		setCabinList(lodgingResult);
-	}
-
-	async function updateGuestInfo() {
-		let response = await getSelectedGuest(guest.id);
-		setGuest(response);
-		checkPartyCapacity(response);
 	}
 
 	const handleCardClick = (cabin) => {
@@ -136,6 +112,50 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 		setSelectedCabin(null);
 		progressFlow();
 	};
+
+	async function checkParty() {
+		let promise = new Promise((resolve) => {
+			resolve(getSelectedGuest(guest.id));
+		});
+		let result = await promise;
+		checkPartyCapacity(result);
+	}
+
+	async function updateGuestLodging() {
+		let promise = new Promise((resolve) => {
+			resolve(updateGuest(guest?.id, { lodging_id: null }));
+		});
+		let result = await promise;
+		setSelectedCabin(null);
+		setHideCabins(false);
+		checkParty();
+		return result;
+	}
+
+	async function updateSelectedCabin() {
+		try {
+			updateGuestLodging().then(function () {
+				setTimeout(() => {
+					getCabins();
+				}, 200);
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function getCabins() {
+		try {
+			let promise = new Promise((resolve) => {
+				resolve(getLodgings());
+			});
+			let result = await promise;
+			setCabinList(result);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	//offsite is cabin id 24
 	const handleContinue = () => {
 		const validCabin = selectedCabin && selectedCabin.id !== 24;
@@ -174,7 +194,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 			setCapacityError(false);
 		}
 	};
-
 	return (
 		<>
 			{loaded ? (
@@ -255,9 +274,22 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 											/>
 
 											<ErrorMessage>
-												Important! Not everyone in your party can fit into this
-												cabin as it is already full. Please select a new cabin
-												that can accomidate your full party.
+												Oh no! Looks like there is an issue with your lodging.
+												<br />
+												<p
+													style={{
+														paddingTop: '5px',
+														fontSize: '16px',
+														margin: '0',
+													}}
+												>
+													You are seeing this message because not everyone in
+													your party can fit into this cabin as it is already
+													full or there were issues updating your entire party
+													to this cabin. Please select a new cabin that can
+													accommodate everyone, or unselect and reselect if you
+													can see there are spots available.
+												</p>
 											</ErrorMessage>
 										</>
 									)}
@@ -281,9 +313,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 												{!preSelectedCabin && (
 													<DeselectButton
 														onClick={() => {
-															setSelectedCabin(null);
-															updateGuest(guest?.id, { lodging_id: null });
-															setHideCabins(false);
+															updateSelectedCabin();
 														}}
 													>
 														Unselect Cabin
@@ -341,6 +371,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 
 							{activeModal && (
 								<Popup
+									checkPartyCapacity={checkParty}
 									preSelectedCabin={preSelectedCabin}
 									activeCard={activeCard}
 									setHideCabins={setHideCabins}

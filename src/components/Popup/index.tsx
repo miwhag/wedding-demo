@@ -7,7 +7,11 @@ import DialogContent from '@mui/material/DialogContent';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { GuestContext } from '../../context/GuestContext';
-import { getSelectedLodge, updateGuest } from '../../views/RSVP/Model';
+import {
+	getSelectedLodge,
+	updateGuest,
+	getLodgings,
+} from '../../views/RSVP/Model';
 import { ButtonError, ButtonFullWidth } from '../index';
 import {
 	ContentGroup,
@@ -28,11 +32,12 @@ export default function Popup({
 	setActiveModal,
 	setHideCabins,
 	preSelectedCabin,
+	checkPartyCapacity,
 }) {
 	const dummyImage =
 		'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png';
 
-	const { guest, selectedCabin, setSelectedCabin } =
+	const { guest, selectedCabin, setSelectedCabin, setCabinList } =
 		useContext<any>(GuestContext);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -44,16 +49,17 @@ export default function Popup({
 
 	const handleSelectCabin = () => {
 		if (activeCard?.id === selectedCabin?.id) {
-			updateGuest(guest?.id, { lodging_id: null });
+			updateSelectedCabin(null);
 			setActiveModal(false);
 			setSelectedCabin(null);
 			setHideCabins(false);
 		} else {
+			updateSelectedCabin(activeCard.id);
 			setActiveModal(false);
 			setSelectedCabin(activeCard);
-			updateGuest(guest?.id, { lodging_id: activeCard.id });
 			setHideCabins(true);
 		}
+		checkPartyCapacity();
 	};
 
 	const handleExit = () => {
@@ -67,6 +73,37 @@ export default function Popup({
 		} catch (error) {
 			console.error(error);
 		}
+	}
+
+	async function updateSelectedCabin(id) {
+		try {
+			updateGuestLodging(id).then(function () {
+				setTimeout(() => {
+					getCabins();
+				}, 200);
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function updateGuestLodging(id) {
+		let promise = new Promise((resolve) => {
+			resolve(updateGuest(guest?.id, { lodging_id: id }));
+		});
+		let result = await promise;
+		console.log('guest updated with lodging id');
+		return result;
+	}
+
+	async function getCabins() {
+		let promise = new Promise((resolve) => {
+			resolve(getLodgings());
+		});
+		let result = await promise;
+		setCabinList(result);
+		console.log('cabin list update');
+		return result;
 	}
 
 	const determineButtonText = () => {

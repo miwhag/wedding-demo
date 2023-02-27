@@ -31,7 +31,11 @@ export const ErrorMessage = styled.div`
 	background-color: #ffdddd;
 	color: #ff3333;
 	padding: 20px;
-	margin-top: 10px;
+	margin-top: 20px;
+	font-size: 17px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 `;
 export const ArrowContainer = styled.div`
 	font-size: 20px;
