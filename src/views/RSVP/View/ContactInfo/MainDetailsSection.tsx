@@ -2,7 +2,12 @@
 import { ContactFeild, SubHeading, InputContainer } from './styled-components';
 import TextField from '@mui/material/TextField';
 
-export default function MainDetailsSection({ setEmail, emailError, guest }) {
+export default function MainDetailsSection({
+	setEmail,
+	emailError,
+	guest,
+	setContactInfoChanged,
+}) {
 	return (
 		<div style={{ paddingBottom: '1rem' }}>
 			<SubHeading>Your Details:</SubHeading>
@@ -38,6 +43,7 @@ export default function MainDetailsSection({ setEmail, emailError, guest }) {
 						error={emailError}
 						onChange={(e) => {
 							setEmail(e.target.value);
+							setContactInfoChanged(true);
 						}}
 						helperText={emailError && 'Please enter a valid email'}
 					/>

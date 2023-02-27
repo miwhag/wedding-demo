@@ -77,13 +77,12 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 			type: 'plus_one',
 		};
 
-		let plusOneNotPlayingDodgeball =
-			current?.plus_ones[0]?.team_id === 0 ||
-			(current?.plus_ones[0]?.team_id === null && {
-				name: current?.plus_ones[0]?.name,
-				id: current?.plus_ones[0]?.id,
-				type: 'plus_one',
-			});
+		let plusOneNotPlayingDodgeball = (current?.plus_ones[0]?.team_id === 0 ||
+			current?.plus_ones[0]?.team_id === null) && {
+			name: current?.plus_ones[0]?.name,
+			id: current?.plus_ones[0]?.id,
+			type: 'plus_one',
+		};
 
 		let guestPlayingDodgeball = current?.team_id === 1 && {
 			name: current?.full_name,
@@ -91,13 +90,12 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 			type: 'guest',
 		};
 
-		let guestNotPlayingDodgeball =
-			current?.team_id === 0 ||
-			(current?.team_id === null && {
-				name: current?.full_name,
-				id: current?.id,
-				type: 'guest',
-			});
+		let guestNotPlayingDodgeball = (current?.team_id === 0 ||
+			current?.team_id === null) && {
+			name: current?.full_name,
+			id: current?.id,
+			type: 'guest',
+		};
 
 		let playing = [
 			...kidsPlayingDodgeball,
@@ -169,6 +167,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 			sendGuestEmail(guest.id);
 			setSubmitInProgress(false);
 			progressFlow();
+			window.scrollTo(0, 0);
 		}, 3000);
 	};
 
@@ -205,13 +204,15 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 	};
 
 	const handleCheckmarks = (person) => {
-		if (playingDodgeball.find((player) => player.id === person.id)) {
-			let result = playingDodgeball.filter((player) => player.id !== person.id);
+		if (playingDodgeball.find((player) => player.name === person.name)) {
+			let result = playingDodgeball.filter(
+				(player) => player.name !== person.name
+			);
 			setPlayingDodgeball(result);
 			setNotPlayingDodgeball([...notPlayingDodgeball, person]);
 		} else {
 			let result = notPlayingDodgeball.filter(
-				(player) => player.id !== person.id
+				(player) => player.name !== person.name
 			);
 			setPlayingDodgeball([...playingDodgeball, person]);
 			setNotPlayingDodgeball(result);
@@ -329,7 +330,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 										<CheckboxContainer key={`checkbox-${index}`}>
 											<Checkbox
 												defaultChecked={playingDodgeball.find(
-													(player) => player.id === person.id
+													(player) => player.name === person.name
 												)}
 												onChange={(e) => handleCheckmarks(person)}
 												inputProps={{ name: person.name }}
@@ -356,6 +357,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
 									type='submit'
 									text='Submit My RSVP'
 									loading={submitInProgress}
+									disabled={submitInProgress}
 								/>
 							</ButtonContainer>
 						</form>

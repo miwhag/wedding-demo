@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import TextField from '@mui/material/TextField';
 import { GuestContext } from '../../../context/GuestContext';
 import {
@@ -31,14 +31,19 @@ export default function StartPage({ progressFlow }) {
 		return () => controller?.abort();
 	}, []);
 
-	let input = document?.getElementById('name-input');
-
-	input?.addEventListener('keypress', function (event) {
-		if (event.key === 'Enter') {
-			event.preventDefault();
-			handleClick();
+	const keyPress = useCallback((e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			let button = document?.getElementById('submit-button');
+			button?.click();
 		}
-	});
+	}, []);
+
+	useEffect(() => {
+		let input = document?.getElementById('name-input');
+		input?.addEventListener('keyup', keyPress);
+		return () => document.removeEventListener('keyup', keyPress);
+	}, [keyPress, searchTerm]);
 
 	function editSearchTerm(e) {
 		let term = e.target.value.trim().toLowerCase();

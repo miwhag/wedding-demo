@@ -25,12 +25,14 @@ export default function PrimaryButton({
 	type,
 	id = '',
 	loading = false,
+	disabled = false,
 }) {
 	return (
 		<Primary
 			id={id}
 			type={type}
 			variant='contained'
+			disabled={disabled}
 			onClick={() => {
 				onClick();
 			}}
