@@ -86,7 +86,7 @@ export default function StartPage({ progressFlow }) {
 					{hideRsvp ? (
 						<Title>
 							Hang tight! <br />
-							RSVP is opening up soon
+							RSVP is opening up in March
 						</Title>
 					) : (
 						<>
