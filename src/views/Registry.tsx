@@ -196,7 +196,7 @@ export default function Registry() {
 					for a new home & a nice honeymoon ♡<br />
 					<br />
 					Also as you've probably read throughout the site, we are asking for
-					$30 dollars per person for lodging for the weekend, and for a $5 per
+					$30 dollars per bed for lodging for the weekend, and for a $5 per
 					person donation for Sunday's breakfast. You can make your payment for
 					these items (if applicable) through our registry site directly or
 					through the other listed platforms below.

@@ -24,7 +24,9 @@ import {
 	CabinSpot,
 	CabinSpotContainer,
 	ButtonContainer,
+	SliderContainer,
 } from './styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function Popup({
 	open,
@@ -34,14 +36,12 @@ export default function Popup({
 	preSelectedCabin,
 	checkPartyCapacity,
 }) {
-	const dummyImage =
-		'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png';
-
 	const { guest, selectedCabin, setSelectedCabin, setCabinList } =
 		useContext<any>(GuestContext);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 	const [content, setContent] = useState<any>(activeCard);
+	const images = [content?.image_url, content?.map_url];
 
 	useEffect(() => {
 		updateCabin();
@@ -127,6 +127,7 @@ export default function Popup({
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
+
 	return (
 		<div key={`cabin-popup-${activeCard.id}`}>
 			<Dialog
@@ -144,9 +145,29 @@ export default function Popup({
 				<DialogContent>
 					<ContentGroup>
 						<ImageContainer>
-							<Image
-								image={content.image_url ? content.image_url : dummyImage}
-							/>
+							<SliderContainer>
+								<Swiper
+									id='popup'
+									spaceBetween={0}
+									slidesPerView={1}
+									tag='section'
+									wrapperTag='ul'
+									pagination={{ clickable: true }}
+									navigation={true}
+								>
+									{images.map((image, index) => {
+										return (
+											<SwiperSlide tag='li' key={`main ${index}`}>
+												<ImageContainer>
+													<Image>
+														<img src={image} alt={`${index}-cabin`} />
+													</Image>
+												</ImageContainer>
+											</SwiperSlide>
+										);
+									})}
+								</Swiper>
+							</SliderContainer>
 							<TypeLabel color={content.color}>
 								{capitalizeFirstLetter(content.lodging_type)}
 							</TypeLabel>

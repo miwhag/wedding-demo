@@ -1,22 +1,42 @@
 /** @format */
 import styled from 'styled-components';
 
-export const Image = styled.div<{ image: string }>`
-	background-image: url(${(p) => p.image && p.image});
-	height: 300px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	border-radius: 5px;
+export const Image = styled.div`
+	max-width: 700px;
+	overflow: hidden;
+	img {
+		width: 100%;
+	}
+`;
+
+export const SliderContainer = styled.div`
+	height: 100%;
 	width: 100%;
-	@media only screen and (min-width: 900px) {
-		height: 500px;
-		min-width: 500px;
+	overflow: hidden;
+	ul {
+		list-style-type: none;
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+	.swiper-button-next,
+	.swiper-button-prev {
+		color: white !important;
+		background-color: black;
+		font-size: 15px;
+		padding: 10px;
+		border-radius: 50%;
+		height: 20px;
+		width: 20px;
+	}
+	.swiper-button-next::after,
+	.swiper-button-prev::after {
+		font-size: 15px;
 	}
 `;
 
 export const Title = styled.div`
-	padding: 1rem 2rem 2rem 3rem;
+	padding: 0rem 2rem 1rem 3rem;
 	max-width: 600px;
 	@media only screen and (max-width: 1200px) {
 		padding: 0rem;
@@ -64,7 +84,7 @@ export const CabinSpotContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	padding-top: 1rem;
+	padding: 0.5rem 0rem 1rem 0rem;
 	span {
 		font-family: 'Circular-Light';
 	}
@@ -99,7 +119,7 @@ export const CabinSpot = styled.div<{ color: string }>`
 export const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	margin: 4rem 1rem 3rem 1rem;
+	margin: 2rem 1rem 3rem 1rem;
 `;
 
 export const ContentGroup = styled.div`
@@ -112,7 +132,7 @@ export const ContentGroup = styled.div`
 
 export const Heading = styled.div`
 	padding-top: 0px;
-	font-size: 40px;
+	font-size: 30px;
 	font-family: 'Circular-Book';
 	@media only screen and (max-width: 900px) {
 		font-size: 30px;
@@ -134,8 +154,10 @@ export const TypeLabel = styled.div<{ color: string }>`
 	box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.07);
 	top: 10px;
 	left: 0px;
+	z-index: 1000;
 `;
 
 export const ImageContainer = styled.div`
 	position: relative;
+	max-width: 600px;
 `;

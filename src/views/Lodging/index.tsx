@@ -30,15 +30,20 @@ export default function Lodging() {
 							We're so excited that this venue has lodging on site. It was
 							another reason we loved the venue so much, and our preference is
 							that guests who are staying for the weekend stay in a cabin. It
-							will cost $30/person which will cover the entire weekend (Friday
+							will cost $30 per bed, which will cover the entire weekend (Friday
 							and Saturday evening). While they have pretty nice beds they do
 							not come with bedding. So, make sure you bring a sleeping bag and
 							pillow with you.
 							<br /> <br />
-							If you are wanting to stay on site, you can reserve your spot in a
-							cabin when you RSVP to the event. There are also 6 RV spots
-							available if you happen to have an RV. Payment for a spot can be
-							made on the registry site or through venmo. <br />
+							Also please note that the on-site lodging is limited. There are
+							over 100 beds at this venue, and there should be enough for
+							everyone, however if space runs out you will need to find lodging
+							offsite. So best to book early!
+							<br /> <br />
+							To reserve a spot, you will need to select your lodge when you
+							RSVP. There are also 6 RV spots available if you happen to have an
+							RV. Payment for a spot can be made on the registry site or through
+							venmo. <br />
 							<br />
 						</p>
 						<Carousel images={imageArray} />

@@ -159,17 +159,18 @@ export const FlyoutLinkContainer = styled.div`
 `;
 
 export const FlyoutMenuLink = styled.div<{ active: boolean }>`
-	padding: 7px 0px;
+	padding: 3px 20px;
 	a {
 		display: flex;
 		align-items: center;
 		text-decoration: none;
-		color: ${(p) => (p.active ? '#ffffff' : '#000000')};
-		background-color: ${(p) => (p.active ? '#000000' : '#ffffff')};
+		color: ${(p) => (p.active ? '#fff' : '#242424')};
+		background-color: ${(p) => (p.active ? '#242424' : '#fff')};
 		font-size: 20px;
-		padding-left: 40px;
-		height: 40px;
-		border-radius: 0px 3px 3px 0px;
+		height: 45px;
+		padding-left: 10px;
+		max-width: 100px;
+		border-radius: 0px 50px 50px 0px;
 		font-family: 'Circular-Book';
 		p {
 			margin: 0;
@@ -184,9 +185,9 @@ export const FlyoutMenuLink = styled.div<{ active: boolean }>`
 export const FlyoutExitButton = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	font-size: 35px;
+	font-size: 25px;
 	font-family: 'Circular-Book';
-	margin-right: 35px;
+	margin-right: 25px;
 	@media only screen and (min-width: 900px) {
 		display: none;
 	}
