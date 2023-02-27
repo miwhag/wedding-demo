@@ -1,5 +1,7 @@
 /** @format */
 import { useState } from 'react';
+import { GrClose } from 'react-icons/gr';
+
 import {
 	FlyoutMobileMenu,
 	FlyoutMenuLink,
@@ -19,7 +21,7 @@ export default function Flyout({ flyoutVisible, setFlyoutVisible }) {
 	return (
 		<FlyoutMobileMenu visible={flyoutVisible}>
 			<FlyoutExitButton>
-				<div onClick={() => setFlyoutVisible(false)}>x</div>
+				<GrClose onClick={() => setFlyoutVisible(false)} />
 			</FlyoutExitButton>
 			<FlyoutLinkContainer>
 				<FlyoutMenuLink
@@ -31,7 +33,7 @@ export default function Flyout({ flyoutVisible, setFlyoutVisible }) {
 					</Link>
 				</FlyoutMenuLink>
 				<FlyoutMenuLink
-					onClick={() => handleMenuClick('story')}
+					onClick={() => handleMenuClick('our-story')}
 					active={active === 'our-story'}
 				>
 					<Link to='/our-story'>
