@@ -15,7 +15,7 @@ export const Questions = {
 		{
 			question: 'How do I reserve my spot in a cabin, and how much is it?',
 			answer:
-				'We are asking $30 per person for the entire weekend (Friday 3:00PM - Sunday 10:00AM). There are also RV spots available for those who would like to park an RV which is just $30 for the spot. Unfortunately no tenting is allowed on the property.',
+				'We are asking $30 per bed for the entire weekend (Friday 3:00PM - Sunday 10:00AM). There are also RV spots available for those who would like to park an RV which is just $30 for the spot. Unfortunately no tenting is allowed on the property.',
 		},
 		{
 			question: 'Are cabins co-ed?',

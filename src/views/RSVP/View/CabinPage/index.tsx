@@ -244,7 +244,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 						<p className={`description ${acceptLodging && 'line-divider'}`}>
 							{selectedCabin?.lodging_type === 'apartment'
 								? 'You are currently pre-assigned to an apartment. You will not be able to adjust your lodging - though if for any reason you have comments or concerns about your lodging type, please reach out to us. These apartments do not require you to bring your own bedding. Also similarly to those staying in cabins, we are asking for a $30 dollar donation per person for lodging for Friday-Sunday. More about payment types can be found on the registry page.'
-								: 'Staying in a cabin requires bringing your own bedding. While there are enough beds for everyone to stay in at the property - sleeping bags, pillows, towels and other toiletries will need to be brought with you. Additionally the cost of staying in a cabin on-site will be $30 per person for the entire weekend. You can learn more about payment types on the registry page.'}
+								: 'Staying in a cabin requires bringing your own bedding. While there are enough beds for everyone to stay in at the property - sleeping bags, pillows, towels and other toiletries will need to be brought with you. Additionally the cost of staying in a cabin on-site will be $30 per bed for the entire weekend. You can learn more about payment types on the registry page.'}
 						</p>
 					</div>
 					{offsiteCabin && (
