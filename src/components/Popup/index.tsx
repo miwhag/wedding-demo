@@ -92,7 +92,6 @@ export default function Popup({
 			resolve(updateGuest(guest?.id, { lodging_id: id }));
 		});
 		let result = await promise;
-		console.log('guest updated with lodging id');
 		return result;
 	}
 
@@ -102,7 +101,6 @@ export default function Popup({
 		});
 		let result = await promise;
 		setCabinList(result);
-		console.log('cabin list update');
 		return result;
 	}
 
