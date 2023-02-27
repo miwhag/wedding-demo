@@ -84,7 +84,7 @@ export const CabinSpotContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	padding-top: 1rem;
+	padding: 0.5rem 0rem 1rem 0rem;
 	span {
 		font-family: 'Circular-Light';
 	}

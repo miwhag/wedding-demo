@@ -20,8 +20,6 @@ export default function StartPage({ progressFlow }) {
 	const [guestList, setGuestList] = useState<any>([]);
 	const { setGuest } = useContext<any>(GuestContext);
 
-	const hideRsvp = window.location.search === '?beta' ? false : true;
-
 	useEffect(() => {
 		let controller = new AbortController();
 		(async () => {
@@ -83,48 +81,41 @@ export default function StartPage({ progressFlow }) {
 		<>
 			{loaded ? (
 				<StartPageContainer>
-					{hideRsvp ? (
-						<Title className='coming-soon'>
-							Hang tight! <br />
-							RSVP is opening up in March
-						</Title>
-					) : (
-						<>
-							<Heading>
-								<Title>RSVP</Title>
-								<SubTitle>
-									Enter your <span className='bold'>full name </span>below to
-									find your invitation
-								</SubTitle>
-							</Heading>
-							<TextField
-								id='name-input'
-								label='Search Your Full Name'
-								onChange={(e) => editSearchTerm(e)}
-								type='text'
-								required
-								error={displayError}
-								fullWidth
-								sx={{ maxWidth: '300px' }}
+					<>
+						<Heading>
+							<Title>RSVP</Title>
+							<SubTitle>
+								Enter your <span className='bold'>full name </span>below to find
+								your invitation
+							</SubTitle>
+						</Heading>
+						<TextField
+							id='name-input'
+							label='Search Your Full Name'
+							onChange={(e) => editSearchTerm(e)}
+							type='text'
+							required
+							error={displayError}
+							fullWidth
+							sx={{ maxWidth: '300px' }}
+						/>
+						{displayError && (
+							<ErrorMessage>
+								Oh no! We’re having trouble finding your invite. Make sure the
+								spelling is correct and that your search includes your first and
+								last name. If the problem persists contact m+m at
+								mikemiwha@gmail.com
+							</ErrorMessage>
+						)}
+						<ButtonContainer>
+							<Button
+								id='submit-button'
+								type='button'
+								onClick={() => handleClick()}
+								text='Find My Invite'
 							/>
-							{displayError && (
-								<ErrorMessage>
-									Oh no! We’re having trouble finding your invite. Make sure the
-									spelling is correct and that your search includes your first
-									and last name. If the problem persists contact m+m at
-									mikemiwha@gmail.com
-								</ErrorMessage>
-							)}
-							<ButtonContainer>
-								<Button
-									id='submit-button'
-									type='button'
-									onClick={() => handleClick()}
-									text='Find My Invite'
-								/>
-							</ButtonContainer>
-						</>
-					)}
+						</ButtonContainer>
+					</>
 				</StartPageContainer>
 			) : (
 				<Loading />

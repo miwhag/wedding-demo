@@ -56,7 +56,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
 	const offsiteCabin = selectedCabin?.id === 24;
 	const preSelectedCabin =
 		selectedCabin?.lodging_type === 'apartment' ||
-		selectedCabin?.name === 'Sasquach' ||
 		selectedCabin?.name === 'Arapahoe';
 
 	const [acceptLodging, setAcceptLodging] = useState(false);
