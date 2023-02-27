@@ -24,7 +24,9 @@ import {
 	CabinSpot,
 	CabinSpotContainer,
 	ButtonContainer,
+	SliderContainer,
 } from './styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function Popup({
 	open,
@@ -127,6 +129,10 @@ export default function Popup({
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
+	const array = [
+		content.image_url,
+		'https://a0.muscache.com/im/pictures/079917ff-1798-4080-93f5-6c0d763ee1e5.jpg?im_w=1440',
+	];
 	return (
 		<div key={`cabin-popup-${activeCard.id}`}>
 			<Dialog
@@ -144,9 +150,32 @@ export default function Popup({
 				<DialogContent>
 					<ContentGroup>
 						<ImageContainer>
-							<Image
+							{/* <Image
 								image={content.image_url ? content.image_url : dummyImage}
-							/>
+							/> */}
+							<SliderContainer>
+								<Swiper
+									id='popup'
+									spaceBetween={0}
+									slidesPerView={1}
+									tag='section'
+									wrapperTag='ul'
+									pagination={{ clickable: true }}
+									navigation={true}
+								>
+									{array.map((image, index) => {
+										return (
+											<SwiperSlide tag='li' key={`main ${index}`}>
+												<ImageContainer>
+													<Image>
+														<img src={image} />
+													</Image>
+												</ImageContainer>
+											</SwiperSlide>
+										);
+									})}
+								</Swiper>
+							</SliderContainer>
 							<TypeLabel color={content.color}>
 								{capitalizeFirstLetter(content.lodging_type)}
 							</TypeLabel>
