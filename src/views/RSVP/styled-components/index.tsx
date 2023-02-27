@@ -78,6 +78,10 @@ export const Title = styled.div`
 	align-self: center;
 	margin-top: 3rem;
 	padding: 0;
+	@media only screen and (max-width: 600px) {
+		font-size: 20px;
+		margin-top: 4rem;
+	}
 `;
 
 export const SubTitle = styled.div`
