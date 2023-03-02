@@ -108,17 +108,19 @@ export default function Popup({
 		if (content.spots_remaining === 0) {
 			return 'This cabin is full';
 		} else if (guest.bed_count > content.spots_remaining)
-			return 'Not enough beds for your party';
+			return 'Unable to fit your party';
 		else if (
 			content.occupants.some((guest) => guest !== 'Spot Available') &&
 			content.lodging_type === 'rv'
 		) {
-			return 'Only one party per site allowed';
+			return 'Only one party per site';
 		} else if (
 			content.occupants.some((guest) => guest === 'Spot Available') &&
 			content.lodging_type === 'rv'
 		) {
 			return 'Select This Site';
+		} else if (content.id === 17) {
+			return 'Unable to Select';
 		} else {
 			return 'Select This Cabin';
 		}
@@ -209,6 +211,7 @@ export default function Popup({
 									) : (
 										<ButtonFullWidth
 											disabled={
+												content.id === 17 ||
 												guest.bed_count > content.spots_remaining ||
 												(content.occupants.some(
 													(guest) => guest !== 'Spot Available'
