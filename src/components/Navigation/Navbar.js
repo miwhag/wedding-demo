@@ -1,7 +1,7 @@
 /** @format */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import {
 	MainNav,
 	MobileMenu,
@@ -16,6 +16,7 @@ import ButtonSmall from '../ButtonSmall';
 
 export default function Navbar({ setFlyoutVisible, flyoutVisible }) {
 	const history = useHistory();
+	let location = useLocation();
 
 	//Nav Heading Visible State
 	const [scrollVisible, setScrollVisible] = useState(true);
@@ -23,6 +24,7 @@ export default function Navbar({ setFlyoutVisible, flyoutVisible }) {
 	const handleClick = () => {
 		window.scrollTo(0, 0);
 	};
+
 	return (
 		<MainNav
 			scrollVisible={scrollVisible}
@@ -41,42 +43,49 @@ export default function Navbar({ setFlyoutVisible, flyoutVisible }) {
 				</div>
 			</MobileMenu>
 			<LinkContainer>
+				<Title onClick={() => history.push('/')}>M + M</Title>
 				<GroupedLinks>
-					<Title onClick={() => history.push('/')}>M + M</Title>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/our-story'>
-							<p>our story</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('our-story')}
+					>
+						<Link to='/our-story'>our story</Link>
 					</MenuLink>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/schedule'>
-							<p>schedule</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('schedule')}
+					>
+						<Link to='/schedule'>schedule</Link>
 					</MenuLink>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/lodging'>
-							<p>lodging</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('lodging')}
+					>
+						<Link to='/lodging'>lodging</Link>
 					</MenuLink>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/travel'>
-							<p>travel</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('travel')}
+					>
+						<Link to='/travel'>travel</Link>
 					</MenuLink>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/registry'>
-							<p>registry</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('registry')}
+					>
+						<Link to='/registry'>registry</Link>
 					</MenuLink>
-					<MenuLink onClick={() => handleClick()}>
-						<Link to='/faq'>
-							<p>faq</p>
-						</Link>
+					<MenuLink
+						onClick={() => handleClick()}
+						active={location.pathname.includes('faq')}
+					>
+						<Link to='/faq'>faq</Link>
+					</MenuLink>
+
+					<MenuLink className='desktop'>
+						<ButtonSmall text='RSVP' onClick={() => history.push('/rsvp')} />
 					</MenuLink>
 				</GroupedLinks>
-				<MenuLink className='desktop'>
-					<ButtonSmall text='RSVP' onClick={() => history.push('/rsvp')} />
-				</MenuLink>
 			</LinkContainer>
 			<NavAccent />
 		</MainNav>

@@ -76,7 +76,9 @@ export default function Schedule() {
 							If you know anything about us, it’s that we love a good friendly
 							competition. But, even more when there are costumes involved!
 							Event is aged 8+. You can opt in via your RSVP - participants will
-							be assigned a team, and teams will be assigned a theme! <br />
+							be assigned a team, and teams will be assigned a theme! Tournament
+							will also take place on-site in the gym.
+							<br />
 							<br />
 							And yes there will be a Purple Cobras team *clap* *clap* *hiss*
 						</p>
@@ -89,10 +91,10 @@ export default function Schedule() {
 						<SubTitle align='end'>Saturday July 22</SubTitle>
 						<SecondarySubTitle align='end'>Starts at 3:30 pm</SecondarySubTitle>
 						<p>
-							The ceremony will take place outside among the beautiful aspens.
-							Attire is festive-casual. Think bright colors, fun dresses or
-							florals. At the end of the day though we also just want you to be
-							comfortable. So wear what you like!
+							The ceremony will take place on-site and outside among the aspen
+							trees. Attire is festive-casual. Think bright colors, fun dresses
+							or florals. At the end of the day though we also just want you to
+							be comfortable. So wear what you like!
 						</p>
 					</ScheduleSection>
 					<ImageContainer align='end'>

@@ -30,10 +30,10 @@ export default function Lodging() {
 							We're so excited that this venue has lodging on site. It was
 							another reason we loved the venue so much, and our preference is
 							that guests who are staying for the weekend stay in a cabin. It
-							will cost $30 per bed, which will cover the entire weekend (Friday
-							and Saturday evening). While they have pretty nice beds they do
-							not come with bedding. So, make sure you bring a sleeping bag and
-							pillow with you.
+							will cost $30 per bed reserved, which will cover the entire
+							weekend (Friday and Saturday evening). While they have pretty nice
+							beds they do not come with bedding. So, make sure you bring a
+							sleeping bag and pillow with you.
 							<br /> <br />
 							Also please note that the on-site lodging is limited. There are
 							over 100 beds at this venue, and there should be enough for
@@ -89,10 +89,10 @@ export default function Lodging() {
 						<AdditionalLodging>
 							<SubTitle>Additional Lodging</SubTitle>
 							<p>
-								In addition to Airbnb, there are also are also two lodges in
-								town recommended by the owners of the venue. Both are great
-								places and have wonderful hosts. Also people with mobility
-								issues will appreciate the ground level rooms of Bailey Lodge.
+								In addition to Airbnb, there are also two lodges in town
+								recommended by the owners of the venue. Both are great places
+								and have wonderful hosts. Also people with mobility issues will
+								appreciate the ground level rooms of Bailey Lodge.
 								<LodgeContainer>
 									<div className='lodge'>
 										<span className='bold'>Bailey Lodge</span>

@@ -141,6 +141,14 @@ const Background = styled.div`
 	padding: 4rem 0rem;
 `;
 
+const Title = styled.div`
+	font-family: 'Circular-Book';
+	font-size: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+`;
 export default function OurStory() {
 	return (
 		<OurStoryPage>
@@ -159,7 +167,7 @@ export default function OurStory() {
 						<img src={miwha} alt='' />
 					</ImageContainer>
 					<Story className='content-right'>
-						<h1>MIWHA'S SIDE</h1>
+						<Title>Miwha's Side</Title>
 						<p>
 							Mike and I met in the summer of 2013, when he did a road trip with
 							friends and stayed at my place along the way. We had many
@@ -181,14 +189,13 @@ export default function OurStory() {
 							<br />
 							<br />A few months passed and I finally told him how I felt.
 							Luckily at this point he felt the same way and the rest is history
-							:)
 						</p>
 					</Story>
 				</AboutSection>
 				<Background>
 					<AboutSection className='accent'>
 						<Story className='content-left'>
-							<h1>MICHAEL'S SIDE</h1>
+							<Title>Michael's Side</Title>
 							<p>
 								The first time Miwha and I met, I was on a road trip with Aaron
 								and Elliot Smith. We were planning to spend the night at Miwha’s
