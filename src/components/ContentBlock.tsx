@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import Countdown from './Countdown';
 
+
 const ContentBlockContainer = styled.div<{
 	position: string;
 	backgroundColor: string;
@@ -12,6 +13,7 @@ const ContentBlockContainer = styled.div<{
 	justify-content: center;
 	align-items: center;
 	max-width: 1000px;
+	width: 100%;
 	background-color: ${(p) => (p.backgroundColor ? p.backgroundColor : 'white')};
 	p {
 		color: ${(p) => (p.copyColor ? p.copyColor : 'black')};
@@ -23,6 +25,7 @@ const ContentBlockContainer = styled.div<{
 	}
 	img {
 		width: 50%;
+		max-width: 500px;
 	}
 	div {
 		width: 50%;
@@ -56,6 +59,7 @@ const ContentBlockCopyContainer = styled.div<{
 `;
 export default function ContentBlock({
 	image,
+	defaultImage,
 	copy = '',
 	imagePosition,
 	backgroundColor,
@@ -72,7 +76,10 @@ export default function ContentBlock({
 				copyColor={copyColor}
 				id={id}
 			>
-				<img src={image} alt={alt} />
+				<img 
+				src={image} 
+				alt={alt} 
+				/>
 				<Countdown />
 			</ContentBlockContainer>
 		);
@@ -83,7 +90,10 @@ export default function ContentBlock({
 			copyColor={copyColor}
 			id={id}
 		>
-			<img src={image} alt={alt} />
+			<img 
+			src={image}
+			alt={alt}
+			 />
 			<div id='copy-div'>
 				<p>{copy} </p>
 			</div>
@@ -107,7 +117,12 @@ export default function ContentBlock({
 			copyColor={copyColor}
 			id={id}
 		>
-			<img src={image} alt={alt} />
+			<img 
+			srcSet={image} 
+			sizes="(min-width: 540px) 500px, calc(90.91vw + 27px)"
+			alt={alt}
+			src={defaultImage}
+			 />
 			<div id='copy-div'>
 				<p>{copy} </p>
 			</div>
