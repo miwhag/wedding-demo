@@ -15,7 +15,7 @@ export const Questions = {
 		{
 			question: 'How do I reserve my spot in a cabin, and how much is it?',
 			answer:
-				'We are asking $30 per bed for the entire weekend (Friday 3:00PM - Sunday 10:00AM). There are also RV spots available for those who would like to park an RV which is just $30 for the spot. Unfortunately no tenting is allowed on the property.',
+				'We are asking $30 per bed reserved for the entire weekend (Friday 3:00PM - Sunday 10:00AM). There are also RV spots available for those who would like to park an RV which is just $30 for the spot. Unfortunately no tenting is allowed on the property.',
 		},
 		{
 			question: 'Are cabins co-ed?',
@@ -112,7 +112,7 @@ export const Questions = {
 		{
 			question: 'Are there other wedding events I can attend?',
 			answer:
-				'We will be hosting a dodgeball tournament on Friday evening, with prizes to win! This will be held in the gym. Those who are not interested in participating in the tournament but would like to watch are more than welcome.',
+				'We will be hosting a dodgeball tournament on Friday evening! This will be held in the gym. Those who are not interested in participating in the tournament but would like to watch are more than welcome.',
 		},
 		{
 			question: 'How can I join a dodgeball team?',
@@ -122,13 +122,13 @@ export const Questions = {
 		{
 			question: 'What else is there to do around the property?',
 			answer:
-				'The property is absolutely beautiful. There is a disc golf course (created by the owner), an outdoor volleyball pit, a large area for late night bonfires as well as hiking on-site” There is also plenty of wildlife to enjoy and beautiful spots to relax and read a book or have your morning coffee!',
+				'The property is absolutely beautiful. There is a disc golf course (created by the owner), an outdoor volleyball pit, a large area for late night bonfires as well as hiking on-site. There is also plenty of wildlife to enjoy and beautiful spots to relax and read a book or have your morning coffee!',
 		},
 
 		{
 			question: 'What is there to do nearby?',
 			answer:
-				'Within 10 minutes of the venue, there is a beautiful mountain disc golf course, small coffee shops, restaurants, and an amazing winery in town. There are also plenty of hiking trails to enjoy.',
+				'Within 10 minutes of the venue, there are small coffee shops, restaurants, and an amazing winery in town. There are also plenty of hiking trails to enjoy.',
 		},
 		{
 			question: 'What meals will be provided over the weekend?',
@@ -152,7 +152,7 @@ export const Questions = {
 		},
 		{
 			question: 'Where are the ceremony and the reception taking place?',
-			answer: `As long as weather permits, the ceremony will be taking place outside next to the dining hall (see map on the Map page). It's a beautiful spot surrounded by aspens and wildlife. The start of the reception and dinner will be in the main lodge and cocktail hour/dancing will be in the dining hall.`,
+			answer: `As long as weather permits, the ceremony will be taking place outside next to the dining hall (see map on the lodging page). It's a beautiful spot surrounded by aspens and wildlife. The start of the reception and dinner will be in the main lodge and cocktail hour/dancing will be in the dining hall.`,
 		},
 		{
 			question: 'Will the ceremony and reception be indoors or outdoors?',

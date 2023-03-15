@@ -6,8 +6,12 @@ import styled from 'styled-components';
 export const LinkContainer = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	background-color: #ffffff;
 	border-bottom: 0.5px solid lightgray;
+	@media only screen and (max-width: 900px) {
+		display: none;
+	}
 `;
 
 export const Title = styled.h3`
@@ -19,8 +23,8 @@ export const Title = styled.h3`
 	text-align: center;
 	font-weight: 300;
 	font-size: 25px;
-	color: #000000;
-	padding: 0px 20px;
+	color: #242424;
+	padding: 0px 20px 0px 30px;
 	&:hover {
 		cursor: pointer;
 	}
@@ -51,25 +55,29 @@ export const MainNav = styled.div<{
 	top: ${(p) => (p.scrollVisible || p.flyoutVisible ? '0' : '-95px;')};
 	transition: top 0.6s;
 `;
-export const MenuLink = styled.div`
+export const MenuLink = styled.div<{ active: boolean }>`
 	padding: 10px 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: 'Circular-Light';
+	/* min-width: 40px; */
 	&:hover {
 		a {
-			font-weight: 700;
+			font-family: 'Circular-Book';
+			font-size: 15.5px;
+			color: #242424;
 		}
 	}
 	a {
 		text-decoration: none;
-		color: #000000;
-		font-family: 'Baloo 2';
+		color: ${(p) => (p.active ? '#242424' : '#444444')};
+		font-family: ${(p) => (p.active ? 'Circular-Book' : 'Circular-Light')};
+		font-size: 16px;
 	}
-
 	&.rsvp {
 		font-size: 16px;
-		background-color: #000000;
+		background-color: #242424;
 		height: 25px;
 		margin-right: 10px;
 		position: relative;
@@ -95,7 +103,6 @@ export const MenuLink = styled.div`
 export const GroupedLinks = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 100%;
 	height: 80px;
 	@media only screen and (max-width: 900px) {
 		display: none;
@@ -127,7 +134,7 @@ export const HamburgerContainer = styled.div`
 		.bar {
 			height: 2px;
 			border-radius: 10px;
-			background-color: #000000;
+			background-color: #242424;
 			width: 35px;
 			margin: 3px 0px;
 		}
