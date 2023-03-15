@@ -68,7 +68,6 @@ export default function ContentBlock({
 	type,
 	id,
 }) {
-	console.log(image)
 	if (type === 'countdown') {
 		return (
 			<ContentBlockContainer
