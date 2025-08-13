@@ -1,9 +1,11 @@
 {
   "name": "wedding",
   "version": "0.1.0",
+  "engines": {
+    "node": "22.x"
+  },
   "private": true,
   "dependencies": {
-    "@brainhubeu/react-carousel": "^2.0.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.1",
@@ -26,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
