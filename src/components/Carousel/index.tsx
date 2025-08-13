@@ -4,9 +4,6 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Thumbs } from "swiper";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/thumbs";
 
 SwiperCore.use([Navigation, Pagination, Thumbs]);
 
