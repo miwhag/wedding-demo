@@ -47,6 +47,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
     let controller = new AbortController();
     handleLoad();
     return () => controller?.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleLoad() {
@@ -352,7 +353,7 @@ export default function AdditionalPage({ regressFlow, progressFlow }) {
                   label="Comments or Questions"
                   multiline
                   rows={3}
-                  defaultValue={guest.comments ?? ""}
+                  defaultValue={guest?.comments ?? ""}
                 />
               </SectionBreaks>
               <ButtonContainer>

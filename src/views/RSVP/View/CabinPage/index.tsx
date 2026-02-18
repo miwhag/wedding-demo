@@ -1,7 +1,6 @@
 /** @format */
 import { useEffect, useState, useContext } from "react";
 import { FaArrowRight, FaExclamationTriangle } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
 import { GuestContext } from "../../../../context/GuestContext";
 import { Confirmation, Stepper, Toggle } from "../../../../components/index";
 import {
@@ -24,8 +23,6 @@ import {
   ViewMoreLink,
   SelectedContent,
   DeselectButton,
-  ArrowContainer,
-  ViewMoreButton,
   ErrorMessage,
   Offsite,
   Heading,
@@ -50,7 +47,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
   const [noLodgingNotice, setNoLodgingNotice] = useState(false);
   const [displayDeclineLodgingModal, setDisplayDeclineLodgingModal] =
     useState(false);
-  const [hideCabins, setHideCabins] = useState(false);
   const [capacityError, setCapacityError] = useState(false);
 
   const offsiteCabin = selectedCabin?.id === 24;
@@ -71,6 +67,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
       setLoaded(true);
     })();
     return () => controller?.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -90,7 +87,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
     checkPartyCapacity(guestInfo);
     let cabin = cabins.find((cabin) => cabin?.id === guestInfo?.lodging_id);
     if (cabin && cabin.id !== 24) {
-      setHideCabins(true);
       setAcceptLodging(true);
       setSelectedCabin(cabin);
       setActiveCard(cabin);
@@ -126,7 +122,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
     });
     let result = await promise;
     setSelectedCabin(null);
-    setHideCabins(false);
     checkParty();
     return result;
   }
@@ -355,6 +350,7 @@ export default function CabinPage({ regressFlow, progressFlow }) {
                           />
                         );
                       }
+                      return null;
                     })}
                   </CabinCardsContainer>
                 )}
@@ -365,7 +361,6 @@ export default function CabinPage({ regressFlow, progressFlow }) {
                   checkPartyCapacity={checkParty}
                   preSelectedCabin={preSelectedCabin}
                   activeCard={activeCard}
-                  setHideCabins={setHideCabins}
                   setActiveModal={setActiveModal}
                   open={open}
                 />

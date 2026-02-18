@@ -32,7 +32,6 @@ export default function Popup({
   open,
   activeCard,
   setActiveModal,
-  setHideCabins,
   preSelectedCabin,
   checkPartyCapacity,
 }) {
@@ -46,6 +45,7 @@ export default function Popup({
 
   useEffect(() => {
     updateCabin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelectCabin = () => {
@@ -53,12 +53,10 @@ export default function Popup({
       updateSelectedCabin(null);
       setActiveModal(false);
       setSelectedCabin(null);
-      setHideCabins(false);
     } else {
       updateSelectedCabin(activeCard.id);
       setActiveModal(false);
       setSelectedCabin(activeCard);
-      setHideCabins(true);
     }
     checkPartyCapacity();
   };

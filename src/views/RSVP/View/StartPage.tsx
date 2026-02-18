@@ -9,7 +9,7 @@ import {
   StartPageContainer,
   Title,
   SubTitle,
-  DemoBanner,
+  DemoFormWrapper,
 } from "../styled-components";
 import { Button, Loading } from "../../../components/index";
 
@@ -99,16 +99,12 @@ export default function StartPage({ progressFlow }) {
     <>
       {loaded ? (
         <StartPageContainer>
-          <>
-            <DemoBanner>
-              <strong>Demo Mode:</strong> Enter any name to explore the RSVP
-              experience!
-            </DemoBanner>
+          <DemoFormWrapper>
             <Heading>
               <Title>RSVP</Title>
               <SubTitle>
-                Enter your <span className="bold">full name </span>below to get
-                started
+                This is a demo - enter <span className="bold">any name</span> to
+                get started
               </SubTitle>
             </Heading>
             <TextField
@@ -134,7 +130,7 @@ export default function StartPage({ progressFlow }) {
                 text="Get Started"
               />
             </ButtonContainer>
-          </>
+          </DemoFormWrapper>
         </StartPageContainer>
       ) : (
         <Loading />

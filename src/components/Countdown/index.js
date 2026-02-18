@@ -20,13 +20,13 @@ function calculateTimeDisplay() {
     // Wedding has passed - calculate years, months, and days
     var years = now.getFullYear() - end.getFullYear();
     var months = now.getMonth() - end.getMonth();
-    var days = now.getDate() - end.getDate();
+    var remainingDays = now.getDate() - end.getDate();
 
     // Adjust for negative days
-    if (days < 0) {
+    if (remainingDays < 0) {
       months--;
       var lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-      days += lastMonth.getDate();
+      remainingDays += lastMonth.getDate();
     }
 
     // Adjust for negative months

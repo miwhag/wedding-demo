@@ -47,7 +47,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
   const [plusOneName, setPlusOneName] = useState("");
   const [plusOneToggle, setPlusOneToggle] = useState(false);
   const [children, setChildren] = useState(false);
-  const [submitRsvpDecline, setSubmitRsvpDecline] = useState(false);
   const [email, setEmail] = useState("");
   const [childCare, setChildCare] = useState("");
   const [childList, setChildList] = useState([
@@ -82,10 +81,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
     setPlusOneName(current?.plus_ones[0]?.name || "");
     setRsvp(current?.rsvp || "");
     setEmail(current?.email || "");
-
-    if (current.rsvp === "no") {
-      setSubmitRsvpDecline(true);
-    }
 
     if (current.kids && current.kids.length !== 0) {
       let careType = current?.kids[0].child_care;
@@ -227,7 +222,6 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
         if (!contactInfoChanged) {
           progressFlow(rsvp);
         } else {
-          setSubmitRsvpDecline(false);
           updateDatabase();
         }
       }

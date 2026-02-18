@@ -247,16 +247,15 @@ export default function Photos() {
     );
   };
 
-  // Keyboard navigation
-  const handleKeyDown = (e) => {
-    if (selectedPhotoIndex === null) return;
-    if (e.key === "Escape") closeLightbox();
-    if (e.key === "ArrowLeft") goToPrevious();
-    if (e.key === "ArrowRight") goToNext();
-  };
-
   // Add keyboard listener
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedPhotoIndex === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goToPrevious();
+      if (e.key === "ArrowRight") goToNext();
+    };
+
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [selectedPhotoIndex]);
@@ -266,7 +265,7 @@ export default function Photos() {
       <PhotoGrid>
         {photos.map((photo, index) => (
           <PhotoCard key={index} onClick={() => openLightbox(index)}>
-            <img src={photo} alt={`Wedding photo ${index + 1}`} />
+            <img src={photo} alt={`Wedding ${index + 1}`} />
           </PhotoCard>
         ))}
       </PhotoGrid>
@@ -279,7 +278,7 @@ export default function Photos() {
             </CloseButton>
             <img
               src={photos[selectedPhotoIndex]}
-              alt={`Wedding photo ${selectedPhotoIndex + 1}`}
+              alt={`Wedding ${selectedPhotoIndex + 1}`}
             />
             <PhotoCounter>
               {selectedPhotoIndex + 1} / {photos.length}
