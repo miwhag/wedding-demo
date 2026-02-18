@@ -185,6 +185,7 @@ export default function Photos() {
     "/f-wedding-4.jpg",
     "/f-wedding-5.jpg",
     "/f-wedding-8.jpg",
+    "/f-wedding-29.jpg",
     "/f-wedding-14.jpg",
     "/f-wedding-17.jpg",
     "/f-wedding-18.jpg",
@@ -196,10 +197,7 @@ export default function Photos() {
     "/f-wedding-24.jpg",
     "/f-wedding-25.jpg",
     "/f-wedding-26.jpg",
-    "/f-wedding-27.jpg",
     "/f-wedding-28.jpg",
-    "/f-wedding-29.jpg",
-    "/f-wedding-30.jpg",
     // First Look
     "/fl-wedding-9.jpg",
     "/fl-10.jpg",
