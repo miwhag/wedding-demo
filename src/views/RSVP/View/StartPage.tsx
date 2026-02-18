@@ -78,13 +78,13 @@ export default function StartPage({ progressFlow }) {
 
     setLoaded(false);
     const newGuest = createGuestFromName(searchTerm);
-    
+
     // Save the new guest to localStorage
     const guestsJson = localStorage.getItem("weddingGuests");
     const guests = guestsJson ? JSON.parse(guestsJson) : [];
     guests.push(newGuest);
     localStorage.setItem("weddingGuests", JSON.stringify(guests));
-    
+
     setGuest(newGuest);
 
     // Simulate API delay for better UX

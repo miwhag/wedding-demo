@@ -77,16 +77,16 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
 
   function setCurrentState(current) {
     if (!current) return;
-    
+
     setPlusOneToggle(current?.plus_ones?.length > 0);
     setPlusOneName(current?.plus_ones[0]?.name || "");
     setRsvp(current?.rsvp || "");
     setEmail(current?.email || "");
-    
+
     if (current.rsvp === "no") {
       setSubmitRsvpDecline(true);
     }
-    
+
     if (current.kids && current.kids.length !== 0) {
       let careType = current?.kids[0].child_care;
       setChildList(current?.kids);
@@ -161,9 +161,24 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
   }
 
   async function handleUpdateGuest() {
+    // Calculate bed_count: 1 (guest) + plus ones + kids who need beds
+    let bedCount = 1; // Guest always needs a bed
+
+    if (plusOneToggle && plusOneName?.length > 0) {
+      bedCount += 1;
+    }
+
+    if (children && childList.length > 0) {
+      const kidsNeedingBeds = childList.filter(
+        (kid) => kid.needs_bed !== "no",
+      ).length;
+      bedCount += kidsNeedingBeds;
+    }
+
     updateGuest(guest.id, {
       email: email,
       rsvp: rsvp,
+      bed_count: bedCount,
     });
   }
 
@@ -181,7 +196,7 @@ export default function ContactInfo({ regressFlow, progressFlow }) {
     await handlePlusOneUpdate();
     await handleUpdateGuest();
     await handleProgressFlow();
-    
+
     // Refresh guest context after navigation to avoid flash
     const updatedGuest = await getSelectedGuest(guest.id);
     if (updatedGuest) {

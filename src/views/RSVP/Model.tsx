@@ -112,9 +112,21 @@ export async function updateGuest(id, body) {
     const guestIndex = guests.findIndex((g) => g.guest_id === id);
 
     if (guestIndex !== -1) {
+      const oldLodgingId = guests[guestIndex].lodging_id;
+      const newLodgingId = body.lodging_id;
+
       // Update the guest with new data
       guests[guestIndex] = { ...guests[guestIndex], ...body };
       localStorage.setItem("weddingGuests", JSON.stringify(guests));
+
+      // If lodging_id changed, update cabin occupants
+      if (oldLodgingId !== newLodgingId && newLodgingId !== undefined) {
+        await updateCabinOccupants(
+          guests[guestIndex],
+          oldLodgingId,
+          newLodgingId,
+        );
+      }
     }
 
     // Simulate API delay
@@ -124,6 +136,77 @@ export async function updateGuest(id, body) {
     console.log(err);
     return false;
   }
+}
+
+async function updateCabinOccupants(guest, oldLodgingId, newLodgingId) {
+  const lodgingsJson = localStorage.getItem("weddingLodgings");
+  const lodgings = lodgingsJson ? JSON.parse(lodgingsJson) : [];
+
+  // Calculate total party size
+  const guestName = guest.full_name || guest.name;
+  const partyMembers = [guestName];
+
+  // Add plus ones
+  if (guest.plus_ones && guest.plus_ones.length > 0) {
+    guest.plus_ones.forEach((plusOne) => {
+      if (plusOne.name) {
+        partyMembers.push(plusOne.name);
+      }
+    });
+  }
+
+  // Add kids who need beds
+  if (guest.kids && guest.kids.length > 0) {
+    guest.kids.forEach((kid) => {
+      if (kid.name && kid.needs_bed !== "no") {
+        partyMembers.push(kid.name);
+      }
+    });
+  }
+
+  const partySize = partyMembers.length;
+
+  // Remove entire party from old cabin if they had one
+  if (oldLodgingId !== null && oldLodgingId !== undefined) {
+    const oldCabinIndex = lodgings.findIndex((l) => l.id === oldLodgingId);
+    if (oldCabinIndex !== -1) {
+      // Remove all party members
+      partyMembers.forEach(() => {
+        const memberIndex = lodgings[oldCabinIndex].occupants.findIndex(
+          (occupant) => partyMembers.includes(occupant),
+        );
+        if (memberIndex !== -1) {
+          lodgings[oldCabinIndex].occupants.splice(memberIndex, 1);
+        }
+      });
+      // Add back "Spot Available" for each removed member
+      for (let i = 0; i < partySize; i++) {
+        lodgings[oldCabinIndex].occupants.push("Spot Available");
+      }
+      lodgings[oldCabinIndex].spots_remaining += partySize;
+    }
+  }
+
+  // Add entire party to new cabin
+  if (newLodgingId !== null && newLodgingId !== 24) {
+    const newCabinIndex = lodgings.findIndex((l) => l.id === newLodgingId);
+    if (newCabinIndex !== -1) {
+      // Check if cabin has enough capacity
+      if (lodgings[newCabinIndex].spots_remaining >= partySize) {
+        // Add all party members
+        partyMembers.forEach((member) => {
+          const spotIndex =
+            lodgings[newCabinIndex].occupants.indexOf("Spot Available");
+          if (spotIndex !== -1) {
+            lodgings[newCabinIndex].occupants[spotIndex] = member;
+          }
+        });
+        lodgings[newCabinIndex].spots_remaining -= partySize;
+      }
+    }
+  }
+
+  localStorage.setItem("weddingLodgings", JSON.stringify(lodgings));
 }
 
 export async function createPlusOne(body) {
@@ -217,9 +300,9 @@ export async function setKids(id, body) {
       guests[guestIndex].kids = body.kids || [];
       // Save the child_care value to each kid in the array
       if (body.child_care && guests[guestIndex].kids.length > 0) {
-        guests[guestIndex].kids = guests[guestIndex].kids.map(kid => ({
+        guests[guestIndex].kids = guests[guestIndex].kids.map((kid) => ({
           ...kid,
-          child_care: body.child_care
+          child_care: body.child_care,
         }));
       }
       localStorage.setItem("weddingGuests", JSON.stringify(guests));

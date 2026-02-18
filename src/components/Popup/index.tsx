@@ -108,7 +108,7 @@ export default function Popup({
   const determineButtonText = () => {
     if (content.spots_remaining === 0) {
       return "This cabin is full";
-    } else if (guest.bed_count > content.spots_remaining)
+    } else if (guest?.bed_count > content.spots_remaining)
       return "Unable to fit your party";
     else if (
       content.occupants.some((guest) => guest !== "Spot Available") &&
@@ -148,29 +148,45 @@ export default function Popup({
         <DialogContent>
           <ContentGroup>
             <ImageContainer>
-              <SliderContainer>
-                <Swiper
-                  id="popup"
-                  spaceBetween={0}
-                  slidesPerView={1}
-                  tag="section"
-                  wrapperTag="ul"
-                  pagination={{ clickable: true }}
-                  navigation={true}
+              {images.length > 0 ? (
+                <SliderContainer>
+                  <Swiper
+                    id="popup"
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    tag="section"
+                    wrapperTag="ul"
+                    pagination={{ clickable: true }}
+                    navigation={true}
+                  >
+                    {images.map((image, index) => {
+                      return (
+                        <SwiperSlide tag="li" key={`main ${index}`}>
+                          <ImageContainer>
+                            <Image>
+                              <img src={image} alt={`${index}-cabin`} />
+                            </Image>
+                          </ImageContainer>
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </SliderContainer>
+              ) : (
+                <div
+                  style={{
+                    padding: "40px",
+                    textAlign: "center",
+                    backgroundColor: "#f5f5f5",
+                    borderRadius: "8px",
+                    marginBottom: "20px",
+                  }}
                 >
-                  {images.map((image, index) => {
-                    return (
-                      <SwiperSlide tag="li" key={`main ${index}`}>
-                        <ImageContainer>
-                          <Image>
-                            <img src={image} alt={`${index}-cabin`} />
-                          </Image>
-                        </ImageContainer>
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </SliderContainer>
+                  <p style={{ margin: 0, color: "#666" }}>
+                    No images available
+                  </p>
+                </div>
+              )}
               <TypeLabel color={content.color}>
                 {capitalizeFirstLetter(content.lodging_type)}
               </TypeLabel>
@@ -213,7 +229,8 @@ export default function Popup({
                     <ButtonFullWidth
                       disabled={
                         content.id === 17 ||
-                        guest.bed_count > content.spots_remaining ||
+                        (guest?.bed_count &&
+                          guest.bed_count > content.spots_remaining) ||
                         (content.occupants.some(
                           (guest) => guest !== "Spot Available",
                         ) &&
