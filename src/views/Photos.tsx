@@ -235,6 +235,31 @@ export default function Photos() {
     setSelectedPhotoIndex(null);
   };
 
+  // Add keyboard listener
+  useEffect(() => {
+    const goToPrevious = () => {
+      setSelectedPhotoIndex((prev) =>
+        prev !== null && prev > 0 ? prev - 1 : photos.length - 1,
+      );
+    };
+
+    const goToNext = () => {
+      setSelectedPhotoIndex((prev) =>
+        prev !== null && prev < photos.length - 1 ? prev + 1 : 0,
+      );
+    };
+
+    const handleKeyDown = (e) => {
+      if (selectedPhotoIndex === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goToPrevious();
+      if (e.key === "ArrowRight") goToNext();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [selectedPhotoIndex, photos.length]);
+
   const goToPrevious = () => {
     setSelectedPhotoIndex((prev) =>
       prev !== null && prev > 0 ? prev - 1 : photos.length - 1,
@@ -246,19 +271,6 @@ export default function Photos() {
       prev !== null && prev < photos.length - 1 ? prev + 1 : 0,
     );
   };
-
-  // Add keyboard listener
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (selectedPhotoIndex === null) return;
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") goToPrevious();
-      if (e.key === "ArrowRight") goToNext();
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [selectedPhotoIndex]);
 
   return (
     <PhotosPage>
