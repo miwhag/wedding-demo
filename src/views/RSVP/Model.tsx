@@ -1,213 +1,253 @@
 /** @format */
 
+import mockGuestsData from "../../data/mockGuests.json";
+import mockLodgingsData from "../../data/mockLodgings.json";
+
 export const steps = {
-	start: 'START',
-	verify: 'VERIFY',
-	contact: 'CONTACT',
-	cabin: 'CABIN',
-	confirm: 'CONFIRM',
-	additional: 'ADDITIONAL',
+  start: "START",
+  verify: "VERIFY",
+  contact: "CONTACT",
+  cabin: "CABIN",
+  confirm: "CONFIRM",
+  additional: "ADDITIONAL",
 };
 
-export async function getGuests() {
-	try {
-		const response = await fetch(
-			'https://mm-wedding-backend.herokuapp.com/guest_list',
-			{
-				method: 'GET',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					accept: 'application/json',
-					X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-				},
-			}
-		);
+// Initialize localStorage with mock guests if not already present
+function initializeMockData() {
+  const storedGuests = localStorage.getItem("weddingGuests");
 
-		if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
-		}
-
-		const result = await response.json();
-		return result;
-	} catch (err) {
-		console.log(err);
-	}
+  // Force refresh if the data structure is outdated (no 'id' field)
+  if (!storedGuests) {
+    localStorage.setItem("weddingGuests", JSON.stringify(mockGuestsData));
+  } else {
+    try {
+      const guests = JSON.parse(storedGuests);
+      // Check if data structure needs update (missing 'id' field)
+      if (guests.length > 0 && !guests[0].hasOwnProperty("id")) {
+        localStorage.setItem("weddingGuests", JSON.stringify(mockGuestsData));
+      }
+    } catch (err) {
+      localStorage.setItem("weddingGuests", JSON.stringify(mockGuestsData));
+    }
+  }
 }
 
+// Get guests from localStorage
+export async function getGuests() {
+  try {
+    initializeMockData();
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return guests;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+}
+
+// Get selected guest by ID from localStorage
 export async function getSelectedGuest(id) {
-	try {
-		const response = await fetch(
-			`https://mm-wedding-backend.herokuapp.com/guests/${id}`,
-			{
-				method: 'GET',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					accept: 'application/json',
-					X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-				},
-			}
-		);
-		if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
-		}
-		const result = await response.json();
-		return result;
-	} catch (err) {
-		console.log(err);
-	}
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+    const guest = guests.find((g) => g.guest_id === id);
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return guest || null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
 export async function sendGuestEmail(id) {
-	try {
-		const response = await fetch(
-			`https://mm-wedding-backend.herokuapp.com/guests/${id}/email`,
-			{
-				method: 'GET',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					accept: 'application/json',
-					X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-				},
-			}
-		);
-		if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
-		}
-	} catch (err) {
-		console.log(err);
-	}
+  try {
+    // Mock email sending - just log for demo
+    console.log(`Email would be sent to guest ${id}`);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function getLodgings() {
-	try {
-		const response = await fetch(
-			'https://mm-wedding-backend.herokuapp.com/lodgings',
-			{
-				method: 'GET',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					accept: 'application/json',
-					X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-				},
-			}
-		);
+  try {
+    // Initialize lodgings in localStorage if not present
+    if (!localStorage.getItem("weddingLodgings")) {
+      localStorage.setItem("weddingLodgings", JSON.stringify(mockLodgingsData));
+    }
 
-		if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
-		}
-		const result = await response.json();
-		return result;
-	} catch (err) {
-		console.log(err);
-	}
+    const lodgingsJson = localStorage.getItem("weddingLodgings");
+    const lodgings = lodgingsJson ? JSON.parse(lodgingsJson) : [];
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return lodgings;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 }
 export async function getSelectedLodge(id) {
-	try {
-		const response = await fetch(
-			`https://mm-wedding-backend.herokuapp.com/lodgings/${id}`,
-			{
-				method: 'GET',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					accept: 'application/json',
-					X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-				},
-			}
-		);
-
-		if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
-		}
-		const result = await response.json();
-		return result;
-	} catch (err) {
-		console.log(err);
-	}
+  try {
+    const lodgingsJson = localStorage.getItem("weddingLodgings");
+    const lodgings = lodgingsJson ? JSON.parse(lodgingsJson) : [];
+    const lodging = lodgings.find((l) => l.id === id);
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return lodging || null;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
 export async function updateGuest(id, body) {
-	fetch(`https://mm-wedding-backend.herokuapp.com/guests/${id}`, {
-		method: 'PATCH',
-		body: JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+    const guestIndex = guests.findIndex((g) => g.guest_id === id);
+
+    if (guestIndex !== -1) {
+      // Update the guest with new data
+      guests[guestIndex] = { ...guests[guestIndex], ...body };
+      localStorage.setItem("weddingGuests", JSON.stringify(guests));
+    }
+
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function createPlusOne(body) {
-	fetch('https://mm-wedding-backend.herokuapp.com/plus_ones', {
-		method: 'POST',
-		body: JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+    const guestIndex = guests.findIndex(
+      (g) => g.guest_id === body.guest_id || g.id === body.guest_id,
+    );
+
+    if (guestIndex !== -1) {
+      // Add plus one with a unique ID
+      const newPlusOne = {
+        id: Date.now(),
+        name: body.name || "",
+        email: body.email || "",
+        guest_id: body.guest_id,
+      };
+      guests[guestIndex].plus_ones.push(newPlusOne);
+      localStorage.setItem("weddingGuests", JSON.stringify(guests));
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function updatePlusOne(plus_one_id, body) {
-	fetch(`https://mm-wedding-backend.herokuapp.com/plus_ones/${plus_one_id}`, {
-		method: 'PATCH',
-		body: JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+
+    // Find the guest with this plus one
+    for (let guest of guests) {
+      const plusOneIndex = guest.plus_ones.findIndex(
+        (p) => p.id === plus_one_id,
+      );
+      if (plusOneIndex !== -1) {
+        guest.plus_ones[plusOneIndex] = {
+          ...guest.plus_ones[plusOneIndex],
+          ...body,
+        };
+        localStorage.setItem("weddingGuests", JSON.stringify(guests));
+        break;
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function deletePlusOne(plus_one_id) {
-	fetch(`https://mm-wedding-backend.herokuapp.com/plus_ones/${plus_one_id}`, {
-		method: 'DELETE',
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+
+    // Find and remove the plus one
+    for (let guest of guests) {
+      const plusOneIndex = guest.plus_ones.findIndex(
+        (p) => p.id === plus_one_id,
+      );
+      if (plusOneIndex !== -1) {
+        guest.plus_ones.splice(plusOneIndex, 1);
+        localStorage.setItem("weddingGuests", JSON.stringify(guests));
+        break;
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function setKids(id, body) {
-	fetch(`https://mm-wedding-backend.herokuapp.com/guests/${id}/kids`, {
-		method: 'PATCH',
-		body: JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    const guestsJson = localStorage.getItem("weddingGuests");
+    const guests = guestsJson ? JSON.parse(guestsJson) : [];
+    const guestIndex = guests.findIndex((g) => g.guest_id === id);
+
+    if (guestIndex !== -1) {
+      guests[guestIndex].kids = body.kids || [];
+      // Save the child_care value to each kid in the array
+      if (body.child_care && guests[guestIndex].kids.length > 0) {
+        guests[guestIndex].kids = guests[guestIndex].kids.map(kid => ({
+          ...kid,
+          child_care: body.child_care
+        }));
+      }
+      localStorage.setItem("weddingGuests", JSON.stringify(guests));
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }
 
 export async function updateDodgeball(body) {
-	fetch('https://mm-wedding-backend.herokuapp.com/dodgeball', {
-		method: 'PATCH',
-		body: JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			accept: 'application/json',
-			X_API_KEY: `${process.env.REACT_APP_API_KEY}`,
-		},
-	});
+  try {
+    // Mock dodgeball registration - store in separate localStorage key
+    const dodgeballJson = localStorage.getItem("dodgeballRegistrations");
+    const registrations = dodgeballJson ? JSON.parse(dodgeballJson) : [];
+    registrations.push(body);
+    localStorage.setItem(
+      "dodgeballRegistrations",
+      JSON.stringify(registrations),
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
 }

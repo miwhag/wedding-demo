@@ -1,95 +1,112 @@
 /** @format */
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //RSVP Main
 export const RsvpContainer = styled.div`
-	padding-top: 5rem;
-	min-height: 85vh;
+  padding-top: 5rem;
+  min-height: 85vh;
 `;
 
 export const SignUpForm = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: start;
-	width: 100%;
-	background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  background-color: white;
 
-	@media only screen and (max-width: 900px) {
-		min-width: unset;
-		border: unset;
-		padding-top: 0rem;
-	}
+  @media only screen and (max-width: 900px) {
+    min-width: unset;
+    border: unset;
+    padding-top: 0rem;
+  }
 `;
 
 //Start Modal
 
 export const Heading = styled.div`
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	max-width: unset;
-	.bold {
-		font-family: 'Circular-Medium';
-	}
-	@media only screen and (max-width: 900px) {
-		max-width: 280px;
-		text-align: center;
-		padding-bottom: 10px;
-	}
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: unset;
+  .bold {
+    font-family: "Circular-Medium";
+  }
+  @media only screen and (max-width: 900px) {
+    max-width: 280px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
-	margin: 2rem 0px;
+  margin: 2rem 0px;
 `;
 
 export const ErrorMessage = styled.p`
-	font-family: 'Circular-Book';
-	font-size: 14px;
-	background-color: #ffdddd;
-	color: #ff3333;
-	padding: 20px;
-	max-width: 300px;
-	border-radius: 2px;
-	text-align: center;
-	@media only screen and (max-width: 600px) {
-		max-width: 270px;
-	}
+  font-family: "Circular-Book";
+  font-size: 14px;
+  background-color: #ffdddd;
+  color: #ff3333;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 2px;
+  text-align: center;
+  @media only screen and (max-width: 600px) {
+    max-width: 270px;
+  }
+`;
+
+export const DemoBanner = styled.div`
+  font-family: "Circular-Book";
+  font-size: 14px;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 15px 20px;
+  max-width: 400px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid #90caf9;
+  @media only screen and (max-width: 600px) {
+    max-width: 270px;
+    font-size: 13px;
+  }
 `;
 
 export const StartPageContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 10rem;
-	min-width: 320px;
-	@media only screen and (max-width: 600px) {
-		padding-top: 8rem;
-	}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rem 0rem;
+  min-width: 320px;
+  @media only screen and (max-width: 600px) {
+    padding-top: 8rem;
+  }
 `;
 
 export const Title = styled.div`
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	font-family: 'Circular-Book';
-	font-size: 30px;
-	align-self: center;
-	margin-top: 3rem;
-	padding: 0;
-	@media only screen and (max-width: 600px) {
-		font-size: 30px;
-		margin-top: 0rem;
-		&.coming-soon {
-			font-size: 20px;
-			margin-top: 4rem;
-		}
-	}
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: "Circular-Book";
+  font-size: 30px;
+  align-self: center;
+  margin-top: 3rem;
+  padding: 0;
+  @media only screen and (max-width: 600px) {
+    font-size: 30px;
+    margin-top: 0rem;
+    &.coming-soon {
+      font-size: 20px;
+      margin-top: 4rem;
+    }
+  }
 `;
 
 export const SubTitle = styled.div`
-	padding: 15px;
-	font-family: 'Circular-Light';
-	font-size: 17px;
+  padding: 15px;
+  font-family: "Circular-Light";
+  font-size: 17px;
 `;
